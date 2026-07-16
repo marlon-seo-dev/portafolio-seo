@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N3KZGT7V');</script>
+<!-- End Google Tag Manager -->
+<!-- ============================= META BÁSICO ============================= -->
+<meta charset="UTF-8">
+<!-- ============================= GOOGLE ANALYTICS (gtag.js) — carga diferida =============================
+     No se descarga el script de Google (~60-70 KB) hasta que el usuario
+     interactúa con la página (scroll, movimiento del mouse, toque o tecla)
+     o pasan 5s de inactividad. Las llamadas a gtag() antes de eso se
+     encolan en dataLayer y se procesan igual apenas el script real carga,
+     así que no se pierde ningún dato de medición. Esto evita que
+     Analytics compita por el hilo principal durante la carga inicial. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6TL5FCRT9E');
+
+  (function () {
+    var cargado = false;
+    function cargarAnalytics() {
+      if (cargado) return;
+      cargado = true;
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-6TL5FCRT9E';
+      document.head.appendChild(script);
+      eventosDisparo.forEach(function (evento) {
+        window.removeEventListener(evento, cargarAnalytics);
+      });
+    }
+    var eventosDisparo = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
+    eventosDisparo.forEach(function (evento) {
+      window.addEventListener(evento, cargarAnalytics, { once: true, passive: true });
+    });
+    setTimeout(cargarAnalytics, 5000);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diseño Gráfico para Restaurantes en Bogotá | Marlon Herrera</title>
+<meta name="description" content="Diseñador gráfico para restaurantes en Bogotá: publicidad, menús digitales y publicaciones para redes sociales. Cotiza gratis por WhatsApp.">
+<meta name="author" content="Marlon Herrera">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0B1F3A">
+<link rel="canonical" href="https://marlon-herrera-seo.netlify.app/">
+
+<!-- ============================= FAVICON ============================= -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1F3A'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='30' font-weight='bold' fill='%235B3DF5' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+
+<!-- ============================= OPEN GRAPH ============================= -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Diseño Gráfico para Restaurantes en Bogotá | Marlon Herrera">
+<meta property="og:description" content="Diseñador gráfico para restaurantes en Bogotá: publicidad, menús digitales y publicaciones para redes sociales que aumentan tus ventas. Precios accesibles.">
+<meta property="og:url" content="https://marlon-herrera-seo.netlify.app/">
+<meta property="og:locale" content="es_CO">
+<meta property="og:site_name" content="Marlon Herrera Diseño">
+<meta property="og:image" content="https://marlon-herrera-seo.netlify.app/images/hero-diseno-restaurantes.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="Diseño de publicidad para restaurantes por Marlon Herrera">
+
+<!-- ============================= TWITTER CARD ============================= -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Diseño Gráfico para Restaurantes en Bogotá | Marlon Herrera">
+<meta name="twitter:description" content="Diseño de publicidad para restaurantes, cafeterías y negocios gastronómicos en Bogotá. Publicaciones, menús y banners que venden.">
+<meta name="twitter:image" content="https://marlon-herrera-seo.netlify.app/images/hero-diseno-restaurantes.webp">
+
+<!-- ============================= SCHEMA.ORG (Person + ProfessionalService + WebSite en un solo grafo) ============================= -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://marlon-herrera-seo.netlify.app/#persona",
+      "name": "Marlon Herrera",
+      "jobTitle": "Diseñador Gráfico especializado en publicidad para restaurantes",
+      "url": "https://marlon-herrera-seo.netlify.app/",
+      "email": "mailto:marlonsherrera7002@gmail.com",
+      "sameAs": [
+        "https://www.instagram.com/kairos_publicistas?igsh=MXIyZmIzMTY2dDZoOA==",
+        "https://www.fiverr.com/s/m580G09"
+      ],
+      "worksFor": { "@id": "https://marlon-herrera-seo.netlify.app/#servicio" }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://marlon-herrera-seo.netlify.app/#servicio",
+      "name": "Marlon Herrera - Diseño Publicitario para Restaurantes",
+      "description": "Servicios de diseño gráfico y publicidad digital para restaurantes, cafeterías, pizzerías, panaderías y comidas rápidas.",
+      "url": "https://marlon-herrera-seo.netlify.app/",
+      "email": "marlonsherrera7002@gmail.com",
+      "telephone": "+573213457681",
+      "priceRange": "$$",
+      "areaServed": "CO",
+      "serviceType": "Diseño gráfico publicitario para negocios gastronómicos",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bogotá",
+        "addressCountry": "CO"
+      },
+      "provider": { "@id": "https://marlon-herrera-seo.netlify.app/#persona" },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "+573213457681",
+        "email": "marlonsherrera7002@gmail.com",
+        "areaServed": "CO",
+        "availableLanguage": "Spanish"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios de diseño para restaurantes",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diseño para Instagram" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diseño para Facebook" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Menús digitales" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Flyers publicitarios" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Banners" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Promociones" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding e identidad visual" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diseño para cafeterías" } }
+        ]
+      },
+      "sameAs": [
+        "https://www.instagram.com/kairos_publicistas?igsh=MXIyZmIzMTY2dDZoOA==",
+        "https://www.fiverr.com/s/m580G09"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "url": "https://marlon-herrera-seo.netlify.app/",
+      "name": "Marlon Herrera Diseño",
+      "inLanguage": "es-CO",
+      "publisher": { "@id": "https://marlon-herrera-seo.netlify.app/#persona" }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://marlon-herrera-seo.netlify.app/#webpage",
+      "url": "https://marlon-herrera-seo.netlify.app/",
+      "name": "Diseño Gráfico para Restaurantes en Bogotá | Marlon Herrera",
+      "description": "Diseñador gráfico para restaurantes en Bogotá: publicidad, menús digitales y publicaciones para redes sociales que aumentan tus ventas.",
+      "isPartOf": { "@id": "https://marlon-herrera-seo.netlify.app/" },
+      "about": { "@id": "https://marlon-herrera-seo.netlify.app/#servicio" },
+      "inLanguage": "es-CO"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Trabajas con restaurantes fuera de Bogotá?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Sí, trabajo de forma remota con restaurantes y negocios de comida en cualquier ciudad de Colombia. Toda la comunicación y entrega de archivos se hace por WhatsApp y correo electrónico." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo tardas en entregar un diseño?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Depende del plan y la cantidad de piezas, pero los tiempos de entrega suelen estar entre 2 y 5 días hábiles." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo empiezo a trabajar contigo?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Escríbeme por WhatsApp contándome qué necesita tu restaurante, te propongo un plan y comenzamos a trabajar en tu diseño." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué tipos de negocios de comida atiendes?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Trabajo principalmente con restaurantes, cafeterías, pizzerías, panaderías y negocios de comidas rápidas." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto cuesta el diseño gráfico para un restaurante?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Los planes de diseño para restaurantes comienzan desde $80.000 COP, según el plan y la cantidad de piezas que necesites. Escríbeme por WhatsApp y te cotizo según lo que necesita tu negocio." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- ============================= PRELOAD IMAGEN PRINCIPAL (mejora LCP en móviles) ============================= -->
+<link rel="preload" as="image" href="images/hero-diseno-restaurantes.webp" fetchpriority="high">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3KZGT7V"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- ============================= BARRA DE PROGRESO DE SCROLL ============================= -->
+<div class="progreso-scroll" id="progreso-scroll" aria-hidden="true"></div>
+
+<!-- ============================= SKIP LINK (ACCESIBILIDAD) ============================= -->
+<a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+<!-- ============================= HEADER ============================= -->
+<header>
+  <div class="contenedor barra-nav">
+    <a href="#inicio" class="logo">Marlon<span>Herrera</span></a>
+    <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="menu-principal" aria-label="Abrir menú de navegación">
+      <span class="menu-toggle-barra"></span>
+      <span class="menu-toggle-barra"></span>
+      <span class="menu-toggle-barra"></span>
+    </button>
+    <nav aria-label="Menú principal" id="menu-principal" class="nav-principal">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="#planes">Planes</a></li>
+        <li><a href="#portafolio">Portafolio</a></li>
+        <li><a href="#preguntas">Preguntas</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================= BARRA ANIMADA DE KEYWORDS (SEO + interactividad visual) =============================
+     Ticker en CSS puro (sin JavaScript): repite frases clave reales del
+     negocio como texto visible y rastreable por buscadores, sin afectar
+     el rendimiento (no bloquea el hilo principal ni añade peso de JS).
+     Se pausa al pasar el mouse y se detiene si el usuario prefiere menos
+     movimiento (prefers-reduced-motion). No duplica contenido de servicios.html. -->
+<div class="marquee-seo" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Diseño gráfico para restaurantes en Bogotá</span>
+    <span class="marquee-punto">✦</span>
+    <span>Publicidad gastronómica que vende</span>
+    <span class="marquee-punto">✦</span>
+    <span>Menús digitales y flyers promocionales</span>
+    <span class="marquee-punto">✦</span>
+    <span>Diseño para Instagram y Facebook</span>
+    <span class="marquee-punto">✦</span>
+    <span>Entrega rápida en 2 a 5 días hábiles</span>
+    <span class="marquee-punto">✦</span>
+    <span>Precios accesibles para tu negocio</span>
+    <span class="marquee-punto">✦</span>
+    <span>Diseño gráfico para restaurantes en Bogotá</span>
+    <span class="marquee-punto">✦</span>
+    <span>Publicidad gastronómica que vende</span>
+    <span class="marquee-punto">✦</span>
+    <span>Menús digitales y flyers promocionales</span>
+    <span class="marquee-punto">✦</span>
+    <span>Diseño para Instagram y Facebook</span>
+    <span class="marquee-punto">✦</span>
+    <span>Entrega rápida en 2 a 5 días hábiles</span>
+    <span class="marquee-punto">✦</span>
+    <span>Precios accesibles para tu negocio</span>
+    <span class="marquee-punto">✦</span>
+  </div>
+</div>
+
+<main id="contenido" tabindex="-1">
+
+  <!-- ============================= HERO ============================= -->
+  <section class="hero" id="inicio">
+    <div class="contenedor hero-grid">
+      <div>
+        <p class="eyebrow">Diseñador gráfico en Bogotá para negocios gastronómicos</p>
+        <h1>
+          <strong>Diseño gráfico para restaurantes en Bogotá</strong> y publicidad gastronómica que convierte visitas en clientes
+        </h1>
+        <p class="subtexto">
+          Soy Marlon Herrera, diseñador gráfico especializado en publicidad para restaurantes, cafeterías,
+          pizzerías, panaderías y comidas rápidas en Bogotá y toda Colombia. Creo diseño de publicaciones
+          para redes sociales, menús digitales y banners pensados para vender, no solo para verse bien,
+          con precios accesibles y entregas rápidas.
+        </p>
+        <div class="hero-botones-fila">
+          <div class="hero-botones">
+            <a href="#contacto" class="btn btn-primario">Solicitar Cotización</a>
+            <a href="https://www.fiverr.com/s/m580G09" target="_blank" rel="noopener" class="btn btn-secundario">Ver Perfil en Fiverr</a>
+          </div>
+          <a href="#contacto" class="insignia-giratoria" aria-label="Ir al formulario de contacto por WhatsApp">
+            <svg class="insignia-giratoria-svg" viewBox="0 0 200 200" aria-hidden="true">
+              <defs>
+                <path id="ruta-insignia-inicio" d="M 100,100 m -80,0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0" />
+              </defs>
+              <text font-size="13" font-weight="700" letter-spacing="2.5">
+                <textPath href="#ruta-insignia-inicio">Cotiza gratis • Diseño para restaurantes • Bogotá • </textPath>
+              </text>
+            </svg>
+            <span class="insignia-giratoria-centro" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+      <figure class="hero-figura">
+        <img
+          src="images/hero-diseno-restaurantes.webp"
+          alt="Diseño de publicidad para restaurantes por Marlon Herrera"
+          width="1200"
+          height="900"
+          fetchpriority="high"
+          decoding="async">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================= ¿POR QUÉ ELEGIR MIS SERVICIOS? ============================= -->
+  <section class="porque" id="ventajas">
+    <div class="contenedor reveal">
+      <p class="eyebrow">Ventajas</p>
+      <h2>¿Por qué elegir mis servicios?</h2>
+      <p class="subtexto">Diseño gráfico pensado desde la estrategia, no solo desde la estética.</p>
+
+      <div class="porque-grid">
+        <article class="tarjeta">
+          <div class="tarjeta-icono" aria-hidden="true">01</div>
+          <h3>Diseño profesional</h3>
+          <p>Piezas gráficas con identidad visual sólida, coherentes con la marca de tu restaurante o negocio de comida.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="tarjeta-icono" aria-hidden="true">02</div>
+          <h3>Entrega rápida</h3>
+          <p>Tiempos de entrega ágiles para que tus promociones y publicaciones salgan a tiempo, sin perder oportunidades de venta.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="tarjeta-icono" aria-hidden="true">03</div>
+          <h3>Enfoque en aumentar ventas</h3>
+          <p>Cada diseño se construye con un objetivo claro: atraer más clientes y aumentar tus ventas reales.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= PROBLEMAS COMUNES ============================= -->
+  <section class="porque" id="problemas">
+    <div class="contenedor reveal">
+      <p class="eyebrow">Realidad del sector gastronómico</p>
+      <h2>Errores de imagen que le cuestan clientes a tu restaurante</h2>
+      <p class="subtexto">Estos son los problemas más comunes que veo en restaurantes, cafeterías y negocios de comida en Bogotá antes de trabajar juntos.</p>
+
+      <div class="porque-grid">
+        <article class="tarjeta">
+          <div class="tarjeta-icono" aria-hidden="true">01</div>
+          <h3>Publicaciones que no generan interacción</h3>
+          <p>Fotos con mala iluminación, textos poco claros o piezas armadas a última hora que pasan desapercibidas en el feed.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="tarjeta-icono" aria-hidden="true">02</div>
+          <h3>Menú confuso o poco atractivo</h3>
+          <p>Un menú desordenado o mal diseñado hace que el cliente demore en decidir, o que se vaya a otro negocio.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="tarjeta-icono" aria-hidden="true">03</div>
+          <h3>Imagen inconsistente entre canales</h3>
+          <p>Colores, tipografía y estilo distintos en Instagram, el local y los flyers, lo que resta profesionalismo y confianza.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= CÓMO EL DISEÑO AYUDA A VENDER MÁS ============================= -->
+  <section class="beneficios" id="como-ayuda">
+    <div class="contenedor reveal">
+      <p class="eyebrow">La solución</p>
+      <h2>Cómo el diseño gráfico ayuda a vender más en tu restaurante</h2>
+      <p class="subtexto">Un buen diseño publicitario no es solo estética: es una herramienta directa para atraer clientes y aumentar ventas.</p>
+
+      <div class="beneficios-grid">
+        <div class="beneficio">
+          <div class="beneficio-marca" aria-hidden="true">✓</div>
+          <span>Genera confianza a primera vista</span>
+        </div>
+        <div class="beneficio">
+          <div class="beneficio-marca" aria-hidden="true">✓</div>
+          <span>Facilita la decisión de compra</span>
+        </div>
+        <div class="beneficio">
+          <div class="beneficio-marca" aria-hidden="true">✓</div>
+          <span>Aumenta el alcance en redes</span>
+        </div>
+        <div class="beneficio">
+          <div class="beneficio-marca" aria-hidden="true">✓</div>
+          <span>Fortalece la identidad de marca</span>
+        </div>
+        <div class="beneficio">
+          <div class="beneficio-marca" aria-hidden="true">✓</div>
+          <span>Convierte visitas en pedidos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= SERVICIOS ============================= -->
+  <section class="servicios" id="servicios">
+    <div class="contenedor reveal">
+      <p class="eyebrow">Servicios</p>
+      <h2>Diseño publicitario para tu restaurante</h2>
+      <p class="subtexto">Soluciones de diseño gráfico para redes sociales, menús digitales y publicidad de negocios gastronómicos en Bogotá.</p>
+
+      <div class="servicios-grid">
+        <article class="servicio-item">
+          <h3>Diseño para Facebook</h3>
+          <p>Publicaciones optimizadas para captar la atención en el feed y generar interacción real.</p>
+        </article>
+        <article class="servicio-item">
+          <h3>Diseño para Instagram</h3>
+          <p>Contenido visual pensado para redes sociales, coherente con la identidad de tu negocio.</p>
+        </article>
+        <article class="servicio-item">
+          <h3>Promociones</h3>
+          <p>Piezas gráficas para promociones y ofertas que impulsan las ventas en fechas clave.</p>
+        </article>
+        <article class="servicio-item">
+          <h3>Volantes</h3>
+          <p>Diseño de volantes publicitarios efectivos para dar a conocer tu restaurante en tu zona.</p>
+        </article>
+        <article class="servicio-item">
+          <h3>Menús digitales</h3>
+          <p>Diseño de menús digitales y cartas claras y atractivas, con código QR listo para compartir en mesa.</p>
+        </article>
+        <article class="servicio-item">
+          <h3>Banners y publicidad</h3>
+          <p>Banners y piezas de publicidad para restaurantes pensadas para campañas digitales.</p>
+        </article>
+        <article class="servicio-item">
+          <h3>Branding e identidad visual</h3>
+          <p>Identidad visual e imagen corporativa coherente para tu restaurante, aplicada a cada pieza de publicidad gastronómica.</p>
+        </article>
+      </div>
+      <p class="subtexto enlace-interno">
+        <a href="servicios.html"><strong>Ver el detalle completo de cada servicio y mis planes de diseño →</strong></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================= PROCESO DE TRABAJO ============================= -->
+  <section class="porque" id="proceso">
+    <div class="contenedor reveal">
+      <p class="eyebrow">Proceso</p>
+      <h2>Así trabajo contigo, paso a paso</h2>
+      <p class="subtexto">Un proceso simple y claro, pensado para que no pierdas tiempo ni oportunidades de venta.</p>
+      <div class="linea-proceso">
+        <div class="paso-proceso">
+          <div class="paso-proceso-numero" aria-hidden="true">01</div>
+          <div class="paso-proceso-texto">
+            <h3>Contacto</h3>
+            <p>Me escribes por WhatsApp y me cuentas qué necesita tu restaurante o negocio de comida.</p>
+          </div>
+        </div>
+        <div class="paso-proceso">
+          <div class="paso-proceso-numero" aria-hidden="true">02</div>
+          <div class="paso-proceso-texto">
+            <h3>Planeación</h3>
+            <p>Definimos juntos el objetivo del diseño, el estilo y los tiempos de entrega.</p>
+          </div>
+        </div>
+        <div class="paso-proceso">
+          <div class="paso-proceso-numero" aria-hidden="true">03</div>
+          <div class="paso-proceso-texto">
+            <h3>Diseño</h3>
+            <p>Trabajo en tu pieza gráfica y te comparto el avance para tu revisión.</p>
+          </div>
+        </div>
+        <div class="paso-proceso">
+          <div class="paso-proceso-numero" aria-hidden="true">04</div>
+          <div class="paso-proceso-texto">
+            <h3>Entrega</h3>
+            <p>Recibes tus archivos finales, listos para publicar o imprimir.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= CALCULADORA INTERACTIVA DE PLAN (2 PASOS) ============================= -->
+  <section class="calculadora" id="calculadora">
+    <div class="contenedor reveal">
+      <p class="eyebrow">Herramienta gratuita</p>
+      <h2>Encuentra el plan de diseño ideal para tu negocio</h2>
+      <p class="subtexto">Responde 2 preguntas rápidas y te doy una recomendación personalizada, lista para cotizar por WhatsApp.</p>
+
+      <div class="calculadora-caja">
+
+        <!-- Indicador visual de progreso: Paso 1 de 2 -->
+        <div class="calculadora-progreso" aria-hidden="true">
+          <span class="calculadora-punto activo" data-punto="1">1</span>
+          <span class="calculadora-linea"></span>
+          <span class="calculadora-punto" data-punto="2">2</span>
+        </div>
+
+        <!-- Paso 1: tipo de negocio -->
+        <div class="calculadora-paso" data-paso="1">
+          <p class="calculadora-pregunta">1. ¿Qué tipo de negocio tienes?</p>
+          <div class="calculadora-opciones" role="group" aria-label="Tipo de negocio gastronómico">
+            <button type="button" class="calculadora-opcion" data-negocio="restaurante">Restaurante</button>
+            <button type="button" class="calculadora-opcion" data-negocio="cafetería">Cafetería</button>
+            <button type="button" class="calculadora-opcion" data-negocio="panadería o pizzería">Panadería o pizzería</button>
+            <button type="button" class="calculadora-opcion" data-negocio="negocio de comida rápida">Comida rápida</button>
+          </div>
+        </div>
+
+        <!-- Paso 2: frecuencia de publicación (se revela tras responder el paso 1) -->
+        <div class="calculadora-paso calculadora-paso-oculto" data-paso="2">
+          <p class="calculadora-pregunta">2. ¿Con qué frecuencia publicas contenido?</p>
+          <div class="calculadora-opciones" role="group" aria-label="Frecuencia de publicaciones en redes sociales">
+            <button type="button" class="calculadora-opcion" data-plan="Básico">Pocas veces al mes</button>
+            <button type="button" class="calculadora-opcion" data-plan="Emprendedor">Cada semana</button>
+            <button type="button" class="calculadora-opcion" data-plan="Restaurante">Varias veces por semana</button>
+          </div>
+        </div>
+
+        <div class="calculadora-resultado" id="calculadora-resultado" aria-live="polite">
+          <p>Responde las dos preguntas para ver tu recomendación personalizada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= PLANES Y PRECIOS ============================= -->
+  <section class="porque" id="planes">
+    <div class="contenedor reveal">
+      <p class="eyebrow">Planes</p>
+      <h2>Planes de diseño para restaurantes</h2>
+      <p class="subtexto">Precios accesibles para que puedas empezar a mejorar tu imagen desde ya. Los valores son <strong>desde</strong> y pueden variar según la cantidad de piezas y la complejidad de tu proyecto.</p>
+
+      <div class="porque-grid">
+        <article class="tarjeta">
+          <div class="tarjeta-icono" aria-hidden="true">B</div>
+          <h3>Plan Inicial</h3>
+          <span class="plan-precio">Desde $80.000 COP</span>
+          <p>1 pieza gráfica, 2 revisiones y entrega estándar. Ideal para una publicación o promoción puntual.</p>
+          <a href="https://wa.me/573213457681?text=Hola%20Marlon%2C%20quiero%20cotizar%20el%20Plan%20Inicial%20para%20mi%20restaurante." target="_blank" rel="noopener" class="btn btn-secundario">Cotizar este plan</a>
+        </article>
+        <article class="tarjeta tarjeta-plan-popular">
+          <span class="plan-etiqueta">Más elegido</span>
+          <div class="tarjeta-icono" aria-hidden="true">C</div>
+          <h3>Plan Crecimiento</h3>
+          <span class="plan-precio">Desde $180.000 COP</span>
+          <p>3 piezas gráficas, adaptaciones para Instagram y correcciones incluidas. Ideal para mantener tus redes activas todo el mes.</p>
+          <a href="https://wa.me/573213457681?text=Hola%20Marlon%2C%20quiero%20cotizar%20el%20Plan%20Crecimiento%20para%20mi%20restaurante." target="_blank" rel="noopener" class="btn btn-primario">Cotizar este plan</a>
+        </article>
+        <article class="tarjeta">
+          <div class="tarjeta-icono" aria-hidden="true">R</div>
+          <h3>Plan Restaurante</h3>
+          <span class="plan-precio">Desde $350.000 COP</span>
+          <p>Menú, flyer, publicaciones, branding básico y asesoría personalizada. Una estrategia visual completa para tu negocio.</p>
+          <a href="https://wa.me/573213457681?text=Hola%20Marlon%2C%20quiero%20cotizar%20el%20Plan%20Restaurante%20para%20mi%20restaurante." target="_blank" rel="noopener" class="btn btn-secundario">Cotizar este plan</a>
+        </article>
+      </div>
+      <p class="subtexto enlace-interno">
+        <a href="servicios.html#planes"><strong>Ver el detalle completo de cada plan →</strong></a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================= PORTAFOLIO ============================= -->
+  <section class="portafolio" id="portafolio">
+    <div class="contenedor reveal">
+      <p class="eyebrow">Portafolio</p>
+      <h2>Piezas que puedo crear para tu restaurante</h2>
+      <p class="subtexto">Así son las piezas que diseño. Puedes ver trabajos reales entregados a restaurantes y negocios de comida en Bogotá directamente en mi Instagram y en mi perfil de Fiverr.</p>
+      <div class="servicios-grid">
+        <article class="servicio-item">
+          <figure class="portafolio-imagen">
+            <img
+              src="images/portafolio/diseno-publicacion-instagram-restaurante-bogota.webp"
+              alt="Diseño de publicación para Instagram de un restaurante en Bogotá"
+              width="400"
+              height="400"
+              loading="lazy"
+              decoding="async">
+          </figure>
+          <h3>Publicación para Instagram</h3>
+          <p>Pieza lista para el feed, con la tipografía, los colores y el estilo de tu marca.</p>
+        </article>
+        <article class="servicio-item">
+          <figure class="portafolio-imagen">
+            <img
+              src="images/portafolio/diseno-menu-digital-restaurante-bogota.webp"
+              alt="Diseño de menú digital para un restaurante en Bogotá"
+              width="400"
+              height="400"
+              loading="lazy"
+              decoding="async">
+          </figure>
+          <h3>Menú digital</h3>
+          <p>Documento visual claro y fácil de leer desde el celular, listo para compartir por WhatsApp.</p>
+        </article>
+        <article class="servicio-item">
+          <figure class="portafolio-imagen">
+            <img
+              src="images/portafolio/diseno-flyer-promocional-restaurante-bogota.webp"
+              alt="Diseño de flyer promocional para un restaurante en Bogotá"
+              width="400"
+              height="400"
+              loading="lazy"
+              decoding="async">
+          </figure>
+          <h3>Flyer promocional</h3>
+          <p>Pieza pensada para promociones, aperturas o fechas especiales, lista para imprimir o publicar.</p>
+        </article>
+      </div>
+      <div class="portafolio-cta">
+        <a href="https://www.instagram.com/kairos_publicistas?igsh=MXIyZmIzMTY2dDZoOA==" target="_blank" rel="noopener" class="btn btn-secundario">Ver ejemplos en Instagram</a>
+        <a href="https://www.fiverr.com/s/m580G09" target="_blank" rel="noopener" class="btn btn-primario">Ver perfil completo en Fiverr</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= BENEFICIOS ============================= -->
+  <section class="beneficios" id="beneficios">
+    <div class="contenedor reveal">
+      <p class="eyebrow">Resultados</p>
+      <h2>Beneficios de trabajar conmigo</h2>
+
+      <div class="beneficios-grid">
+        <div class="beneficio">
+          <div class="beneficio-marca" aria-hidden="true">✓</div>
+          <span>Diseños modernos</span>
+        </div>
+        <div class="beneficio">
+          <div class="beneficio-marca" aria-hidden="true">✓</div>
+          <span>Mayor confianza</span>
+        </div>
+        <div class="beneficio">
+          <div class="beneficio-marca" aria-hidden="true">✓</div>
+          <span>Más clientes</span>
+        </div>
+        <div class="beneficio">
+          <div class="beneficio-marca" aria-hidden="true">✓</div>
+          <span>Identidad profesional</span>
+        </div>
+        <div class="beneficio">
+          <div class="beneficio-marca" aria-hidden="true">✓</div>
+          <span>Mayor interacción</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= SOBRE MARLON HERRERA ============================= -->
+  <section class="sobre" id="sobre-mi">
+    <div class="contenedor sobre-grid">
+      <figure class="sobre-figura">
+        <img
+          src="images/sobre-marlon-herrera.png"
+          alt="Marlon Herrera, diseñador gráfico especializado en publicidad para restaurantes"
+          width="600"
+          height="600"
+          loading="lazy"
+          decoding="async">
+      </figure>
+      <div class="sobre-texto reveal">
+        <p class="eyebrow">Sobre mí</p>
+        <h2>Marlon Herrera</h2>
+        <p>
+          Soy diseñador gráfico con formación en marketing digital y desarrollo publicitario, enfocado en
+          ayudar a restaurantes, cafeterías y negocios de comida a fortalecer su presencia digital.
+        </p>
+        <p>
+          Combino diseño gráfico con estrategia de marketing gastronómico para crear publicaciones,
+          menús digitales y publicidad que realmente conecta con los clientes y genera resultados medibles.
+        </p>
+        <p>
+          Trabajo con negocios que buscan una imagen profesional y constante en redes sociales, sin
+          complicaciones y con procesos claros de entrega.
+        </p>
+        <p>
+          También ayudo a construir identidad visual e imagen corporativa sólida, para que cada pieza que
+          publiques se vea coherente con la marca de tu restaurante o cafetería.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= PREGUNTAS FRECUENTES (INICIO) ============================= -->
+  <section class="preguntas-inicio" id="preguntas">
+    <div class="contenedor reveal">
+      <p class="eyebrow">Preguntas frecuentes</p>
+      <h2>Resolviendo tus dudas</h2>
+      <div class="preguntas-inicio-lista">
+        <details class="pregunta-item">
+          <summary>¿Trabajas con restaurantes fuera de Bogotá?</summary>
+          <p>Sí, trabajo de forma remota con restaurantes y negocios de comida en cualquier ciudad de Colombia. Toda la comunicación y entrega de archivos se hace por WhatsApp y correo electrónico.</p>
+        </details>
+        <details class="pregunta-item">
+          <summary>¿Cuánto tiempo tardas en entregar un diseño?</summary>
+          <p>Depende del plan y la cantidad de piezas, pero los tiempos de entrega suelen estar entre 2 y 5 días hábiles.</p>
+        </details>
+        <details class="pregunta-item">
+          <summary>¿Cómo empiezo a trabajar contigo?</summary>
+          <p>Escríbeme por WhatsApp contándome qué necesita tu restaurante, te propongo un plan y comenzamos a trabajar en tu diseño.</p>
+        </details>
+        <details class="pregunta-item">
+          <summary>¿Qué tipos de negocios de comida atiendes?</summary>
+          <p>Trabajo principalmente con restaurantes, cafeterías, pizzerías, panaderías y negocios de comidas rápidas.</p>
+        </details>
+        <details class="pregunta-item">
+          <summary>¿Cuánto cuesta el diseño gráfico para un restaurante?</summary>
+          <p>Los planes de diseño para restaurantes comienzan desde $80.000 COP, según el plan y la cantidad de piezas que necesites. Escríbeme por WhatsApp y te cotizo según lo que necesita tu negocio.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= CTA WHATSAPP ============================= -->
+  <section class="cta" id="contacto">
+    <div class="contenedor reveal">
+      <p class="eyebrow eyebrow-claro">Hablemos de tu proyecto</p>
+      <h2>¿Listo para impulsar tu restaurante?</h2>
+      <p class="subtexto subtexto-cta">
+        Escríbeme por WhatsApp y cuéntame qué necesitas. Te responderé con una propuesta clara y a tiempo.
+      </p>
+      <a href="https://wa.me/573213457681" target="_blank" rel="noopener" class="btn btn-whatsapp">Escribir por WhatsApp</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================= FOOTER ============================= -->
+<footer>
+  <div class="contenedor">
+    <address class="footer-grid">
+      <div>
+        <h3>Correo</h3>
+        <a href="mailto:marlonsherrera7002@gmail.com">marlonsherrera7002@gmail.com</a>
+      </div>
+      <div>
+        <h3>WhatsApp</h3>
+        <a href="https://wa.me/573213457681" target="_blank" rel="noopener">+57 321 345 7681</a>
+      </div>
+      <div>
+        <h3>Instagram</h3>
+        <a href="https://www.instagram.com/kairos_publicistas?igsh=MXIyZmIzMTY2dDZoOA==" target="_blank" rel="noopener">@kairos_publicistas</a>
+      </div>
+      <div>
+        <h3>Perfil Fiverr</h3>
+        <a href="https://www.fiverr.com/s/m580G09" target="_blank" rel="noopener">fiverr.com/s/m580G09</a>
+      </div>
+    </address>
+    <div class="footer-abajo">
+      <p>Sitio web: <a href="https://marlon-herrera-seo.netlify.app/">marlon-herrera-seo.netlify.app</a></p>
+      <p>&copy; 2026 Marlon Herrera. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================= BOTÓN VOLVER ARRIBA ============================= -->
+<button type="button" class="volver-arriba" id="volver-arriba" aria-label="Volver al inicio de la página">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
+<!-- ============================= BOTÓN FLOTANTE WHATSAPP ============================= -->
+<a href="https://wa.me/573213457681" target="_blank" rel="noopener" class="whatsapp-flotante" aria-label="Escribir por WhatsApp a Marlon Herrera">
+  <svg viewBox="0 0 32 32" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M16.02 3C9.4 3 4.02 8.38 4.02 15c0 2.22.6 4.3 1.65 6.09L3 29l8.1-2.6a11.9 11.9 0 0 0 4.92 1.06h.01c6.62 0 12-5.38 12-12S22.65 3 16.02 3Zm0 21.8h-.01a9.8 9.8 0 0 1-4.99-1.37l-.36-.21-4.8 1.54 1.57-4.68-.24-.38A9.8 9.8 0 0 1 5.62 15c0-5.46 4.45-9.9 10.4-9.9 5.46 0 9.9 4.44 9.9 9.9s-4.44 9.8-9.9 9.8Zm5.42-7.34c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.04-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.08 3.18 5.05 4.46.7.3 1.25.48 1.68.62.7.22 1.34.19 1.84.12.56-.08 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/>
+  </svg>
+</a>
+
+<!-- ============================= SCRIPT COMPARTIDO (menú móvil + calculadora) ============================= -->
+<script src="assets/js/main.js" defer></script>
+
+</body>
+</html>
