@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://marlon-herrera-seo.netlify.app/sitemap.xml
+Sitemap: https://86a9270d.portafolio-seo.pages.dev/sitemap.xml
