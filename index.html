@@ -11,39 +11,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- ============================= META BÁSICO ============================= -->
 <meta charset="UTF-8">
 <meta name="google-site-verification" content="uVeBFu-TzPvpvEMI0L24GYkgT4k2jyJ9noarRB7Lu84" />
-<!-- ============================= GOOGLE ANALYTICS (gtag.js) — carga diferida =============================
-     No se descarga el script de Google (~60-70 KB) hasta que el usuario
-     interactúa con la página (scroll, movimiento del mouse, toque o tecla)
-     o pasan 5s de inactividad. Las llamadas a gtag() antes de eso se
-     encolan en dataLayer y se procesan igual apenas el script real carga,
-     así que no se pierde ningún dato de medición. Esto evita que
-     Analytics compita por el hilo principal durante la carga inicial. -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-P7D1QJ3FM9');
-
-  (function () {
-    var cargado = false;
-    function cargarAnalytics() {
-      if (cargado) return;
-      cargado = true;
-      var script = document.createElement('script');
-      script.async = true;
-      script.src = 'https://www.googletagmanager.com/gtag/js?id=G-P7D1QJ3FM9';
-      document.head.appendChild(script);
-      eventosDisparo.forEach(function (evento) {
-        window.removeEventListener(evento, cargarAnalytics);
-      });
-    }
-    var eventosDisparo = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
-    eventosDisparo.forEach(function (evento) {
-      window.addEventListener(evento, cargarAnalytics, { once: true, passive: true });
-    });
-    setTimeout(cargarAnalytics, 5000);
-  })();
-</script>
+<!-- ============================= GOOGLE ANALYTICS =============================
+     La medición de GA4 (G-P7D1QJ3FM9) se maneja ÚNICAMENTE a través de Google
+     Tag Manager (contenedor GTM-N3KZGT7V, arriba). No se agrega gtag.js
+     directo aquí para evitar el doble conteo de visitas. Si necesitas
+     confirmar o cambiar el ID de medición, hazlo dentro de la etiqueta de
+     GA4 en GTM y publica el contenedor. -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Diseño Gráfico para Restaurantes en Bogotá | Marlon Herrera</title>
 <meta name="description" content="Diseñador gráfico para restaurantes en Bogotá: publicidad, menús digitales y publicaciones para redes sociales. Cotiza gratis por WhatsApp.">
