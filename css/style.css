@@ -1426,3 +1426,40 @@
       transition:none;
     }
   }
+
+  /* ============================= CONTENIDO DE ARTÍCULO/GUÍA (guia-diseno-restaurantes-bogota.html) =============================
+     Estilos de texto largo tipo blog: párrafos, subtítulos y listas con
+     check, reutilizando las variables y la tipografía ya definidas arriba.
+     No modifica ninguna regla existente. */
+  .articulo-texto p{
+    color: var(--texto-suave);
+    max-width:760px;
+    margin-bottom:16px;
+    font-size:1.02rem;
+  }
+
+  .articulo-texto h3{
+    margin:28px 0 10px;
+  }
+
+  .articulo-lista{
+    display:grid;
+    gap:12px;
+    margin:20px 0 24px;
+    max-width:760px;
+  }
+
+  .articulo-lista li{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    color: var(--texto-suave);
+    font-size:0.98rem;
+  }
+
+  .articulo-lista li::before{
+    content:'✓';
+    color: var(--morado);
+    font-weight:800;
+    flex-shrink:0;
+  }
