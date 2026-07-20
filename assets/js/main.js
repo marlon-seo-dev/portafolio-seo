@@ -316,3 +316,95 @@
 
   elementos.forEach(function (el) { observador.observe(el); });
 })();
+/* ============================= ASESOR INTERACTIVO DE ESTRATEGIAS (solo asesor-estrategias-restaurantes.html) =============================
+   Motor de recomendaciones en 2 pasos: tipo de negocio + objetivo principal.
+   Combina consejos ya escritos según ambas respuestas y arma un mensaje de
+   WhatsApp pre-llenado. No hace llamadas a ninguna API externa: es lógica
+   local, instantánea y sin costos ni dependencias externas. */
+(function () {
+  var pasoTipo = document.querySelector('.asesor-paso[data-paso="1"]');
+  var pasoObjetivo = document.querySelector('.asesor-paso[data-paso="2"]');
+  var resultado = document.getElementById('asesor-resultado');
+  if (!pasoTipo || !pasoObjetivo || !resultado) return;
+
+  var puntoDos = document.querySelector('.asesor-punto[data-punto="2"]');
+  var lineaProgreso = document.querySelector('.asesor-linea');
+
+  var tipoElegido = null;
+  var objetivoElegido = null;
+
+  var consejosTipo = {
+    'Restaurante formal': [
+      'Cuida la fotografía y el estilo visual de cada plato: en un restaurante formal la primera impresión visual pesa mucho en la decisión de reserva.',
+      'Mantén una identidad visual consistente entre el menú, el local y tus redes sociales.'
+    ],
+    'Comida rápida': [
+      'Prioriza publicidad directa: precio, combos y tiempo de entrega deben verse claros en cada pieza.',
+      'Las promociones por horarios (almuerzo, noche) suelen rendir mejor que la publicidad genérica.'
+    ],
+    'Cafetería o panadería': [
+      'Apuesta por un estilo cálido y de temporada: productos nuevos, horarios de mayor tráfico y ambiente.',
+      'El voz a voz en redes locales (grupos de barrio, Instagram) suele funcionar muy bien en este tipo de negocio.'
+    ],
+    'Food truck o negocio móvil': [
+      'Publica tu ubicación del día con anticipación: es la publicidad más efectiva para un negocio móvil.',
+      'Usa siempre el mismo logo y colores para que te reconozcan aunque cambies de lugar.'
+    ]
+  };
+
+  var consejosObjetivo = {
+    'Conseguir más seguidores': [
+      'Publica con una frecuencia constante (mínimo 3 veces por semana) y mantén siempre el mismo estilo visual.',
+      'Los videos cortos mostrando el proceso o el ambiente suelen generar más alcance que solo fotos de platos.'
+    ],
+    'Vender más en el punto de venta': [
+      'Un menú digital claro y bien jerarquizado ayuda a que el cliente decida más rápido y gaste un poco más.',
+      'Los combos y recomendaciones destacadas en el menú aumentan el valor promedio de cada pedido.'
+    ],
+    'Fidelizar clientes actuales': [
+      'Las publicaciones "detrás de cámaras" generan cercanía y hacen que el cliente vuelva.',
+      'Un programa simple de puntos o descuentos recurrentes, bien comunicado, ayuda mucho a la fidelización.'
+    ],
+    'Lanzar una promoción o apertura': [
+      'Anuncia la promoción con al menos una semana de anticipación en redes y con un flyer físico si tienes local.',
+      'Una cuenta regresiva en redes sociales genera expectativa antes del lanzamiento.'
+    ]
+  };
+
+  function mostrarResultado() {
+    if (!tipoElegido || !objetivoElegido) return;
+
+    var tips = consejosTipo[tipoElegido].concat(consejosObjetivo[objetivoElegido]);
+    var listaHtml = tips.map(function (t) { return '<li>' + t + '</li>'; }).join('');
+    var mensajeWhatsApp =
+      'Hola Marlon, tengo un(a) ' + tipoElegido + ' y mi objetivo principal es ' +
+      objetivoElegido.toLowerCase() + '. Usé el asesor de tu sitio y quiero cotizar una estrategia.';
+
+    resultado.innerHTML =
+      '<h3>Tu diagnóstico: ' + tipoElegido + ' + ' + objetivoElegido + '</h3>' +
+      '<ul>' + listaHtml + '</ul>' +
+      '<a href="https://wa.me/573213457681?text=' + encodeURIComponent(mensajeWhatsApp) +
+      '" target="_blank" rel="noopener" class="btn btn-primario asesor-btn">Cotizar esta estrategia por WhatsApp</a>';
+  }
+
+  pasoTipo.querySelectorAll('.asesor-opcion').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      pasoTipo.querySelectorAll('.asesor-opcion').forEach(function (b) { b.classList.remove('activo'); });
+      btn.classList.add('activo');
+      tipoElegido = btn.getAttribute('data-tipo');
+      pasoObjetivo.classList.remove('asesor-paso-oculto');
+      if (puntoDos) puntoDos.classList.add('activo');
+      if (lineaProgreso) lineaProgreso.classList.add('activo');
+      mostrarResultado();
+    });
+  });
+
+  pasoObjetivo.querySelectorAll('.asesor-opcion').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      pasoObjetivo.querySelectorAll('.asesor-opcion').forEach(function (b) { b.classList.remove('activo'); });
+      btn.classList.add('activo');
+      objetivoElegido = btn.getAttribute('data-objetivo');
+      mostrarResultado();
+    });
+  });
+})();
