@@ -32,7 +32,7 @@
   }
 
   @keyframes pagina-entrada{
-    from{ opacity:0; }
+    from{ opacity:0.01; }
     to{ opacity:1; }
   }
 
