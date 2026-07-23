@@ -1,0 +1,20 @@
+# Marlon Herrera — Diseño Gráfico para Restaurantes en Bogotá
+
+> Diseñador gráfico freelance especializado en publicidad, menús digitales,
+> identidad visual y branding gastronómico para restaurantes, cafeterías,
+> pizzerías, panaderías, gastrobares y negocios de comida rápida en Bogotá
+> y toda Colombia.
+
+## Páginas principales
+- [Inicio](https://portafolio-seo.pages.dev/): planes, portafolio, calculadora de plan ideal y contacto por WhatsApp.
+- [Servicios](https://portafolio-seo.pages.dev/servicios.html): detalle de cada servicio, guía de identidad visual, planes de precios y asesor gratuito de estrategias de marketing gastronómico.
+
+## Contacto
+- WhatsApp: +57 321 345 7681
+- Correo: marlonsherrera7002@gmail.com
+- Instagram: https://www.instagram.com/kairos_publicistas
+- Fiverr: https://www.fiverr.com/s/m580G09
+
+## Notas para agentes
+- Todo el contenido de precios, servicios y preguntas frecuentes está disponible en HTML plano, sin requerir ejecución de JavaScript.
+- Los precios son valores "desde" en pesos colombianos (COP) y pueden variar según la cantidad de piezas y complejidad del proyecto.
