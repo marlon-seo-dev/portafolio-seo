@@ -1,21 +1,23 @@
 /* ============================= RESET Y BASE ============================= */
   :root{
+    --negro: #0A0E16;
     --azul-oscuro: #0B1F3A;
-    --morado: #5B3DF5;
-    --morado-suave: #7C63F8;
+    --acento: #1E4A82;
+    --acento-suave: #2E63AC;
     --blanco: #FFFFFF;
     --gris-suave: #F5F6FA;
     --gris-medio: #E4E7F0;
     --texto-suave: #5B6578;
     --radio: 16px;
-    --sombra: 0 12px 30px rgba(11,31,58,0.10);
-    --sombra-fuerte: 0 18px 40px rgba(91,61,245,0.25);
-    --fuente: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --sombra: 0 12px 30px rgba(10,14,22,0.10);
+    --sombra-fuerte: 0 18px 40px rgba(11,31,58,0.28);
+    --fuente-titulos: "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    --fuente: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   }
 
   *{ margin:0; padding:0; box-sizing:border-box; }
 
-  html{ scroll-behavior:smooth; }
+  html{ scroll-behavior:smooth; scroll-padding-top:136px; }
 
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
@@ -65,7 +67,7 @@
   a:focus-visible,
   button:focus-visible,
   .btn:focus-visible{
-    outline:3px solid var(--morado);
+    outline:3px solid var(--acento);
     outline-offset:3px;
     border-radius:4px;
   }
@@ -77,9 +79,9 @@
     padding:0 24px;
   }
 
-  section{ padding:88px 0; }
+  section{ padding:88px 0; scroll-margin-top:136px; }
 
-  h1,h2,h3{ line-height:1.25; letter-spacing:-0.02em; }
+  h1,h2,h3{ font-family: var(--fuente-titulos); line-height:1.22; letter-spacing:-0.02em; color: var(--negro); }
 
   h2{
     font-size:clamp(1.7rem, 3vw, 2.3rem);
@@ -97,7 +99,7 @@
     font-weight:700;
     letter-spacing:0.14em;
     text-transform:uppercase;
-    color: var(--morado);
+    color: var(--acento);
     margin-bottom:12px;
   }
 
@@ -110,7 +112,7 @@
     flex-shrink:0;
   }
 
-  .eyebrow-claro{ color: var(--morado-suave); }
+  .eyebrow-claro{ color: var(--acento-suave); }
 
   .subtexto{
     color: var(--texto-suave);
@@ -121,7 +123,7 @@
   .subtexto-cta{ max-width:520px; }
 
   .enlace-interno{ margin-top:32px; }
-  .enlace-interno a{ color: var(--morado); text-decoration:underline; }
+  .enlace-interno a{ color: var(--acento); text-decoration:underline; }
 
   /* ============================= BOTONES ============================= */
   .btn{
@@ -140,11 +142,11 @@
   .btn:active{ transform:translateY(-1px) scale(0.99); }
 
   .btn-primario{
-    background: var(--morado);
+    background: var(--acento);
     color: var(--blanco);
     box-shadow: var(--sombra-fuerte);
   }
-  .btn-primario:hover{ background:#4b2fe0; box-shadow: 0 20px 44px rgba(91,61,245,0.35); }
+  .btn-primario:hover{ background: var(--acento-suave); box-shadow: 0 20px 44px rgba(30,74,130,0.35); }
 
   .btn-secundario{
     background: transparent;
@@ -171,7 +173,7 @@
     left:0;
     height:3px;
     width:calc(var(--progreso, 0) * 1%);
-    background: linear-gradient(90deg, var(--morado), var(--morado-suave));
+    background: linear-gradient(90deg, var(--acento), var(--acento-suave));
     z-index:120;
     transition: width .1s linear;
   }
@@ -196,7 +198,7 @@
     box-shadow: 0 8px 24px rgba(11,31,58,0.08);
   }
 
-  nav a.activo{ color: var(--morado); }
+  nav a.activo{ color: var(--acento); }
   nav a.activo::after{ width:100%; }
 
   .barra-nav{
@@ -212,7 +214,7 @@
     font-size:1.25rem;
     color: var(--azul-oscuro);
   }
-  .logo span{ color: var(--morado); }
+  .logo span{ color: var(--acento); }
 
   nav ul{
     display:flex;
@@ -234,11 +236,25 @@
     bottom:-2px;
     width:0;
     height:2px;
-    background: var(--morado);
+    background: var(--acento);
     transition: width .25s ease;
   }
-  nav a:hover{ color: var(--morado); }
+  nav a:hover{ color: var(--acento); }
   nav a:hover::after{ width:100%; }
+
+  /* ============================= ENLACE DESTACADO DE NAVEGACIÓN (Asesoría Gratis) ============================= */
+  .nav-principal a.nav-destacado{
+    background: var(--acento);
+    color: var(--blanco);
+    padding:8px 16px;
+    border-radius:999px;
+    font-weight:700;
+  }
+  .nav-principal a.nav-destacado::after{ display:none; }
+  .nav-principal a.nav-destacado:hover{ background: var(--acento-suave); color: var(--azul-oscuro); }
+  @media (max-width:640px){
+    .nav-principal a.nav-destacado{ border-radius:8px; text-align:center; }
+  }
 
   /* ============================= MENÚ MÓVIL (HAMBURGUESA) =============================
      Botón oculto en escritorio; en pantallas pequeñas reemplaza la nav
@@ -334,14 +350,14 @@
 
   .hero::before{
     width:420px; height:420px;
-    background: var(--morado);
+    background: var(--acento);
     top:-160px;
     right:-120px;
   }
 
   .hero::after{
     width:320px; height:320px;
-    background: var(--morado-suave);
+    background: var(--acento-suave);
     bottom:-140px;
     left:-100px;
     animation-delay:-7s;
@@ -375,7 +391,7 @@
   }
 
   .hero h1 strong{
-    background: linear-gradient(100deg, var(--morado) 20%, var(--morado-suave) 80%);
+    background: linear-gradient(100deg, var(--acento) 20%, var(--acento-suave) 80%);
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
@@ -389,7 +405,7 @@
   .hero-botones-fila{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-top:36px; }
 
   .hero-figura{
-    background: linear-gradient(145deg, var(--azul-oscuro), var(--morado));
+    background: linear-gradient(145deg, var(--azul-oscuro), var(--acento));
     border-radius: var(--radio);
     aspect-ratio: 4/3;
     display:flex;
@@ -466,7 +482,7 @@
     content:"";
     position:absolute;
     inset:0;
-    background: radial-gradient(220px circle at var(--x) var(--y), rgba(91,61,245,0.14), transparent 70%);
+    background: radial-gradient(220px circle at var(--x) var(--y), rgba(11,31,58,0.14), transparent 70%);
     opacity:0;
     transition: opacity .3s ease;
     pointer-events:none;
@@ -485,8 +501,8 @@
   .tarjeta-icono{
     width:52px; height:52px;
     border-radius:14px;
-    background: var(--morado);
-    color:var(--blanco);
+    background: var(--acento);
+    color: var(--blanco);
     display:flex; align-items:center; justify-content:center;
     font-size:1.3rem; font-weight:800;
     margin-bottom:18px;
@@ -498,7 +514,7 @@
     display:block;
     font-size:1.15rem;
     font-weight:800;
-    color: var(--morado);
+    color: var(--acento);
     margin-top:4px;
   }
 
@@ -527,7 +543,7 @@
     content:"";
     position:absolute;
     inset:0;
-    background: radial-gradient(200px circle at var(--x) var(--y), rgba(91,61,245,0.10), transparent 70%);
+    background: radial-gradient(200px circle at var(--x) var(--y), rgba(11,31,58,0.10), transparent 70%);
     opacity:0;
     transition: opacity .3s ease;
     pointer-events:none;
@@ -535,7 +551,7 @@
   .servicio-item:hover{
     transform: translateY(-5px);
     box-shadow: var(--sombra);
-    border-color: var(--morado-suave);
+    border-color: var(--acento-suave);
   }
   .servicio-item:hover::before{ opacity:1; }
 
@@ -632,14 +648,14 @@
 
   .cta::before{
     width:380px; height:380px;
-    background: var(--morado);
+    background: var(--acento);
     top:-180px;
     left:-100px;
   }
 
   .cta::after{
     width:300px; height:300px;
-    background: var(--morado-suave);
+    background: var(--acento-suave);
     bottom:-160px;
     right:-90px;
     animation-delay:-8s;
@@ -669,7 +685,7 @@
   }
 
   .footer-grid h3{ color:var(--blanco); font-size:0.95rem; margin-bottom:12px; }
-  .footer-grid a:hover{ color: var(--morado-suave); }
+  .footer-grid a:hover{ color: var(--acento-suave); }
 
   .footer-abajo{
     border-top:1px solid rgba(255,255,255,0.1);
@@ -739,7 +755,7 @@
     transform:translateY(-50%);
     font-size:1.4rem;
     font-weight:800;
-    color: var(--morado);
+    color: var(--acento);
     transition: transform .2s ease;
   }
 
@@ -826,8 +842,8 @@
     transform:none;
   }
   .volver-arriba:hover{
-    background: var(--morado);
-    border-color: var(--morado);
+    background: var(--acento);
+    border-color: var(--acento);
     color: var(--blanco);
   }
   .volver-arriba svg{ width:18px; height:18px; }
@@ -857,8 +873,8 @@
     color: var(--gris-medio);
   }
   .breadcrumb-nav a{ color: var(--texto-suave); transition: color .2s ease; }
-  .breadcrumb-nav a:hover{ color: var(--morado); }
-  .breadcrumb-nav li[aria-current="page"]{ color: var(--morado); }
+  .breadcrumb-nav a:hover{ color: var(--acento); }
+  .breadcrumb-nav li[aria-current="page"]{ color: var(--acento); }
 
   /* ============================= PORTAFOLIO EN TEXTO (SOLO SERVICIOS) =============================
      Reemplaza la galería de miniaturas: mientras no haya fotos reales de
@@ -931,7 +947,7 @@
   }
 
   .marquee-punto{
-    color: var(--morado-suave) !important;
+    color: var(--acento-suave) !important;
     font-size:0.7rem !important;
   }
 
@@ -990,8 +1006,8 @@
   }
 
   .calculadora-punto.activo{
-    background: var(--morado);
-    border-color: var(--morado);
+    background: var(--acento);
+    border-color: var(--acento);
     color: var(--blanco);
   }
 
@@ -1007,7 +1023,7 @@
     content:"";
     position:absolute;
     inset:0;
-    background: var(--morado);
+    background: var(--acento);
     transform: scaleX(0);
     transform-origin:left;
     transition: transform .35s ease;
@@ -1050,13 +1066,13 @@
   }
 
   .calculadora-opcion:hover{
-    border-color: var(--morado-suave);
+    border-color: var(--acento-suave);
     transform: translateY(-2px);
   }
 
   .calculadora-opcion.activo{
-    background: var(--morado);
-    border-color: var(--morado);
+    background: var(--acento);
+    border-color: var(--acento);
     color: var(--blanco);
   }
 
@@ -1072,7 +1088,7 @@
   }
 
   .calculadora-enlace{
-    color: var(--morado);
+    color: var(--acento);
     text-decoration:underline;
     font-weight:600;
   }
@@ -1109,7 +1125,7 @@
   }
 
   .insignia-giratoria-svg text{
-    fill: var(--morado);
+    fill: var(--acento);
     text-transform:uppercase;
   }
 
@@ -1126,7 +1142,7 @@
     width:46px;
     height:46px;
     border-radius:50%;
-    background: var(--morado);
+    background: var(--acento);
     color: var(--blanco);
     display:flex;
     align-items:center;
@@ -1189,8 +1205,8 @@
   }
 
   .indice-pagina a:hover{
-    background: var(--morado);
-    border-color: var(--morado);
+    background: var(--acento);
+    border-color: var(--acento);
     color: var(--blanco);
   }
 
@@ -1225,7 +1241,7 @@
   }
 
   .servicio-explorador:hover{ box-shadow: var(--sombra); }
-  .servicio-explorador[open]{ border-color: var(--morado-suave); }
+  .servicio-explorador[open]{ border-color: var(--acento-suave); }
 
   .servicio-explorador summary{
     cursor:pointer;
@@ -1245,7 +1261,7 @@
     height:48px;
     border-radius:14px;
     background: var(--gris-suave);
-    color: var(--morado);
+    color: var(--acento);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -1255,7 +1271,7 @@
   }
 
   .servicio-explorador[open] .servicio-explorador-numero{
-    background: var(--morado);
+    background: var(--acento);
     color: var(--blanco);
   }
 
@@ -1271,7 +1287,7 @@
     flex-shrink:0;
     font-size:1.4rem;
     font-weight:800;
-    color: var(--morado);
+    color: var(--acento);
     transition: transform .2s ease;
   }
 
@@ -1295,7 +1311,7 @@
 
   /* ============================= PLAN DESTACADO (SOLO SERVICIOS) ============================= */
   .tarjeta-plan-popular{
-    border:2px solid var(--morado);
+    border:2px solid var(--acento);
     position:relative;
   }
 
@@ -1303,7 +1319,7 @@
     position:absolute;
     top:-13px;
     left:28px;
-    background: var(--morado);
+    background: var(--acento);
     color: var(--blanco);
     font-size:0.72rem;
     font-weight:800;
@@ -1346,13 +1362,13 @@
     width:48px;
     height:48px;
     border-radius:50%;
-    background: var(--morado);
+    background: var(--acento);
     color: var(--blanco);
     display:flex;
     align-items:center;
     justify-content:center;
     font-weight:800;
-    box-shadow: 0 8px 18px rgba(91,61,245,0.3);
+    box-shadow: 0 8px 18px rgba(30,74,130,0.30);
   }
 
   .paso-proceso-texto h3{ margin-bottom:6px; }
@@ -1459,7 +1475,7 @@
 
   .articulo-lista li::before{
     content:'✓';
-    color: var(--morado);
+    color: var(--acento);
     font-weight:800;
     flex-shrink:0;
   }
@@ -1505,8 +1521,8 @@
   }
 
   .asesor-punto.activo{
-    background: var(--morado);
-    border-color: var(--morado);
+    background: var(--acento);
+    border-color: var(--acento);
     color: var(--blanco);
   }
 
@@ -1522,7 +1538,7 @@
     content:"";
     position:absolute;
     inset:0;
-    background: var(--morado);
+    background: var(--acento);
     transform: scaleX(0);
     transform-origin:left;
     transition: transform .35s ease;
@@ -1565,13 +1581,13 @@
   }
 
   .asesor-opcion:hover{
-    border-color: var(--morado-suave);
+    border-color: var(--acento-suave);
     transform: translateY(-2px);
   }
 
   .asesor-opcion.activo{
-    background: var(--morado);
-    border-color: var(--morado);
+    background: var(--acento);
+    border-color: var(--acento);
     color: var(--blanco);
   }
 
@@ -1606,13 +1622,13 @@
 
   .asesor-resultado ul li::before{
     content:'✓';
-    color: var(--morado);
+    color: var(--acento);
     font-weight:800;
     flex-shrink:0;
   }
 
   .asesor-enlace{
-    color: var(--morado);
+    color: var(--acento);
     text-decoration:underline;
     font-weight:600;
   }
@@ -1636,4 +1652,258 @@
     .asesor-caja{ padding:28px 22px; }
     .asesor-opciones{ flex-direction:column; }
     .asesor-opcion{ width:100%; }
+  }
+  /* ============================= FORMULARIO DE ASESORÍA GRATUITA (asesoria-gratuita.html) =============================
+     Formulario de captación de leads: nombre, negocio, correo y necesidad.
+     Envía la información por correo electrónico (ver main.js) sin backend,
+     ideal para un sitio estático en Cloudflare Pages. */
+  .formulario-asesoria{
+    background: var(--blanco);
+    border:1px solid var(--gris-medio);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    padding:36px;
+    max-width:640px;
+    margin:0 auto;
+  }
+
+  @media (max-width:640px){
+    .formulario-asesoria{ padding:24px 20px; }
+  }
+
+  .campo-formulario{
+    margin-bottom:20px;
+  }
+
+  .campo-formulario label{
+    display:block;
+    font-weight:700;
+    font-size:0.92rem;
+    color: var(--azul-oscuro);
+    margin-bottom:8px;
+  }
+
+  .campo-formulario .campo-obligatorio{ color: var(--acento); }
+
+  .campo-formulario input[type="text"],
+  .campo-formulario input[type="email"],
+  .campo-formulario input[type="tel"],
+  .campo-formulario select,
+  .campo-formulario textarea{
+    width:100%;
+    padding:13px 16px;
+    border-radius:12px;
+    border:2px solid var(--gris-medio);
+    background: var(--gris-suave);
+    color: var(--azul-oscuro);
+    font-family: var(--fuente);
+    font-size:0.98rem;
+    transition: border-color .2s ease, background-color .2s ease;
+  }
+
+  .campo-formulario textarea{ min-height:120px; resize:vertical; }
+
+  .campo-formulario input:focus,
+  .campo-formulario select:focus,
+  .campo-formulario textarea:focus{
+    outline:none;
+    border-color: var(--acento);
+    background: var(--blanco);
+  }
+
+  .formulario-nota{
+    font-size:0.85rem;
+    color: var(--texto-suave);
+    margin-top:-8px;
+    margin-bottom:24px;
+  }
+
+  .formulario-aviso{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    background: var(--gris-suave);
+    border:1px solid var(--gris-medio);
+    border-radius: var(--radio);
+    padding:14px 18px;
+    margin-bottom:28px;
+    font-size:0.88rem;
+    color: var(--texto-suave);
+  }
+
+  .formulario-resultado{
+    margin-top:24px;
+    padding:18px 20px;
+    border-radius: var(--radio);
+    background: var(--gris-suave);
+    border:1px solid var(--gris-medio);
+    display:none;
+  }
+
+  .formulario-resultado.visible{ display:block; }
+
+  .formulario-resultado.error{
+    background: #FFF1F1;
+    border-color:#F3C4C4;
+    color:#8A1F1F;
+  }
+
+  .formulario-botones{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+
+  @media (max-width:480px){
+    .formulario-botones .btn{ width:100%; }
+  }
+
+  /* ============================= CREDENCIAL (Certificación SENA) — sección "Sobre mí" ============================= */
+  .credencial-caja{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-top:24px;
+    padding:16px 18px;
+    background: var(--gris-suave);
+    border:1px solid var(--gris-medio);
+    border-radius: var(--radio);
+  }
+
+  .credencial-caja img{
+    width:120px;
+    height:90px;
+    object-fit:cover;
+    border-radius:10px;
+    flex-shrink:0;
+    background: var(--gris-medio);
+  }
+
+  .credencial-titulo{
+    font-weight:700;
+    color: var(--negro);
+    margin-bottom:4px;
+    font-size:0.95rem;
+  }
+
+  .credencial-texto{
+    font-size:0.88rem;
+    color: var(--texto-suave);
+    margin:0;
+  }
+
+  @media (max-width:560px){
+    .credencial-caja{ flex-direction:column; align-items:flex-start; }
+    .credencial-caja img{ width:100%; height:auto; max-height:140px; }
+  }
+
+  /* ============================= TESTIMONIOS DE CLIENTES ============================= */
+  .testimonios{ background: var(--gris-suave); }
+
+  .testimonios-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:24px;
+    margin-top:32px;
+  }
+
+  .testimonio-tarjeta{
+    background: var(--blanco);
+    border:1px solid var(--gris-medio);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    padding:28px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+
+  .testimonio-tarjeta blockquote{
+    margin:0 0 20px;
+    font-size:0.98rem;
+    line-height:1.6;
+    color: var(--negro);
+    position:relative;
+  }
+
+  .testimonio-tarjeta blockquote p{ margin:0; }
+
+  .testimonio-tarjeta blockquote::before{
+    content:"“";
+    font-family: var(--fuente-titulos);
+    font-size:2.6rem;
+    color: var(--acento);
+    line-height:0;
+    display:block;
+    margin-bottom:8px;
+  }
+
+  .testimonio-tarjeta figcaption{
+    display:flex;
+    flex-direction:column;
+    border-top:1px solid var(--gris-medio);
+    padding-top:14px;
+  }
+
+  .testimonio-nombre{ font-weight:700; color: var(--negro); font-size:0.92rem; }
+  .testimonio-negocio{ font-size:0.84rem; color: var(--texto-suave); }
+
+  /* ============================= GUÍA RÁPIDA: CÓMO USAR LA PÁGINA DE SERVICIOS ============================= */
+  .guia-rapida{
+    padding:32px 0;
+    background: var(--gris-suave);
+    border-bottom:1px solid var(--gris-medio);
+  }
+
+  .guia-rapida-etiqueta{
+    font-size:0.78rem;
+    font-weight:700;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color: var(--texto-suave);
+    margin-bottom:16px;
+  }
+
+  .guia-rapida-pasos{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px 28px;
+  }
+
+  .guia-rapida-pasos li{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:0.9rem;
+    color: var(--azul-oscuro);
+  }
+
+  .guia-rapida-pasos a{
+    color: var(--azul-oscuro);
+    text-decoration:underline;
+    text-decoration-color: var(--gris-medio);
+    text-underline-offset:3px;
+  }
+
+  .guia-rapida-pasos a:hover{ text-decoration-color: var(--acento); color: var(--acento); }
+
+  .guia-rapida-numero{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    background: var(--negro);
+    color: var(--blanco);
+    font-weight:800;
+    font-size:0.8rem;
+    flex-shrink:0;
+  }
+
+  @media (max-width:640px){
+    .guia-rapida-pasos{ flex-direction:column; gap:12px; }
   }

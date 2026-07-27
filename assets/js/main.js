@@ -316,6 +316,64 @@
 
   elementos.forEach(function (el) { observador.observe(el); });
 })();
+
+/* ============================= FORMULARIO DE ASESORÍA GRATUITA (solo asesoria-gratuita.html) =============================
+   El sitio es estático (Cloudflare Pages, sin backend), así que el envío
+   no llama a ninguna API: arma un correo electrónico pre-redactado con los
+   datos del formulario y abre el cliente de correo del usuario para que
+   confirme el envío a marlonsherrera7002@gmail.com. Incluye validación
+   básica de campos obligatorios y un mensaje de confirmación accesible. */
+(function () {
+  var formulario = document.getElementById('formulario-asesoria');
+  var resultado = document.getElementById('formulario-resultado');
+  if (!formulario || !resultado) return;
+
+  var CORREO_DESTINO = 'marlonsherrera7002@gmail.com';
+
+  function mostrarMensaje(texto, esError) {
+    resultado.textContent = texto;
+    resultado.classList.add('visible');
+    resultado.classList.toggle('error', !!esError);
+  }
+
+  formulario.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+
+    var nombre = formulario.nombre.value.trim();
+    var negocio = formulario.negocio.value.trim();
+    var tipo = formulario.tipo.value.trim();
+    var correo = formulario.correo.value.trim();
+    var whatsapp = formulario.whatsapp.value.trim();
+    var necesidad = formulario.necesidad.value.trim();
+
+    if (!nombre || !negocio || !tipo || !correo || !necesidad) {
+      mostrarMensaje('Por favor completa todos los campos obligatorios (*) antes de enviar.', true);
+      return;
+    }
+
+    var asunto = 'Solicitud de asesoría publicitaria gratuita - ' + negocio;
+    var cuerpo =
+      'Nombre: ' + nombre + '\n' +
+      'Negocio: ' + negocio + '\n' +
+      'Tipo de negocio: ' + tipo + '\n' +
+      'Correo de contacto: ' + correo + '\n' +
+      'WhatsApp: ' + (whatsapp || 'No indicado') + '\n\n' +
+      'Necesidad principal:\n' + necesidad;
+
+    var enlaceMailto =
+      'mailto:' + CORREO_DESTINO +
+      '?subject=' + encodeURIComponent(asunto) +
+      '&body=' + encodeURIComponent(cuerpo);
+
+    window.location.href = enlaceMailto;
+
+    mostrarMensaje(
+      'Se abrió tu aplicación de correo con el mensaje ya redactado para ' + CORREO_DESTINO +
+      '. Solo debes confirmar el envío. Si no se abrió automáticamente, escríbeme directo a ese correo o por WhatsApp.',
+      false
+    );
+  });
+})();
 /* ============================= ASESOR INTERACTIVO DE ESTRATEGIAS (solo asesor-estrategias-restaurantes.html) =============================
    Motor de recomendaciones en 2 pasos: tipo de negocio + objetivo principal.
    Combina consejos ya escritos según ambas respuestas y arma un mensaje de
@@ -334,21 +392,21 @@
   var objetivoElegido = null;
 
   var consejosTipo = {
-    'Restaurante formal': [
-      'Cuida la fotografía y el estilo visual de cada plato: en un restaurante formal la primera impresión visual pesa mucho en la decisión de reserva.',
-      'Mantén una identidad visual consistente entre el menú, el local y tus redes sociales.'
+    'Hamburguesería': [
+      'Destaca los combos (hamburguesa + papas + bebida) como pieza central: es lo que más convierte en comida rápida.',
+      'Las fotos de cortes jugosos y queso derretido en primer plano suelen generar más clics que fotos generales del local.'
     ],
-    'Comida rápida': [
-      'Prioriza publicidad directa: precio, combos y tiempo de entrega deben verse claros en cada pieza.',
-      'Las promociones por horarios (almuerzo, noche) suelen rendir mejor que la publicidad genérica.'
+    'Perros calientes o salchipapas': [
+      'Prioriza publicidad directa: precio, tamaño de la porción y combos deben verse claros en cada pieza.',
+      'Las promociones por horarios (tarde-noche) suelen rendir mejor que la publicidad genérica en este tipo de negocio.'
     ],
-    'Cafetería o panadería': [
-      'Apuesta por un estilo cálido y de temporada: productos nuevos, horarios de mayor tráfico y ambiente.',
-      'El voz a voz en redes locales (grupos de barrio, Instagram) suele funcionar muy bien en este tipo de negocio.'
+    'Pollo asado o broaster': [
+      'Muestra el tamaño de las porciones y el número de personas que alcanza cada combo familiar: es el argumento de venta más fuerte.',
+      'Los domingos y días de pago suelen ser el mejor momento para programar promociones de este tipo de negocio.'
     ],
-    'Food truck o negocio móvil': [
-      'Publica tu ubicación del día con anticipación: es la publicidad más efectiva para un negocio móvil.',
-      'Usa siempre el mismo logo y colores para que te reconozcan aunque cambies de lugar.'
+    'Pizza al paso': [
+      'Destaca la velocidad de entrega y el precio por porción o combo: son los dos factores que más pesan en la decisión.',
+      'Las piezas con ingredientes visibles (queso derretido, pepperoni) generan más antojo que las fotos del local.'
     ]
   };
 
