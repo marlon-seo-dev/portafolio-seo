@@ -318,17 +318,19 @@
 })();
 
 /* ============================= FORMULARIO DE ASESORÍA GRATUITA (solo asesoria-gratuita.html) =============================
-   El sitio es estático (Cloudflare Pages, sin backend), así que el envío
-   no llama a ninguna API: arma un correo electrónico pre-redactado con los
-   datos del formulario y abre el cliente de correo del usuario para que
-   confirme el envío a marlonsherrera7002@gmail.com. Incluye validación
-   básica de campos obligatorios y un mensaje de confirmación accesible. */
+   Envía los datos a la Cloudflare Pages Function en /api/enviar-asesoria,
+   que usa Resend para mandar un correo real a Marlon (y una confirmación
+   automática al cliente). Si la función falla o no está configurada
+   todavía, cae de vuelta a un enlace mailto: como respaldo, para que el
+   formulario nunca deje al usuario sin ninguna forma de contactar. */
 (function () {
   var formulario = document.getElementById('formulario-asesoria');
   var resultado = document.getElementById('formulario-resultado');
   if (!formulario || !resultado) return;
 
   var CORREO_DESTINO = 'marlonsherrera7002@gmail.com';
+  var botonEnviar = formulario.querySelector('button[type="submit"]');
+  var textoBotonOriginal = botonEnviar ? botonEnviar.textContent : '';
 
   function mostrarMensaje(texto, esError) {
     resultado.textContent = texto;
@@ -336,29 +338,21 @@
     resultado.classList.toggle('error', !!esError);
   }
 
-  formulario.addEventListener('submit', function (evento) {
-    evento.preventDefault();
+  function activarCargando(activo) {
+    if (!botonEnviar) return;
+    botonEnviar.disabled = activo;
+    botonEnviar.textContent = activo ? 'Enviando...' : textoBotonOriginal;
+  }
 
-    var nombre = formulario.nombre.value.trim();
-    var negocio = formulario.negocio.value.trim();
-    var tipo = formulario.tipo.value.trim();
-    var correo = formulario.correo.value.trim();
-    var whatsapp = formulario.whatsapp.value.trim();
-    var necesidad = formulario.necesidad.value.trim();
-
-    if (!nombre || !negocio || !tipo || !correo || !necesidad) {
-      mostrarMensaje('Por favor completa todos los campos obligatorios (*) antes de enviar.', true);
-      return;
-    }
-
-    var asunto = 'Solicitud de asesoría publicitaria gratuita - ' + negocio;
+  function enviarPorCorreoRespaldo(datosFormulario) {
+    var asunto = 'Solicitud de asesoría publicitaria gratuita - ' + datosFormulario.negocio;
     var cuerpo =
-      'Nombre: ' + nombre + '\n' +
-      'Negocio: ' + negocio + '\n' +
-      'Tipo de negocio: ' + tipo + '\n' +
-      'Correo de contacto: ' + correo + '\n' +
-      'WhatsApp: ' + (whatsapp || 'No indicado') + '\n\n' +
-      'Necesidad principal:\n' + necesidad;
+      'Nombre: ' + datosFormulario.nombre + '\n' +
+      'Negocio: ' + datosFormulario.negocio + '\n' +
+      'Tipo de negocio: ' + datosFormulario.tipo + '\n' +
+      'Correo de contacto: ' + datosFormulario.correo + '\n' +
+      'WhatsApp: ' + (datosFormulario.whatsapp || 'No indicado') + '\n\n' +
+      'Necesidad principal:\n' + datosFormulario.necesidad;
 
     var enlaceMailto =
       'mailto:' + CORREO_DESTINO +
@@ -368,10 +362,62 @@
     window.location.href = enlaceMailto;
 
     mostrarMensaje(
-      'Se abrió tu aplicación de correo con el mensaje ya redactado para ' + CORREO_DESTINO +
-      '. Solo debes confirmar el envío. Si no se abrió automáticamente, escríbeme directo a ese correo o por WhatsApp.',
-      false
+      'No pudimos enviar el formulario automáticamente, así que abrimos tu aplicación de correo con el ' +
+      'mensaje ya redactado para ' + CORREO_DESTINO + '. Solo debes confirmar el envío, o escríbenos por WhatsApp.',
+      true
     );
+  }
+
+  formulario.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+
+    var datosFormulario = {
+      nombre: formulario.nombre.value.trim(),
+      negocio: formulario.negocio.value.trim(),
+      tipo: formulario.tipo.value.trim(),
+      correo: formulario.correo.value.trim(),
+      whatsapp: formulario.whatsapp.value.trim(),
+      necesidad: formulario.necesidad.value.trim(),
+      // Campo trampa anti-spam (honeypot): invisible para personas, los
+      // bots que autocompletan formularios sí suelen rellenarlo.
+      sitio_web: formulario.sitio_web ? formulario.sitio_web.value.trim() : ''
+    };
+
+    if (!datosFormulario.nombre || !datosFormulario.negocio || !datosFormulario.tipo ||
+        !datosFormulario.correo || !datosFormulario.necesidad) {
+      mostrarMensaje('Por favor completa todos los campos obligatorios (*) antes de enviar.', true);
+      return;
+    }
+
+    activarCargando(true);
+
+    fetch('/api/enviar-asesoria', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(datosFormulario)
+    })
+      .then(function (respuesta) {
+        return respuesta.json().then(function (cuerpo) {
+          return { ok: respuesta.ok, cuerpo: cuerpo };
+        });
+      })
+      .then(function (resultadoRespuesta) {
+        activarCargando(false);
+        if (resultadoRespuesta.ok && resultadoRespuesta.cuerpo && resultadoRespuesta.cuerpo.ok) {
+          formulario.reset();
+          mostrarMensaje(
+            '¡Listo! Tu solicitud fue enviada correctamente. Te llegará una confirmación a tu correo y ' +
+            'te responderé en menos de 24 horas hábiles.',
+            false
+          );
+        } else {
+          enviarPorCorreoRespaldo(datosFormulario);
+        }
+      })
+      .catch(function () {
+        activarCargando(false);
+        enviarPorCorreoRespaldo(datosFormulario);
+      });
   });
 })();
 /* ============================= ASESOR INTERACTIVO DE ESTRATEGIAS (solo asesor-estrategias-restaurantes.html) =============================

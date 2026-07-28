@@ -189,6 +189,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <p class="formulario-nota">Los campos marcados con <span class="campo-obligatorio">*</span> son obligatorios. Tu información solo se usa para responder tu asesoría, nunca se comparte con terceros.</p>
 
+        <!-- Campo trampa anti-spam (honeypot): oculto visualmente y para lectores de
+             pantalla mediante CSS (.campo-trampa), pero presente en el HTML para que
+             los bots que autocompletan formularios lo rellenen. Si llega con contenido,
+             la función de servidor descarta el envío sin avisar al bot. -->
+        <div class="campo-trampa" aria-hidden="true">
+          <label for="campo-sitio-web">No completar este campo</label>
+          <input type="text" id="campo-sitio-web" name="sitio_web" tabindex="-1" autocomplete="off">
+        </div>
+
         <div class="formulario-botones">
           <button type="submit" class="btn btn-primario">Enviar y recibir asesoría por correo</button>
           <a href="https://wa.me/573213457681" target="_blank" rel="noopener" class="btn btn-secundario">Prefiero WhatsApp</a>

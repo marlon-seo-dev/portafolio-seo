@@ -1907,3 +1907,15 @@
   @media (max-width:640px){
     .guia-rapida-pasos{ flex-direction:column; gap:12px; }
   }
+
+  /* ============================= CAMPO TRAMPA ANTI-SPAM (honeypot) =============================
+     Oculto visualmente sin usar display:none/visibility:hidden, para que
+     los bots que ignoran esas propiedades igual lo detecten y lo llenen. */
+  .campo-trampa{
+    position:absolute;
+    left:-9999px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+  }
