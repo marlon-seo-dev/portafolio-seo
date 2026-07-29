@@ -43,9 +43,9 @@
   var planElegido = null;
 
   var detallesPlan = {
-    'Inicial': 'Desde $80.000 COP. 1 pieza gráfica, 2 revisiones y entrega estándar. Ideal para una publicación o promoción puntual.',
-    'Crecimiento': 'Desde $180.000 COP. 3 piezas gráficas, adaptaciones para Instagram y correcciones incluidas. Ideal para mantener tus redes activas todo el mes.',
-    'Restaurante': 'Desde $350.000 COP. Menú, flyer, publicaciones, branding básico y asesoría personalizada. Una estrategia visual completa para tu negocio.'
+    'Inicial': 'Desde $35.000 COP. 1 pieza gráfica, 2 revisiones y entrega estándar. Ideal para una publicación o promoción puntual.',
+    'Crecimiento': 'Desde $70.000 COP. 3 piezas gráficas, adaptaciones para Instagram y correcciones incluidas. Ideal para mantener tus redes activas todo el mes.',
+    'Restaurante': 'Desde $130.000 COP. Menú, flyer, publicaciones, branding básico y asesoría personalizada. Una estrategia visual completa para tu negocio.'
   };
 
   function mostrarResultado() {
