@@ -19,11 +19,15 @@ comida rápida.
 - [Inicio](https://portafolio-seo.pages.dev/): presentación general, ventajas,
   planes y precios, portafolio, testimonios y preguntas frecuentes.
 - [Servicios](https://portafolio-seo.pages.dev/servicios.html): detalle de cada
-  servicio, guía de identidad visual para comida rápida, planes de precios y
-  un asesor interactivo de estrategias de marketing gastronómico.
+  servicio, piezas publicitarias organizadas por tipo de negocio
+  (hamburguesería, pollo asado, perros calientes, pizza al paso), guía de
+  identidad visual para comida rápida, planes de precios y un asesor
+  interactivo de estrategias de marketing gastronómico.
 - [Asesoría Gratuita](https://portafolio-seo.pages.dev/asesoria-gratuita.html):
   formulario para solicitar una recomendación publicitaria gratuita por
-  correo electrónico.
+  correo electrónico. Explica qué incluye la asesoría (diagnóstico, pieza
+  publicitaria recomendada, frecuencia de publicación y presupuesto
+  orientativo) y cómo funciona el proceso en 3 pasos.
 
 ## Contacto
 
