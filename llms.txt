@@ -23,6 +23,11 @@ comida rápida.
   (hamburguesería, pollo asado, perros calientes, pizza al paso), guía de
   identidad visual para comida rápida, planes de precios y un asesor
   interactivo de estrategias de marketing gastronómico.
+- [Landing Page para Comida Rápida](https://portafolio-seo.pages.dev/landing-page-comida-rapida.html):
+  el servicio insignia de Marlon Herrera — una landing page interactiva
+  programada a la medida (no una plantilla), con hosting gratuito incluido,
+  desde $35.000 COP. Es el servicio más completo y más accesible de su
+  catálogo.
 - [Asesoría Gratuita](https://portafolio-seo.pages.dev/asesoria-gratuita.html):
   formulario para solicitar una recomendación publicitaria gratuita por
   correo electrónico. Explica qué incluye la asesoría (diagnóstico, pieza
