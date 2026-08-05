@@ -291,7 +291,7 @@
   });
 })();
 
-/* ============================= ANIMACIÓN AL HACER SCROLL (solo index.html) =============================
+/* ============================= ANIMACIÓN AL HACER SCROLL (index.html, servicios.html, asesoria-gratuita.html, landing-page-comida-rapida.html) =============================
    Revela secciones suavemente al entrar en pantalla. No se aplica al
    hero ni a la imagen de "Sobre mí" para no afectar el LCP ni las
    imágenes. Respeta prefers-reduced-motion (ver CSS) y navegadores sin
@@ -405,6 +405,11 @@
         activarCargando(false);
         if (resultadoRespuesta.ok && resultadoRespuesta.cuerpo && resultadoRespuesta.cuerpo.ok) {
           formulario.reset();
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: 'formulario_asesoria_enviado',
+            pagina: window.location.pathname
+          });
           mostrarMensaje(
             '¡Listo! Tu solicitud fue enviada correctamente. Te llegará una confirmación a tu correo y ' +
             'te responderé en menos de 24 horas hábiles.',
@@ -420,7 +425,7 @@
       });
   });
 })();
-/* ============================= ASESOR INTERACTIVO DE ESTRATEGIAS (solo asesor-estrategias-restaurantes.html) =============================
+/* ============================= ASESOR INTERACTIVO DE ESTRATEGIAS (solo servicios.html, sección "Diagnóstico rápido") =============================
    Motor de recomendaciones en 2 pasos: tipo de negocio + objetivo principal.
    Combina consejos ya escritos según ambas respuestas y arma un mensaje de
    WhatsApp pre-llenado. No hace llamadas a ninguna API externa: es lógica
@@ -509,6 +514,29 @@
       btn.classList.add('activo');
       objetivoElegido = btn.getAttribute('data-objetivo');
       mostrarResultado();
+    });
+  });
+})();
+/* ============================= SEGUIMIENTO DE CONVERSIONES (GTM) =============================
+   GTM ya está instalado en las 4 páginas pero, por defecto, solo registra la
+   visita a la página (pageview) — no ve clics a WhatsApp (abren otra app,
+   no hay recarga) ni el envío del formulario de asesoría (se hace por
+   fetch, tampoco recarga). Este listener delegado captura CUALQUIER clic
+   a un enlace de WhatsApp en cualquier página (header, footer, botón
+   flotante, "Cotizar este plan", el resultado de la calculadora y del
+   diagnóstico rápido, la landing page) sin tener que engancharlos uno por
+   uno, y empuja un evento a dataLayer para que puedas verlo y armar metas
+   de conversión en GTM/GA4. */
+(function () {
+  document.addEventListener('click', function (evento) {
+    var enlace = evento.target.closest('a[href*="wa.me/"]');
+    if (!enlace) return;
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'contacto_whatsapp',
+      pagina: window.location.pathname,
+      texto_boton: (enlace.textContent || '').trim().slice(0, 100)
     });
   });
 })();
