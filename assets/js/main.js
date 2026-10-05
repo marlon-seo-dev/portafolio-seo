@@ -98,7 +98,7 @@ function herramientaDosPasos(opciones) {
         ' y según la calculadora de tu sitio me recomendó el Plan ' + plan + '. Quiero cotizar.';
       return '<div><p>Para tu <strong>' + escaparHTML(negocio) + '</strong>, el <strong>Plan ' + escaparHTML(plan) +
         '</strong> es tu mejor opción. ' + detallesPlan[plan] +
-        ' <a href="/servicios#planes">Ver detalle de los planes</a>.</p>' +
+        ' <a href="servicios.html#planes">Ver detalle de los planes</a>.</p>' +
         '<a href="' + WHATSAPP + '?text=' + encodeURIComponent(mensaje) +
         '" target="_blank" rel="noopener" class="btn btn--primario">Cotizar Plan ' + escaparHTML(plan) + ' por WhatsApp</a></div>';
     }
