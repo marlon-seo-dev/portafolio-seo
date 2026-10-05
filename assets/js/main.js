@@ -1,447 +1,114 @@
-/* ============================= MENÚ MÓVIL (index.html y servicios.html) =============================
-   Muestra/oculta la navegación en pantallas pequeñas. Accesible: usa
-   aria-expanded y cierra el menú al elegir un enlace. */
-(function () {
-  var toggle = document.querySelector('.menu-toggle');
-  var nav = document.getElementById('menu-principal');
-  if (!toggle || !nav) return;
+/* =====================================================================
+   MARLON HERRERA — JS COMPARTIDO
+   Mejora progresiva: todo el contenido funciona sin JavaScript. Aquí solo
+   viven las interacciones que lo necesitan: menú móvil, calculadora de
+   plan, asesor de estrategias, formulario de asesoría, medición de clics
+   a WhatsApp y la carga diferida de HubSpot.
+   ===================================================================== */
 
-  toggle.addEventListener('click', function () {
-    var abierto = nav.classList.toggle('abierto');
-    toggle.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+var WHATSAPP = 'https://wa.me/573213457681';
+
+function escaparHTML(texto) {
+  return String(texto).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[c];
+  });
+}
+
+/* ============================= MENÚ MÓVIL =============================
+   Botón real con aria-expanded. Se cierra con Escape, al elegir un enlace
+   o al hacer clic fuera, y devuelve el foco al botón al cerrarse con Escape. */
+(function () {
+  var boton = document.querySelector('.menu-boton');
+  var nav = document.getElementById('menu-principal');
+  if (!boton || !nav) return;
+
+  function alternar(abrir) {
+    nav.classList.toggle('abierta', abrir);
+    boton.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+    boton.querySelector('.menu-boton__texto').textContent = abrir ? 'Cerrar' : 'Menú';
+  }
+
+  boton.addEventListener('click', function () {
+    alternar(boton.getAttribute('aria-expanded') !== 'true');
   });
 
-  nav.querySelectorAll('a').forEach(function (enlace) {
-    enlace.addEventListener('click', function () {
-      nav.classList.remove('abierto');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
+  nav.addEventListener('click', function (evento) {
+    if (evento.target.closest('a')) alternar(false);
+  });
+
+  document.addEventListener('keydown', function (evento) {
+    if (evento.key === 'Escape' && boton.getAttribute('aria-expanded') === 'true') {
+      alternar(false);
+      boton.focus();
+    }
   });
 
   document.addEventListener('click', function (evento) {
-    if (!nav.contains(evento.target) && !toggle.contains(evento.target)) {
-      nav.classList.remove('abierto');
-      toggle.setAttribute('aria-expanded', 'false');
+    if (boton.getAttribute('aria-expanded') === 'true' && !nav.contains(evento.target) && !boton.contains(evento.target)) {
+      alternar(false);
     }
   });
 })();
 
-/* ============================= CALCULADORA DE PLAN EN 2 PASOS (solo existe en index.html) =============================
-   Paso 1: tipo de negocio. Paso 2: frecuencia de publicación.
-   Al completar ambos pasos arma una recomendación personalizada y un
-   mensaje de WhatsApp pre-llenado con las respuestas del usuario. */
+/* ============================= HERRAMIENTA EN 2 PASOS (base común) =============================
+   Usada por la calculadora de plan (inicio) y el asesor de estrategias
+   (servicios). Cada opción es un <button> con aria-pressed; al responder
+   el paso 1 se revela el paso 2 y, con ambos, se pinta el resultado. */
+function herramientaDosPasos(opciones) {
+  var paso1 = document.querySelector(opciones.paso1);
+  var paso2 = document.querySelector(opciones.paso2);
+  var resultado = document.getElementById(opciones.resultado);
+  if (!paso1 || !paso2 || !resultado) return;
+
+  var respuestas = { uno: null, dos: null };
+
+  function enlazar(paso, clave, atributo, alResponder) {
+    paso.querySelectorAll('button[' + atributo + ']').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        paso.querySelectorAll('button[' + atributo + ']').forEach(function (b) {
+          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+        });
+        respuestas[clave] = btn.getAttribute(atributo);
+        if (alResponder) alResponder();
+        if (respuestas.uno && respuestas.dos) resultado.innerHTML = opciones.pintar(respuestas.uno, respuestas.dos);
+      });
+    });
+  }
+
+  enlazar(paso1, 'uno', opciones.atributo1, function () { paso2.hidden = false; });
+  enlazar(paso2, 'dos', opciones.atributo2);
+}
+
+/* ============================= CALCULADORA DE PLAN (solo inicio) ============================= */
 (function () {
-  var pasoNegocio = document.querySelector('.calculadora-paso[data-paso="1"]');
-  var pasoFrecuencia = document.querySelector('.calculadora-paso[data-paso="2"]');
-  var resultado = document.getElementById('calculadora-resultado');
-  if (!pasoNegocio || !pasoFrecuencia || !resultado) return;
-
-  var puntoDos = document.querySelector('.calculadora-punto[data-punto="2"]');
-  var lineaProgreso = document.querySelector('.calculadora-linea');
-
-  var negocioElegido = null;
-  var planElegido = null;
-
   var detallesPlan = {
     'Inicial': 'Desde $35.000 COP. 1 pieza gráfica, 2 revisiones y entrega estándar. Ideal para una publicación o promoción puntual.',
     'Crecimiento': 'Desde $70.000 COP. 3 piezas gráficas, adaptaciones para Instagram y correcciones incluidas. Ideal para mantener tus redes activas todo el mes.',
     'Restaurante': 'Desde $130.000 COP. Menú, flyer, publicaciones, branding básico y asesoría personalizada. Una estrategia visual completa para tu negocio.'
   };
 
-  function mostrarResultado() {
-    if (!negocioElegido || !planElegido) return;
-
-    var textoPlan = detallesPlan[planElegido];
-    var mensajeWhatsApp =
-      'Hola Marlon, tengo un(a) ' + negocioElegido +
-      ' y según la calculadora de tu sitio me recomendó el Plan ' + planElegido + '. Quiero cotizar.';
-
-    resultado.innerHTML =
-      '<p>Para tu <strong>' + negocioElegido + '</strong>, el <strong>Plan ' + planElegido + '</strong> es tu mejor opción: ' + textoPlan +
-      ' <a href="servicios.html#servicios" class="calculadora-enlace">Ver detalle del plan →</a></p>' +
-      '<a href="https://wa.me/573213457681?text=' + encodeURIComponent(mensajeWhatsApp) + '" target="_blank" rel="noopener" class="btn btn-primario calculadora-btn">Cotizar Plan ' + planElegido + ' por WhatsApp</a>';
-  }
-
-  pasoNegocio.querySelectorAll('.calculadora-opcion').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      pasoNegocio.querySelectorAll('.calculadora-opcion').forEach(function (b) { b.classList.remove('activo'); });
-      btn.classList.add('activo');
-      negocioElegido = btn.getAttribute('data-negocio');
-      pasoFrecuencia.classList.remove('calculadora-paso-oculto');
-      if (puntoDos) puntoDos.classList.add('activo');
-      if (lineaProgreso) lineaProgreso.classList.add('activo');
-      mostrarResultado();
-    });
-  });
-
-  pasoFrecuencia.querySelectorAll('.calculadora-opcion').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      pasoFrecuencia.querySelectorAll('.calculadora-opcion').forEach(function (b) { b.classList.remove('activo'); });
-      btn.classList.add('activo');
-      planElegido = btn.getAttribute('data-plan');
-      mostrarResultado();
-    });
-  });
-})();
-
-/* ============================= BARRA DE PROGRESO + SOMBRA DEL HEADER (index.html y servicios.html) =============================
-   Actualiza el ancho de la barra de progreso según cuánto se ha
-   scrolleado la página y agrega sombra al header al alejarse del tope. */
-(function () {
-  var barra = document.getElementById('progreso-scroll');
-  var header = document.querySelector('header');
-  if (!barra && !header) return;
-
-  function actualizar() {
-    var alto = document.documentElement.scrollHeight - window.innerHeight;
-    var progreso = alto > 0 ? (window.scrollY / alto) * 100 : 0;
-    if (barra) barra.style.setProperty('--progreso', progreso.toFixed(2));
-    if (header) header.classList.toggle('con-scroll', window.scrollY > 8);
-  }
-
-  actualizar();
-  window.addEventListener('scroll', actualizar, { passive: true });
-  window.addEventListener('resize', actualizar);
-})();
-
-/* ============================= BOTÓN VOLVER ARRIBA (index.html y servicios.html) =============================
-   Aparece después de bajar un poco en la página y sube suavemente al
-   inicio al hacer clic. */
-(function () {
-  var boton = document.getElementById('volver-arriba');
-  if (!boton) return;
-
-  function alternarVisibilidad() {
-    boton.classList.toggle('visible', window.scrollY > 480);
-  }
-
-  alternarVisibilidad();
-  window.addEventListener('scroll', alternarVisibilidad, { passive: true });
-
-  boton.addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-})();
-
-/* ============================= MENÚ ACTIVO SEGÚN LA SECCIÓN VISIBLE (solo index.html) =============================
-   Resalta en la navegación el enlace de la sección que está en pantalla. */
-(function () {
-  var enlaces = document.querySelectorAll('.nav-principal a[href^="#"]');
-  if (!enlaces.length || !('IntersectionObserver' in window)) return;
-
-  var secciones = [];
-  enlaces.forEach(function (enlace) {
-    var id = enlace.getAttribute('href').slice(1);
-    var seccion = document.getElementById(id);
-    if (seccion) secciones.push({ enlace: enlace, seccion: seccion });
-  });
-  if (!secciones.length) return;
-
-  var observador = new IntersectionObserver(function (entradas) {
-    entradas.forEach(function (entrada) {
-      var item = secciones.filter(function (s) { return s.seccion === entrada.target; })[0];
-      if (!item) return;
-      if (entrada.isIntersecting) {
-        enlaces.forEach(function (e) { e.classList.remove('activo'); });
-        item.enlace.classList.add('activo');
-      }
-    });
-  }, { rootMargin: '-45% 0px -45% 0px' });
-
-  secciones.forEach(function (s) { observador.observe(s.seccion); });
-})();
-
-/* ============================= TILT + BRILLO EN TARJETAS (index.html y servicios.html) =============================
-   Inclinación 3D sutil y un brillo que sigue el cursor en las tarjetas
-   de "Por qué elegirme" y de "Servicios". Se desactiva en pantallas
-   táctiles y si el usuario prefiere menos movimiento. */
-(function () {
-  var prefiereMenosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var tienePunteroFino = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (prefiereMenosMovimiento || !tienePunteroFino) return;
-
-  var tarjetas = document.querySelectorAll('.tarjeta, .servicio-item');
-  tarjetas.forEach(function (tarjeta) {
-    tarjeta.addEventListener('mousemove', function (evento) {
-      var rect = tarjeta.getBoundingClientRect();
-      var x = evento.clientX - rect.left;
-      var y = evento.clientY - rect.top;
-      var porcentajeX = (x / rect.width) * 100;
-      var porcentajeY = (y / rect.height) * 100;
-
-      tarjeta.style.setProperty('--x', porcentajeX + '%');
-      tarjeta.style.setProperty('--y', porcentajeY + '%');
-
-      var rotY = ((x / rect.width) - 0.5) * 6;
-      var rotX = ((y / rect.height) - 0.5) * -6;
-      tarjeta.style.setProperty('--rx', rotX.toFixed(2) + 'deg');
-      tarjeta.style.setProperty('--ry', rotY.toFixed(2) + 'deg');
-    });
-
-    tarjeta.addEventListener('mouseleave', function () {
-      tarjeta.style.setProperty('--rx', '0deg');
-      tarjeta.style.setProperty('--ry', '0deg');
-    });
-  });
-})();
-
-/* ============================= BOTONES MAGNÉTICOS (index.html y servicios.html) =============================
-   Los botones principales se desplazan levemente hacia el cursor para
-   sentirse más "vivos". Sutil, y desactivado en táctil / reduced motion. */
-(function () {
-  var prefiereMenosMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var tienePunteroFino = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (prefiereMenosMovimiento || !tienePunteroFino) return;
-
-  var botones = document.querySelectorAll('.btn-primario, .btn-whatsapp');
-  var limite = 8;
-
-  botones.forEach(function (boton) {
-    boton.addEventListener('mousemove', function (evento) {
-      var rect = boton.getBoundingClientRect();
-      var x = evento.clientX - rect.left - rect.width / 2;
-      var y = evento.clientY - rect.top - rect.height / 2;
-      var desplazamientoX = Math.max(-limite, Math.min(limite, x * 0.25));
-      var desplazamientoY = Math.max(-limite, Math.min(limite, y * 0.25));
-      boton.style.transform = 'translate(' + desplazamientoX.toFixed(1) + 'px,' + desplazamientoY.toFixed(1) + 'px)';
-    });
-
-    boton.addEventListener('mouseleave', function () {
-      boton.style.transform = '';
-    });
-  });
-})();
-
-/* ============================= ACORDEÓN DE PREGUNTAS SUAVE (index.html y servicios.html) =============================
-   Anima la apertura/cierre de las preguntas frecuentes (elemento
-   <details>) con una transición de altura, en vez del salto brusco por
-   defecto del navegador. Si el navegador no soporta bien la animación,
-   sigue funcionando igual gracias al comportamiento nativo de <details>. */
-(function () {
-  var preguntas = document.querySelectorAll('.pregunta-item');
-  if (!preguntas.length) return;
-
-  preguntas.forEach(function (item) {
-    var contenido = item.querySelector('p');
-    var resumen = item.querySelector('summary');
-    if (!contenido || !resumen) return;
-
-    resumen.addEventListener('click', function (evento) {
-      evento.preventDefault();
-
-      if (item.hasAttribute('data-animando')) return;
-
-      if (item.open) {
-        cerrar();
-      } else {
-        preguntas.forEach(function (otro) {
-          if (otro !== item && otro.open && !otro.hasAttribute('data-animando')) {
-            var otroContenido = otro.querySelector('p');
-            if (otroContenido) {
-              otro.setAttribute('data-animando', 'true');
-              otroContenido.style.maxHeight = otroContenido.scrollHeight + 'px';
-              requestAnimationFrame(function () {
-                otroContenido.style.maxHeight = '0px';
-              });
-              otroContenido.addEventListener('transitionend', function manejador() {
-                otro.open = false;
-                otro.removeAttribute('data-animando');
-                otroContenido.style.maxHeight = '';
-                otroContenido.removeEventListener('transitionend', manejador);
-              });
-            }
-          }
-        });
-        abrir();
-      }
-    });
-
-    function abrir() {
-      item.setAttribute('data-animando', 'true');
-      item.open = true;
-      contenido.style.overflow = 'hidden';
-      contenido.style.maxHeight = '0px';
-      contenido.style.transition = 'max-height .3s ease';
-      requestAnimationFrame(function () {
-        contenido.style.maxHeight = contenido.scrollHeight + 'px';
-      });
-      contenido.addEventListener('transitionend', function manejador() {
-        contenido.style.maxHeight = '';
-        contenido.style.overflow = '';
-        item.removeAttribute('data-animando');
-        contenido.removeEventListener('transitionend', manejador);
-      });
-    }
-
-    function cerrar() {
-      item.setAttribute('data-animando', 'true');
-      contenido.style.overflow = 'hidden';
-      contenido.style.maxHeight = contenido.scrollHeight + 'px';
-      requestAnimationFrame(function () {
-        contenido.style.maxHeight = '0px';
-      });
-      contenido.addEventListener('transitionend', function manejador() {
-        item.open = false;
-        contenido.style.maxHeight = '';
-        contenido.style.overflow = '';
-        item.removeAttribute('data-animando');
-        contenido.removeEventListener('transitionend', manejador);
-      });
+  herramientaDosPasos({
+    paso1: '.calculadora-paso[data-paso="1"]',
+    paso2: '.calculadora-paso[data-paso="2"]',
+    resultado: 'calculadora-resultado',
+    atributo1: 'data-negocio',
+    atributo2: 'data-plan',
+    pintar: function (negocio, plan) {
+      var mensaje = 'Hola Marlon, tengo un(a) ' + negocio +
+        ' y según la calculadora de tu sitio me recomendó el Plan ' + plan + '. Quiero cotizar.';
+      return '<div><p>Para tu <strong>' + escaparHTML(negocio) + '</strong>, el <strong>Plan ' + escaparHTML(plan) +
+        '</strong> es tu mejor opción. ' + detallesPlan[plan] +
+        ' <a href="/servicios#planes">Ver detalle de los planes</a>.</p>' +
+        '<a href="' + WHATSAPP + '?text=' + encodeURIComponent(mensaje) +
+        '" target="_blank" rel="noopener" class="btn btn--primario">Cotizar Plan ' + escaparHTML(plan) + ' por WhatsApp</a></div>';
     }
   });
 })();
 
-/* ============================= ANIMACIÓN AL HACER SCROLL (index.html, servicios.html, asesoria-gratuita.html, landing-page-comida-rapida.html) =============================
-   Revela secciones suavemente al entrar en pantalla. No se aplica al
-   hero ni a la imagen de "Sobre mí" para no afectar el LCP ni las
-   imágenes. Respeta prefers-reduced-motion (ver CSS) y navegadores sin
-   soporte de IntersectionObserver (los muestra de inmediato). */
+/* ============================= ASESOR DE ESTRATEGIAS (solo servicios) =============================
+   Lógica local e instantánea: combina consejos según tipo de negocio y
+   objetivo. Sin llamadas a APIs externas. */
 (function () {
-  var elementos = document.querySelectorAll('.reveal');
-  if (!elementos.length) return;
-
-  if (!('IntersectionObserver' in window)) {
-    elementos.forEach(function (el) { el.classList.add('visible'); });
-    return;
-  }
-
-  var observador = new IntersectionObserver(function (entradas) {
-    entradas.forEach(function (entrada) {
-      if (entrada.isIntersecting) {
-        entrada.target.classList.add('visible');
-        observador.unobserve(entrada.target);
-      }
-    });
-  }, { threshold: 0.15 });
-
-  elementos.forEach(function (el) { observador.observe(el); });
-})();
-
-/* ============================= FORMULARIO DE ASESORÍA GRATUITA (solo asesoria-gratuita.html) =============================
-   Envía los datos a la Cloudflare Pages Function en /api/enviar-asesoria,
-   que usa Resend para mandar un correo real a Marlon (y una confirmación
-   automática al cliente). Si la función falla o no está configurada
-   todavía, cae de vuelta a un enlace mailto: como respaldo, para que el
-   formulario nunca deje al usuario sin ninguna forma de contactar. */
-(function () {
-  var formulario = document.getElementById('formulario-asesoria');
-  var resultado = document.getElementById('formulario-resultado');
-  if (!formulario || !resultado) return;
-
-  var CORREO_DESTINO = 'marlonsherrera7002@gmail.com';
-  var botonEnviar = formulario.querySelector('button[type="submit"]');
-  var textoBotonOriginal = botonEnviar ? botonEnviar.textContent : '';
-
-  function mostrarMensaje(texto, esError) {
-    resultado.textContent = texto;
-    resultado.classList.add('visible');
-    resultado.classList.toggle('error', !!esError);
-  }
-
-  function activarCargando(activo) {
-    if (!botonEnviar) return;
-    botonEnviar.disabled = activo;
-    botonEnviar.textContent = activo ? 'Enviando...' : textoBotonOriginal;
-  }
-
-  function enviarPorCorreoRespaldo(datosFormulario) {
-    var asunto = 'Solicitud de asesoría publicitaria gratuita - ' + datosFormulario.negocio;
-    var cuerpo =
-      'Nombre: ' + datosFormulario.nombre + '\n' +
-      'Negocio: ' + datosFormulario.negocio + '\n' +
-      'Tipo de negocio: ' + datosFormulario.tipo + '\n' +
-      'Correo de contacto: ' + datosFormulario.correo + '\n' +
-      'WhatsApp: ' + (datosFormulario.whatsapp || 'No indicado') + '\n\n' +
-      'Necesidad principal:\n' + datosFormulario.necesidad;
-
-    var enlaceMailto =
-      'mailto:' + CORREO_DESTINO +
-      '?subject=' + encodeURIComponent(asunto) +
-      '&body=' + encodeURIComponent(cuerpo);
-
-    window.location.href = enlaceMailto;
-
-    mostrarMensaje(
-      'No pudimos enviar el formulario automáticamente, así que abrimos tu aplicación de correo con el ' +
-      'mensaje ya redactado para ' + CORREO_DESTINO + '. Solo debes confirmar el envío, o escríbenos por WhatsApp.',
-      true
-    );
-  }
-
-  formulario.addEventListener('submit', function (evento) {
-    evento.preventDefault();
-
-    var datosFormulario = {
-      nombre: formulario.nombre.value.trim(),
-      negocio: formulario.negocio.value.trim(),
-      tipo: formulario.tipo.value.trim(),
-      correo: formulario.correo.value.trim(),
-      whatsapp: formulario.whatsapp.value.trim(),
-      necesidad: formulario.necesidad.value.trim(),
-      // Campo trampa anti-spam (honeypot): invisible para personas, los
-      // bots que autocompletan formularios sí suelen rellenarlo.
-      sitio_web: formulario.sitio_web ? formulario.sitio_web.value.trim() : ''
-    };
-
-    if (!datosFormulario.nombre || !datosFormulario.negocio || !datosFormulario.tipo ||
-        !datosFormulario.correo || !datosFormulario.necesidad) {
-      mostrarMensaje('Por favor completa todos los campos obligatorios (*) antes de enviar.', true);
-      return;
-    }
-
-    activarCargando(true);
-
-    fetch('/api/enviar-asesoria', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(datosFormulario)
-    })
-      .then(function (respuesta) {
-        return respuesta.json().then(function (cuerpo) {
-          return { ok: respuesta.ok, cuerpo: cuerpo };
-        });
-      })
-      .then(function (resultadoRespuesta) {
-        activarCargando(false);
-        if (resultadoRespuesta.ok && resultadoRespuesta.cuerpo && resultadoRespuesta.cuerpo.ok) {
-          formulario.reset();
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({
-            event: 'formulario_asesoria_enviado',
-            pagina: window.location.pathname
-          });
-          mostrarMensaje(
-            '¡Listo! Tu solicitud fue enviada correctamente. Te llegará una confirmación a tu correo y ' +
-            'te responderé en menos de 24 horas hábiles.',
-            false
-          );
-        } else {
-          enviarPorCorreoRespaldo(datosFormulario);
-        }
-      })
-      .catch(function () {
-        activarCargando(false);
-        enviarPorCorreoRespaldo(datosFormulario);
-      });
-  });
-})();
-/* ============================= ASESOR INTERACTIVO DE ESTRATEGIAS (solo servicios.html, sección "Diagnóstico rápido") =============================
-   Motor de recomendaciones en 2 pasos: tipo de negocio + objetivo principal.
-   Combina consejos ya escritos según ambas respuestas y arma un mensaje de
-   WhatsApp pre-llenado. No hace llamadas a ninguna API externa: es lógica
-   local, instantánea y sin costos ni dependencias externas. */
-(function () {
-  var pasoTipo = document.querySelector('.asesor-paso[data-paso="1"]');
-  var pasoObjetivo = document.querySelector('.asesor-paso[data-paso="2"]');
-  var resultado = document.getElementById('asesor-resultado');
-  if (!pasoTipo || !pasoObjetivo || !resultado) return;
-
-  var puntoDos = document.querySelector('.asesor-punto[data-punto="2"]');
-  var lineaProgreso = document.querySelector('.asesor-linea');
-
-  var tipoElegido = null;
-  var objetivoElegido = null;
-
   var consejosTipo = {
     'Hamburguesería': [
       'Destaca los combos (hamburguesa + papas + bebida) como pieza central: es lo que más convierte en comida rápida.',
@@ -480,63 +147,171 @@
     ]
   };
 
-  function mostrarResultado() {
-    if (!tipoElegido || !objetivoElegido) return;
-
-    var tips = consejosTipo[tipoElegido].concat(consejosObjetivo[objetivoElegido]);
-    var listaHtml = tips.map(function (t) { return '<li>' + t + '</li>'; }).join('');
-    var mensajeWhatsApp =
-      'Hola Marlon, tengo un(a) ' + tipoElegido + ' y mi objetivo principal es ' +
-      objetivoElegido.toLowerCase() + '. Usé el asesor de tu sitio y quiero cotizar una estrategia.';
-
-    resultado.innerHTML =
-      '<h3>Tu diagnóstico: ' + tipoElegido + ' + ' + objetivoElegido + '</h3>' +
-      '<ul>' + listaHtml + '</ul>' +
-      '<a href="https://wa.me/573213457681?text=' + encodeURIComponent(mensajeWhatsApp) +
-      '" target="_blank" rel="noopener" class="btn btn-primario asesor-btn">Cotizar esta estrategia por WhatsApp</a>';
-  }
-
-  pasoTipo.querySelectorAll('.asesor-opcion').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      pasoTipo.querySelectorAll('.asesor-opcion').forEach(function (b) { b.classList.remove('activo'); });
-      btn.classList.add('activo');
-      tipoElegido = btn.getAttribute('data-tipo');
-      pasoObjetivo.classList.remove('asesor-paso-oculto');
-      if (puntoDos) puntoDos.classList.add('activo');
-      if (lineaProgreso) lineaProgreso.classList.add('activo');
-      mostrarResultado();
-    });
-  });
-
-  pasoObjetivo.querySelectorAll('.asesor-opcion').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      pasoObjetivo.querySelectorAll('.asesor-opcion').forEach(function (b) { b.classList.remove('activo'); });
-      btn.classList.add('activo');
-      objetivoElegido = btn.getAttribute('data-objetivo');
-      mostrarResultado();
-    });
+  herramientaDosPasos({
+    paso1: '.asesor-paso[data-paso="1"]',
+    paso2: '.asesor-paso[data-paso="2"]',
+    resultado: 'asesor-resultado',
+    atributo1: 'data-tipo',
+    atributo2: 'data-objetivo',
+    pintar: function (tipo, objetivo) {
+      var tips = consejosTipo[tipo].concat(consejosObjetivo[objetivo]);
+      var mensaje = 'Hola Marlon, tengo un(a) ' + tipo + ' y mi objetivo principal es ' +
+        objetivo.toLowerCase() + '. Usé el asesor de tu sitio y quiero cotizar una estrategia.';
+      return '<div><h3>Tu diagnóstico: ' + escaparHTML(tipo) + ' + ' + escaparHTML(objetivo) + '</h3>' +
+        '<ul>' + tips.map(function (t) { return '<li>' + escaparHTML(t) + '</li>'; }).join('') + '</ul>' +
+        '<a href="' + WHATSAPP + '?text=' + encodeURIComponent(mensaje) +
+        '" target="_blank" rel="noopener" class="btn btn--primario">Cotizar esta estrategia por WhatsApp</a></div>';
+    }
   });
 })();
-/* ============================= SEGUIMIENTO DE CONVERSIONES (GTM) =============================
-   GTM ya está instalado en las 4 páginas pero, por defecto, solo registra la
-   visita a la página (pageview) — no ve clics a WhatsApp (abren otra app,
-   no hay recarga) ni el envío del formulario de asesoría (se hace por
-   fetch, tampoco recarga). Este listener delegado captura CUALQUIER clic
-   a un enlace de WhatsApp en cualquier página (header, footer, botón
-   flotante, "Cotizar este plan", el resultado de la calculadora y del
-   diagnóstico rápido, la landing page) sin tener que engancharlos uno por
-   uno, y empuja un evento a dataLayer para que puedas verlo y armar metas
-   de conversión en GTM/GA4. */
-(function () {
-  document.addEventListener('click', function (evento) {
-    var enlace = evento.target.closest('a[href*="wa.me/"]');
-    if (!enlace) return;
 
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: 'contacto_whatsapp',
-      pagina: window.location.pathname,
-      texto_boton: (enlace.textContent || '').trim().slice(0, 100)
+/* ============================= FORMULARIO DE ASESORÍA GRATUITA (solo asesoria-gratuita) =============================
+   Envía los datos a la Cloudflare Pages Function /api/enviar-asesoria
+   (Resend). Si falla o no está configurada, abre el cliente de correo con
+   el mensaje redactado como respaldo, para no dejar al usuario sin salida. */
+(function () {
+  var formulario = document.getElementById('formulario-asesoria');
+  var resultado = document.getElementById('formulario-resultado');
+  if (!formulario || !resultado) return;
+
+  var CORREO_DESTINO = 'marlonsherrera7002@gmail.com';
+  var botonEnviar = formulario.querySelector('button[type="submit"]');
+  var textoBotonOriginal = botonEnviar ? botonEnviar.textContent : '';
+  var obligatorios = ['nombre', 'negocio', 'tipo', 'correo', 'necesidad'];
+
+  function mostrarMensaje(texto, esError) {
+    resultado.textContent = texto;
+    resultado.classList.add('visible');
+    resultado.classList.toggle('error', !!esError);
+  }
+
+  function activarCargando(activo) {
+    if (!botonEnviar) return;
+    botonEnviar.disabled = activo;
+    botonEnviar.textContent = activo ? 'Enviando...' : textoBotonOriginal;
+  }
+
+  function enviarPorCorreoRespaldo(datos) {
+    var asunto = 'Solicitud de asesoría publicitaria gratuita - ' + datos.negocio;
+    var cuerpo =
+      'Nombre: ' + datos.nombre + '\n' +
+      'Negocio: ' + datos.negocio + '\n' +
+      'Tipo de negocio: ' + datos.tipo + '\n' +
+      'Correo de contacto: ' + datos.correo + '\n' +
+      'WhatsApp: ' + (datos.whatsapp || 'No indicado') + '\n\n' +
+      'Necesidad principal:\n' + datos.necesidad;
+
+    window.location.href = 'mailto:' + CORREO_DESTINO +
+      '?subject=' + encodeURIComponent(asunto) + '&body=' + encodeURIComponent(cuerpo);
+
+    mostrarMensaje(
+      'No pudimos enviar el formulario automáticamente, así que abrimos tu aplicación de correo con el ' +
+      'mensaje ya redactado para ' + CORREO_DESTINO + '. Solo debes confirmar el envío, o escríbeme por WhatsApp.',
+      true
+    );
+  }
+
+  formulario.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+
+    var datos = {
+      nombre: formulario.nombre.value.trim(),
+      negocio: formulario.negocio.value.trim(),
+      tipo: formulario.tipo.value.trim(),
+      correo: formulario.correo.value.trim(),
+      whatsapp: formulario.whatsapp.value.trim(),
+      necesidad: formulario.necesidad.value.trim(),
+      // Campo trampa anti-spam (honeypot): invisible para personas.
+      sitio_web: formulario.sitio_web ? formulario.sitio_web.value.trim() : ''
+    };
+
+    var primerInvalido = null;
+    obligatorios.forEach(function (nombre) {
+      var campo = formulario[nombre];
+      var invalido = !datos[nombre] || (nombre === 'correo' && !campo.checkValidity());
+      campo.setAttribute('aria-invalid', invalido ? 'true' : 'false');
+      if (invalido && !primerInvalido) primerInvalido = campo;
     });
+
+    if (primerInvalido) {
+      mostrarMensaje('Por favor completa todos los campos obligatorios (*) con datos válidos antes de enviar.', true);
+      primerInvalido.focus();
+      return;
+    }
+
+    activarCargando(true);
+
+    fetch('/api/enviar-asesoria', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(datos)
+    })
+      .then(function (respuesta) {
+        return respuesta.json().then(function (cuerpo) {
+          return { ok: respuesta.ok, cuerpo: cuerpo };
+        });
+      })
+      .then(function (r) {
+        activarCargando(false);
+        if (r.ok && r.cuerpo && r.cuerpo.ok) {
+          formulario.reset();
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'formulario_asesoria_enviado', pagina: window.location.pathname });
+          mostrarMensaje(
+            '¡Listo! Tu solicitud fue enviada correctamente. Te llegará una confirmación a tu correo y ' +
+            'te responderé en menos de 24 horas hábiles.',
+            false
+          );
+        } else {
+          enviarPorCorreoRespaldo(datos);
+        }
+      })
+      .catch(function () {
+        activarCargando(false);
+        enviarPorCorreoRespaldo(datos);
+      });
   });
+})();
+
+/* ============================= SEGUIMIENTO DE CONVERSIONES (GTM) =============================
+   Listener delegado: cualquier clic a un enlace de WhatsApp en cualquier
+   página empuja el evento "contacto_whatsapp" a dataLayer para GTM/GA4. */
+document.addEventListener('click', function (evento) {
+  var enlace = evento.target.closest('a[href*="wa.me/"]');
+  if (!enlace) return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'contacto_whatsapp',
+    pagina: window.location.pathname,
+    texto_boton: (enlace.getAttribute('aria-label') || enlace.textContent || '').trim().slice(0, 100)
+  });
+});
+
+/* ============================= HUBSPOT DIFERIDO =============================
+   El script de HubSpot (51816950) pesa ~100 KB y bloquea el hilo principal
+   más de 1 s en móviles. Se carga con la primera interacción real (scroll,
+   toque, clic o tecla) o, si no la hay, 6 s después del evento load. Así no
+   compite con el LCP ni con la primera interacción (INP), y sigue registrando
+   a cualquier visitante que se quede o interactúe con la página. */
+(function () {
+  var eventos = ['scroll', 'pointerdown', 'keydown', 'touchstart'];
+  var temporizador;
+
+  function cargarHubSpot() {
+    eventos.forEach(function (e) { window.removeEventListener(e, cargarHubSpot); });
+    clearTimeout(temporizador);
+    if (document.getElementById('hs-script-loader')) return;
+    var s = document.createElement('script');
+    s.id = 'hs-script-loader';
+    s.async = true;
+    s.defer = true;
+    s.src = 'https://js.hs-scripts.com/51816950.js';
+    document.body.appendChild(s);
+  }
+
+  eventos.forEach(function (e) { window.addEventListener(e, cargarHubSpot, { once: true, passive: true }); });
+
+  function programarRespaldo() { temporizador = setTimeout(cargarHubSpot, 6000); }
+  if (document.readyState === 'complete') programarRespaldo();
+  else window.addEventListener('load', programarRespaldo);
 })();

@@ -1,2 +1,25 @@
 /sitemap.xml
   Content-Type: application/xml; charset=utf-8
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  X-Frame-Options: SAMEORIGIN
+
+# Fuentes: nombre estable y contenido inmutable.
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Imágenes y video: 30 días. Si reemplazas un archivo con el MISMO nombre,
+# algunos visitantes verán la versión anterior hasta que expire; mejor usar un nombre nuevo.
+/assets/images/*
+  Cache-Control: public, max-age=2592000
+/assets/video/*
+  Cache-Control: public, max-age=2592000
+
+# CSS y JS sin hash en el nombre: revalidación en cada visita (respuesta 304 si no cambió).
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate

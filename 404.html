@@ -9,64 +9,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-52CJFW7H');</script>
 <!-- End Google Tag Manager -->
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Página no encontrada (404) | Marlon Herrera</title>
-<!-- noindex: una página 404 nunca debe indexarse, pero sí puede rastrearse
-     para que Google confirme que el enlace efectivamente no existe. -->
+<!-- noindex: una 404 nunca debe indexarse. Todas las rutas son absolutas (/assets/...)
+     porque Cloudflare Pages sirve esta página en cualquier URL inexistente, incluso anidada. -->
 <meta name="robots" content="noindex, follow">
-<meta name="theme-color" content="#0B1F3A">
-
-<!-- ============================= FAVICON ============================= -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1F3A'/%3E%3Ctext x='32' y='42' font-family='Arial' font-size='30' font-weight='bold' fill='%23FFFFFF' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
-<link rel="manifest" href="manifest.json">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Sora:wght@600;700;800&amp;display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Sora:wght@600;700;800&amp;display=swap"></noscript>
-<link rel="stylesheet" href="assets/css/style.css">
-
-<style>
-  .pagina-404{
-    min-height: calc(100vh - 260px);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:60px 24px;
-    text-align:center;
-  }
-  .pagina-404-codigo{
-    font-family: var(--fuente-titulos);
-    font-size: clamp(4rem, 12vw, 7rem);
-    font-weight:800;
-    color: var(--acento);
-    line-height:1;
-    margin-bottom:8px;
-  }
-  .pagina-404-enlaces{
-    display:flex;
-    gap:14px;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-top:28px;
-  }
-  .pagina-404-sugerencias{
-    margin-top:40px;
-    padding-top:28px;
-    border-top:1px solid var(--gris-medio);
-  }
-  .pagina-404-sugerencias ul{
-    list-style:none;
-    padding:0;
-    margin:14px 0 0;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-  }
-</style>
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preload" href="/assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -76,68 +31,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
 
-<header>
-  <div class="contenedor barra-nav">
-    <a href="index.html" class="logo">Marlon<span>Herrera</span></a>
-    <nav aria-label="Menú principal" class="nav-principal">
+<header class="cabecera">
+  <div class="contenedor cabecera__barra">
+    <a href="/" class="marca" aria-label="Marlon Herrera, inicio">Marlon <em>Herrera</em></a>
+    <button type="button" class="menu-boton" aria-expanded="false" aria-controls="menu-principal">
+      <span class="menu-boton__icono" aria-hidden="true"></span>
+      <span class="menu-boton__texto">Menú</span>
+    </button>
+    <nav id="menu-principal" class="navegacion" aria-label="Menú principal">
       <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="servicios.html">Servicios</a></li>
-        <li><a href="asesoria-gratuita.html" class="nav-destacado">Asesoría Gratis</a></li>
+        <li><a href="/#portafolio">Portafolio</a></li>
+        <li><a href="/servicios">Servicios</a></li>
+        <li><a href="/landing-page-comida-rapida">Landing page</a></li>
+        <li><a href="/#planes">Planes</a></li>
+        <li><a href="/asesoria-gratuita">Asesoría gratis</a></li>
+        <li class="navegacion__cta"><a href="https://wa.me/573213457681" target="_blank" rel="noopener" class="btn btn--primario">Cotizar por WhatsApp</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <main id="contenido" tabindex="-1">
-  <section class="pagina-404">
+  <section class="error-404">
     <div class="contenedor">
-      <p class="pagina-404-codigo">404</p>
-      <h1>Esta página no existe o se movió de lugar</h1>
-      <p class="subtexto">
-        El enlace que seguiste puede estar roto o la página ya no está disponible.
-        Pero tranquilo, esto es lo que sí puedes encontrar:
-      </p>
-      <div class="pagina-404-enlaces">
-        <a href="index.html" class="btn btn-primario">Volver al inicio</a>
-        <a href="https://wa.me/573213457681" target="_blank" rel="noopener" class="btn btn-secundario">Escribir por WhatsApp</a>
+      <p class="error-404__codigo" aria-hidden="true">404</p>
+      <h1 class="titulo-l">Esta página no existe o se movió de lugar</h1>
+      <p class="entradilla">El enlace que seguiste puede estar roto o la página ya no está disponible. Esto es lo que sí puedes encontrar:</p>
+      <div class="botones">
+        <a href="/" class="btn btn--primario">Volver al inicio</a>
+        <a href="https://wa.me/573213457681" target="_blank" rel="noopener" class="btn btn--contorno">Escribir por WhatsApp</a>
       </div>
-
-      <div class="pagina-404-sugerencias">
-        <p class="subtexto"><strong>Quizás buscabas:</strong></p>
-        <ul>
-          <li><a href="servicios.html">Catálogo de piezas publicitarias y planes de precios</a></li>
-          <li><a href="asesoria-gratuita.html">Asesoría publicitaria gratuita por correo</a></li>
-          <li><a href="index.html#planes">Precios de los planes</a></li>
-          <li><a href="index.html#preguntas">Preguntas frecuentes</a></li>
-        </ul>
-      </div>
+      <ul class="error-404__sugerencias">
+        <li><a class="enlace-flecha" href="/servicios">Catálogo de piezas publicitarias y planes de precios</a></li>
+        <li><a class="enlace-flecha" href="/landing-page-comida-rapida">Landing page para negocios de comida rápida</a></li>
+        <li><a class="enlace-flecha" href="/asesoria-gratuita">Asesoría publicitaria gratuita por correo</a></li>
+        <li><a class="enlace-flecha" href="/#portafolio">Portafolio de piezas publicitarias</a></li>
+        <li><a class="enlace-flecha" href="/#preguntas">Preguntas frecuentes</a></li>
+      </ul>
     </div>
   </section>
 </main>
 
-<footer>
+<footer class="pie">
   <div class="contenedor">
-    <address class="footer-grid">
-      <div>
-        <h3>Correo</h3>
-        <a href="mailto:marlonsherrera7002@gmail.com">marlonsherrera7002@gmail.com</a>
-      </div>
-      <div>
-        <h3>WhatsApp</h3>
-        <a href="https://wa.me/573213457681" target="_blank" rel="noopener">+57 321 345 7681</a>
-      </div>
-    </address>
-    <div class="footer-abajo">
-      <p>Sitio web: <a href="https://portafolio-seo.pages.dev/">portafolio-seo.pages.dev</a></p>
-      <p>&copy; 2026 Marlon Herrera. Todos los derechos reservados.</p>
+    <div class="pie__legal pie__legal--solo">
+      <p>&copy; 2026 Marlon Herrera · <a href="mailto:marlonsherrera7002@gmail.com">marlonsherrera7002@gmail.com</a></p>
+      <p><a href="https://wa.me/573213457681" target="_blank" rel="noopener">WhatsApp +57 321 345 7681</a></p>
     </div>
   </div>
 </footer>
 
-
-<!-- Start of HubSpot Embed Code -->
-<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/51816950.js"></script>
-<!-- End of HubSpot Embed Code -->
+<script src="/assets/js/main.js" defer></script>
 </body>
 </html>

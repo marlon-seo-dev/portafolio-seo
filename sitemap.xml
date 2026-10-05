@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- URLs canónicas sin .html: Cloudflare Pages redirige (308) /pagina.html → /pagina. -->
   <url>
     <loc>https://portafolio-seo.pages.dev/</loc>
-    <lastmod>2026-08-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-10-04</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/hero-diseno-restaurantes-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/portafolio/diseno-publicacion-instagram-restaurante-bogota.webp</image:loc></image:image>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/portafolio/diseno-flyer-promocional-restaurante-bogota.webp</image:loc></image:image>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/portafolio/diseno-menu-digital-restaurante-bogota.webp</image:loc></image:image>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/portafolio/landing-page-hamburgueseria-perros-calientes.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://portafolio-seo.pages.dev/servicios.html</loc>
-    <lastmod>2026-08-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://portafolio-seo.pages.dev/servicios</loc>
+    <lastmod>2026-10-04</lastmod>
   </url>
   <url>
-    <loc>https://portafolio-seo.pages.dev/asesoria-gratuita.html</loc>
-    <lastmod>2026-07-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://portafolio-seo.pages.dev/landing-page-comida-rapida</loc>
+    <lastmod>2026-10-04</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/portafolio/landing-page-hamburgueseria-perros-calientes.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://portafolio-seo.pages.dev/landing-page-comida-rapida.html</loc>
-    <lastmod>2026-08-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://portafolio-seo.pages.dev/asesoria-gratuita</loc>
+    <lastmod>2026-10-04</lastmod>
   </url>
 </urlset>
