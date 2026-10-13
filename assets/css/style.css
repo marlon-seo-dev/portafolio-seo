@@ -552,13 +552,13 @@ main:focus{ outline:none; }
 .sobre__foto img{ width:100%; height:100%; object-fit:cover; }
 .sobre__texto p{ margin-top:18px; color:var(--tinta-2); max-width:62ch; }
 .sobre__texto p.entradilla{ color:var(--tinta); margin-top:24px; }
-.credencial{
-  display:flex; align-items:center; gap:18px;
-  margin-top:36px; padding-top:28px; border-top:1px solid var(--linea);
+/* Variante banner: imagen horizontal a todo el ancho y texto debajo. */
+.sobre__foto--banner{ aspect-ratio:1600/893; max-width:none; }
+.sobre__texto .btn{ margin-top:28px; }
+@media (min-width:900px){
+  .sobre.sobre--banner{ grid-template-columns:minmax(0,1fr); gap:48px; }
+  .sobre--banner .sobre__texto{ max-width:72ch; }
 }
-.credencial img{ width:96px; height:auto; border-radius:var(--radio); flex:none; }
-.credencial strong{ display:block; }
-.credencial span{ display:block; margin-top:4px; font-size:.9375rem; color:var(--tinta-2); }
 
 /* ============================= TESTIMONIOS ============================= */
 .testimonios{ display:grid; gap:20px; }
