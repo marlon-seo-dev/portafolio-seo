@@ -705,6 +705,7 @@ main:focus{ outline:none; }
 .bloque-destacado .titulo-l em{ color:var(--oscuro-acento); }
 .bloque-destacado p{ color:var(--oscuro-suave); max-width:60ch; }
 @media (min-width:900px){ .bloque-destacado{ grid-template-columns:1.4fr auto; align-items:end; gap:48px; } }
+.bloque-destacado + .bloque-destacado{ margin-top:20px; }
 .mt-s{ margin-top:20px; }
 .formulario__resultado{ margin-top:20px; }
 .pie__legal--solo{ margin-top:0; border-top:0; padding-top:0; }
