@@ -23,8 +23,8 @@ generalistas para otro tipo de industrias.
 ## Páginas principales
 
 - [Inicio](https://portafolio-seo.pages.dev/): marketing para restaurantes de
-  comida rápida en Bogotá; presentación de los servicios, portafolio, planes,
-  testimonios y preguntas frecuentes.
+  comida rápida en Bogotá; portafolio de piezas, servicios, proceso de trabajo,
+  testimonios y preguntas frecuentes. Los precios están en Servicios.
 - [SEO para Restaurantes](https://portafolio-seo.pages.dev/seo-para-restaurantes):
   servicio de SEO local y AEO para restaurantes de comida rápida: qué es SEO,
   AEO y GEO, qué incluye, cómo funciona en 4 pasos y preguntas frecuentes
