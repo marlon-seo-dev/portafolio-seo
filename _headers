@@ -23,3 +23,7 @@
   Cache-Control: public, max-age=0, must-revalidate
 /assets/js/*
   Cache-Control: public, max-age=0, must-revalidate
+
+# Utilidades del repositorio (p. ej. scripts/indexnow.mjs): se publican con el sitio, pero no deben indexarse.
+/scripts/*
+  X-Robots-Tag: noindex
