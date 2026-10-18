@@ -883,3 +883,8 @@ main:focus{ outline:none; }
 .director__texto .lista-check{ margin-top:24px; }
 .director__texto .lista-check li{ font-size:1rem; padding-block:12px; }
 .director__texto .botones{ margin-top:28px; }
+
+/* ============================= LOGO KAIROS (WebP con ancho y alto fijos: sin saltos de diseño) ============================= */
+.marca img{ display:block; width:auto; height:42px; }
+@media (max-width:479px){ .marca img{ height:36px; } }
+.pie .marca img{ width:200px; height:auto; }
