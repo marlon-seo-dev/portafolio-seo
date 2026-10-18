@@ -94,7 +94,7 @@ function herramientaDosPasos(opciones) {
     atributo1: 'data-negocio',
     atributo2: 'data-plan',
     pintar: function (negocio, plan) {
-      var mensaje = 'Hola Marlon, tengo un(a) ' + negocio +
+      var mensaje = 'Hola Kairos, tengo un(a) ' + negocio +
         ' y según la calculadora de tu sitio me recomendó el Plan ' + plan + '. Quiero cotizar.';
       return '<div><p>Para tu <strong>' + escaparHTML(negocio) + '</strong>, el <strong>Plan ' + escaparHTML(plan) +
         '</strong> es tu mejor opción. ' + detallesPlan[plan] +
@@ -155,7 +155,7 @@ function herramientaDosPasos(opciones) {
     atributo2: 'data-objetivo',
     pintar: function (tipo, objetivo) {
       var tips = consejosTipo[tipo].concat(consejosObjetivo[objetivo]);
-      var mensaje = 'Hola Marlon, tengo un(a) ' + tipo + ' y mi objetivo principal es ' +
+      var mensaje = 'Hola Kairos, tengo un(a) ' + tipo + ' y mi objetivo principal es ' +
         objetivo.toLowerCase() + '. Usé el asesor de tu sitio y quiero cotizar una estrategia.';
       return '<div><h3>Tu diagnóstico: ' + escaparHTML(tipo) + ' + ' + escaparHTML(objetivo) + '</h3>' +
         '<ul>' + tips.map(function (t) { return '<li>' + escaparHTML(t) + '</li>'; }).join('') + '</ul>' +

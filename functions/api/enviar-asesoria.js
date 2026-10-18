@@ -12,7 +12,7 @@
  */
 
 const CORREO_DESTINO = 'marlonsherrera7002@gmail.com';
-const NOMBRE_SITIO = 'Formulario de Asesoría — Marlon Herrera';
+const NOMBRE_SITIO = 'Formulario de Asesoría — Kairos';
 
 // Remitente que se muestra en el correo. Con el dominio de prueba de Resend
 // (onboarding@resend.dev) funciona sin configurar nada. Si más adelante
@@ -141,9 +141,9 @@ export async function onRequestPost(context) {
             <div style="font-family:Arial,sans-serif;max-width:560px;margin:0 auto;color:#0B1F3A;">
               <h2 style="color:#0A0E16;">¡Gracias, ${escaparHTML(nombre)}!</h2>
               <p>Recibimos tu solicitud de asesoría publicitaria gratuita para <strong>${escaparHTML(negocio)}</strong>.</p>
-              <p>Te responderé a este mismo correo en menos de 24 horas hábiles con una recomendación inicial para tu negocio.</p>
-              <p>Si necesitas algo urgente, puedes escribirme directo por WhatsApp: <a href="https://wa.me/573213457681">+57 321 345 7681</a>.</p>
-              <p style="margin-top:24px;">— Marlon Herrera</p>
+              <p>Te responderemos a este mismo correo en menos de 24 horas hábiles con una recomendación inicial para tu negocio.</p>
+              <p>Si necesitas algo urgente, puedes escribirnos directo por WhatsApp: <a href="https://wa.me/573213457681">+57 321 345 7681</a>.</p>
+              <p style="margin-top:24px;">— Marlon Herrera, director de Kairos</p>
             </div>
           `,
         }),
