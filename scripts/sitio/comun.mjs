@@ -178,6 +178,28 @@ export const ofertasLd = (cat) => PLANES[cat].planes.map((p) => ({
   seller: { '@id': ID.org },
 }));
 
+// ============================= MARCAS CON LAS QUE HEMOS TRABAJADO =============================
+// Para mostrar el carrusel en el inicio, agrega cada logo aquí y su archivo en assets/images/marcas/.
+// Formato: { nombre: 'Nombre de la marca', archivo: 'nombre-marca.webp', ancho: 300, alto: 120 }
+// (ancho y alto = tamaño real del archivo). Mientras la lista esté vacía, el carrusel no aparece.
+export const MARCAS = [];
+
+export function carruselMarcas() {
+  if (!MARCAS.length) return '';
+  const logo = (m, oculto) => `<li${oculto ? ' aria-hidden="true"' : ''}><img src="/assets/images/marcas/${m.archivo}" width="${m.ancho}" height="${m.alto}" loading="lazy" decoding="async" alt="${oculto ? '' : m.nombre}"></li>`;
+  // Serie base (se repite si hay pocos logos, para llenar la pantalla) y una copia exacta oculta:
+  // la animación avanza el 50 % del ancho, justo una serie, así el bucle no tiene saltos.
+  const veces = Math.max(1, Math.ceil(6 / MARCAS.length));
+  const serie = (todaOculta) => Array.from({ length: veces }, (_, i) => MARCAS.map((m) => logo(m, todaOculta || i > 0)).join('')).join('');
+  return `
+  <section class="marcas" aria-labelledby="titulo-marcas">
+    <div class="contenedor"><h2 class="marcas__titulo" id="titulo-marcas">Marcas con las que hemos trabajado</h2></div>
+    <div class="marcas__ventana">
+      <ul class="marcas__pista">${serie(false)}${serie(true)}</ul>
+    </div>
+  </section>`;
+}
+
 // ============================= NAVEGACIÓN, CABECERA Y PIE =============================
 const NAV = [
   ['/servicios', 'Servicios'],

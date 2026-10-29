@@ -39,7 +39,7 @@
 
 ## Páginas principales
 
-- [Inicio](https://portafolio-seo.pages.dev/): qué es Kairos, servicios, para quién es, planes destacados, director, testimonios y preguntas frecuentes.
+- [Inicio](https://portafolio-seo.pages.dev/): qué es Kairos, servicios, para quién es, planes destacados, director, canales y preguntas frecuentes.
 - [Servicios](https://portafolio-seo.pages.dev/servicios): catálogo y guía para elegir según la etapa del negocio.
 - [Precios](https://portafolio-seo.pages.dev/precios): todos los planes con precio y la herramienta "Arma tu plan".
 - [Diseño de piezas publicitarias](https://portafolio-seo.pages.dev/diseno-de-piezas-publicitarias)

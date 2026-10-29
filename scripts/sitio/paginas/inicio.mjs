@@ -1,4 +1,4 @@
-import { B, HOY, ID, entidad, faqLd, faqHtml, wa, foto, precargaFoto, PLANES, planHtml, pesos, desde, ofertasLd, OG_MARCA, ctaFinal } from '../comun.mjs';
+import { B, HOY, ID, entidad, faqLd, faqHtml, wa, foto, precargaFoto, PLANES, planHtml, pesos, desde, ofertasLd, OG_MARCA, ctaFinal, carruselMarcas } from '../comun.mjs';
 
 const RUTA = '/';
 const TITULO = 'Agencia de Marketing Digital Económica en Bogotá | Kairos';
@@ -50,6 +50,12 @@ const GUIAS = [
   ['estrategia-marketing-reunion', 'Plan paso a paso', 'Plan de marketing digital para emprendedores (con ejemplo)', '/guias/plan-de-marketing-digital-para-emprendedores'],
   ['google-maps-negocio-celular', 'Google Maps', 'Cómo aparecer en Google Maps con tu negocio, gratis', '/guias/como-aparecer-en-google-maps'],
   ['inteligencia-artificial-marketing', 'ChatGPT e IA', 'Cómo aparecer en ChatGPT y que la IA recomiende tu negocio', '/guias/como-aparecer-en-chatgpt'],
+];
+
+const CANALES = [
+  ['apps-redes-sociales', 'Redes sociales', 'Instagram y Facebook con publicaciones que se ven profesionales, comunican claro y llevan al cliente a escribirte.', '/manejo-de-redes-sociales', 'Celular con las aplicaciones de redes sociales donde los clientes descubren negocios'],
+  ['google-maps-negocio-celular', 'Google y Google Maps', 'Que te encuentren cuando alguien busca lo que vendes cerca: ficha de Google optimizada, reseñas y una página que Google entiende.', '/posicionamiento-seo', 'Persona buscando un negocio cercano en Google Maps desde el celular'],
+  ['aeo-geo-chat-inteligencia-artificial', 'Buscadores con inteligencia artificial', 'Tu marca preparada para ChatGPT, Gemini y los resúmenes con IA de Google, con información clara y verificable.', '/aeo-geo', 'Conversación con un asistente de inteligencia artificial que recomienda negocios'],
 ];
 
 const MARQUESINA = ['Diseño de piezas publicitarias', 'Manejo de redes sociales', 'Páginas web económicas', 'Posicionamiento SEO', 'AEO y GEO', 'Google Maps', 'Contenido para Instagram', 'Branding para emprendedores'];
@@ -108,7 +114,7 @@ export const cuerpo = `
       </ul>
     </div>
   </section>
-
+${carruselMarcas()}
   <!-- ============================= SERVICIOS ============================= -->
   <section class="seccion seccion--alterna" id="servicios" aria-labelledby="titulo-servicios">
     <div class="contenedor">
@@ -228,27 +234,24 @@ export const cuerpo = `
     </div>
   </section>
 
-  <!-- ============================= TESTIMONIOS ============================= -->
-  <section class="seccion seccion--oscura" id="testimonios" aria-labelledby="titulo-testimonios">
+  <!-- ============================= DÓNDE TE ENCUENTRAN (canales) ============================= -->
+  <section class="seccion seccion--oscura" id="canales" aria-labelledby="titulo-canales">
     <div class="contenedor">
       <div class="encabezado-seccion revelar">
-        <p class="etiqueta"><span class="etiqueta__num">08</span> Testimonios</p>
-        <h2 class="titulo-l" id="titulo-testimonios">Lo que dicen los emprendedores que ya trabajaron con nosotros</h2>
+        <p class="etiqueta"><span class="etiqueta__num">08</span> Dónde te van a encontrar</p>
+        <h2 class="titulo-l" id="titulo-canales">Tu negocio presente donde hoy se decide <em>una compra</em></h2>
+        <p class="entradilla">Tus clientes te descubren en redes, te buscan en Google y cada vez más le preguntan a la inteligencia artificial. Trabajamos los tres frentes con un mismo objetivo: que te elijan a ti.</p>
       </div>
-      <div class="testimonios">
-        <figure class="testimonio revelar">
-          <blockquote><p>“Entrega a tiempo y ofrece una asesoría muy bien estructurada. Todo el proceso quedó claro y organizado desde el inicio, y hasta me entregó una propuesta de campaña de contenido gratis para mi negocio, algo que no esperaba.”</p></blockquote>
-          <figcaption><strong>Yesica Ruiz</strong><span>Emprendedora en Bogotá</span></figcaption>
-        </figure>
-        <figure class="testimonio revelar" data-retraso="1">
-          <blockquote><p>“Antes publicaba con el celular y se notaba. Con las piezas de Marlon mi negocio se ve mucho más serio, las promociones se entienden a la primera y cumple con los tiempos de entrega que promete.”</p></blockquote>
-          <figcaption><strong>Sebastián Rojas</strong><span>Microempresario en Bogotá</span></figcaption>
-        </figure>
-        <figure class="testimonio revelar" data-retraso="2">
-          <blockquote><p>“Le pedí piezas para el lanzamiento de un producto nuevo y el resultado superó lo que esperaba. Entendió la idea a la primera, el precio fue justo para lo que se entrega y ya es el diseñador fijo de mi negocio.”</p></blockquote>
-          <figcaption><strong>Alejandro Sierra</strong><span>Dueño de negocio en Bogotá</span></figcaption>
-        </figure>
-      </div>
+      <ul class="servicios-grid">
+        ${CANALES.map(([img, t, d, r, alt], i) => `<li class="tarjeta-servicio revelar" data-retraso="${i}">
+          <div class="tarjeta-servicio__imagen">${foto(img, alt, { sizes: '(min-width: 1024px) 400px, (min-width: 640px) 50vw, calc(100vw - 32px)' })}</div>
+          <div class="tarjeta-servicio__cuerpo">
+            <h3><a href="${r}">${t}</a></h3>
+            <p>${d}</p>
+            <span class="tarjeta-servicio__mas" aria-hidden="true">Ver cómo lo hacemos</span>
+          </div>
+        </li>`).join('\n        ')}
+      </ul>
     </div>
   </section>
 
