@@ -5,7 +5,7 @@
  *
  * Requiere una variable de entorno secreta configurada en Cloudflare Pages:
  *   Panel de Cloudflare → tu proyecto → Settings → Environment variables → RESEND_API_KEY
- * (instrucciones completas en README-BACKEND.md)
+ * (ver "Formulario de asesoría" en README.md)
  *
  * Usa Resend (https://resend.com) para el envío real del correo. Plan gratis:
  * 3.000 correos/mes, 100/día — más que suficiente para un formulario de contacto.

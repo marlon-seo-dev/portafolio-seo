@@ -1,0 +1,9 @@
+{
+  "name": "kairos-herramienta-logos",
+  "private": true,
+  "description": "Prepara los logos de clientes para la barra de marcas de Kairos. Instalar una vez con: npm install --prefix scripts/herramientas/logos",
+  "type": "module",
+  "dependencies": {
+    "sharp": "0.33.5"
+  }
+}

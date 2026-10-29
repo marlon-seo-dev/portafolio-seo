@@ -27,3 +27,5 @@
 # Utilidades del repositorio (p. ej. scripts/indexnow.mjs): se publican con el sitio, pero no deben indexarse.
 /scripts/*
   X-Robots-Tag: noindex
+/README.md
+  X-Robots-Tag: noindex

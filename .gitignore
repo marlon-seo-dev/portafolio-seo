@@ -1,0 +1,5 @@
+# Librerías instaladas con npm (se vuelven a instalar con npm install)
+node_modules/
+
+# Vistas previas de la herramienta de logos
+scripts/herramientas/logos/vistas/
