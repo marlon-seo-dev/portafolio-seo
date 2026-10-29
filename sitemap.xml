@@ -1,64 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <!-- URLs canónicas sin .html: Cloudflare Pages redirige (308) /pagina.html → /pagina. El índice de guías es /guias/ (con barra). -->
+  <!-- Generado por scripts/sitio/generar.mjs. URLs canónicas sin .html; el índice de guías es /guias/ (con barra). -->
   <url>
     <loc>https://portafolio-seo.pages.dev/</loc>
-    <lastmod>2026-10-18</lastmod>
-    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/hero-marketing-restaurantes-comida-rapida-1280.webp</image:loc></image:image>
-    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/portafolio/diseno-publicacion-instagram-restaurante-bogota.webp</image:loc></image:image>
-    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/portafolio/diseno-flyer-promocional-restaurante-bogota.webp</image:loc></image:image>
-    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/portafolio/diseno-menu-digital-restaurante-bogota.webp</image:loc></image:image>
-    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/portafolio/landing-page-hamburgueseria-perros-calientes.webp</image:loc></image:image>
+    <lastmod>2026-10-28</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/emprendedora-marketing-digital-1600.webp</image:loc></image:image>
     <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/marlon-herrera-crecimiento-digital-1600.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://portafolio-seo.pages.dev/servicios</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-28</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/estrategia-marketing-reunion-1200.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://portafolio-seo.pages.dev/landing-page-comida-rapida</loc>
-    <lastmod>2026-10-18</lastmod>
-    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/portafolio/landing-page-hamburgueseria-perros-calientes.webp</image:loc></image:image>
+    <loc>https://portafolio-seo.pages.dev/diseno-de-piezas-publicitarias</loc>
+    <lastmod>2026-10-28</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/disenador-grafico-escritorio-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/diseno-piezas-publicitarias-1200.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://portafolio-seo.pages.dev/seo-para-restaurantes</loc>
-    <lastmod>2026-10-18</lastmod>
+    <loc>https://portafolio-seo.pages.dev/manejo-de-redes-sociales</loc>
+    <lastmod>2026-10-28</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/manejo-redes-sociales-celular-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/creacion-de-contenido-redes-1200.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://portafolio-seo.pages.dev/aeo-para-restaurantes</loc>
-    <lastmod>2026-10-18</lastmod>
-    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/marlon-herrera-posicionamiento-digital-1687.webp</image:loc></image:image>
+    <loc>https://portafolio-seo.pages.dev/paginas-web-economicas</loc>
+    <lastmod>2026-10-28</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/diseno-pagina-web-emprendedor-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/pagina-web-economica-laptop-1200.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://portafolio-seo.pages.dev/posicionamiento-seo</loc>
+    <lastmod>2026-10-28</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/auditoria-seo-laptop-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/analitica-seo-posicionamiento-1200.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://portafolio-seo.pages.dev/aeo-geo</loc>
+    <lastmod>2026-10-28</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/aeo-geo-chat-inteligencia-artificial-1200.webp</image:loc></image:image>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/inteligencia-artificial-marketing-1200.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://portafolio-seo.pages.dev/precios</loc>
+    <lastmod>2026-10-28</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/precios-marketing-digital-presupuesto-1200.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://portafolio-seo.pages.dev/nosotros</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/marlon-herrera-crecimiento-digital-1600.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://portafolio-seo.pages.dev/asesoria-gratuita</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-28</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/emprendedor-celular-ventas-1200.webp</image:loc></image:image>
   </url>
   <url>
     <loc>https://portafolio-seo.pages.dev/guias/</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-28</lastmod>
   </url>
   <url>
-    <loc>https://portafolio-seo.pages.dev/guias/cuanto-cuesta-publicidad-restaurante-comida-rapida</loc>
-    <lastmod>2026-10-18</lastmod>
+    <loc>https://portafolio-seo.pages.dev/guias/cuanto-cobra-una-agencia-de-marketing-digital</loc>
+    <lastmod>2026-10-28</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/precios-marketing-digital-presupuesto-1200.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://portafolio-seo.pages.dev/guias/como-aparecer-en-google-maps-restaurante</loc>
-    <lastmod>2026-10-18</lastmod>
+    <loc>https://portafolio-seo.pages.dev/guias/plan-de-marketing-digital-para-emprendedores</loc>
+    <lastmod>2026-10-28</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/estrategia-marketing-reunion-1200.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://portafolio-seo.pages.dev/guias/como-hacer-que-chatgpt-recomiende-tu-restaurante</loc>
-    <lastmod>2026-10-18</lastmod>
+    <loc>https://portafolio-seo.pages.dev/guias/como-aparecer-en-google-maps</loc>
+    <lastmod>2026-10-28</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/google-maps-negocio-celular-1200.webp</image:loc></image:image>
   </url>
   <url>
-    <loc>https://portafolio-seo.pages.dev/guias/ideas-publicidad-comida-rapida</loc>
-    <lastmod>2026-10-18</lastmod>
-    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/portafolio/diseno-publicacion-instagram-restaurante-bogota.webp</image:loc></image:image>
-    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/portafolio/diseno-menu-digital-restaurante-bogota.webp</image:loc></image:image>
+    <loc>https://portafolio-seo.pages.dev/guias/como-aparecer-en-chatgpt</loc>
+    <lastmod>2026-10-28</lastmod>
+    <image:image><image:loc>https://portafolio-seo.pages.dev/assets/images/fotos/inteligencia-artificial-marketing-1200.webp</image:loc></image:image>
   </url>
 </urlset>

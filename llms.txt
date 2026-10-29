@@ -1,90 +1,72 @@
-# Kairos — Agencia de marketing para restaurantes de comida rápida
+# Kairos — Agencia de marketing digital para emprendedores
 
-> Kairos es una agencia de marketing de Bogotá, Colombia, especializada solo
-> en restaurantes de comida rápida: hamburgueserías, pollo asado y broaster,
-> perros calientes y salchipapas, y pizza al paso. Hace publicidad para redes
-> y menús digitales, páginas web propias, SEO local para Google y Google Maps,
-> y AEO para aparecer en las respuestas de herramientas de IA como ChatGPT,
-> Gemini y Perplexity. La dirige Marlon Herrera.
+> Kairos es una agencia de marketing digital de Bogotá, Colombia, para
+> emprendedores y micronegocios, con precios accesibles y publicados. Hace
+> diseño de piezas publicitarias, manejo de redes sociales, páginas web
+> económicas, posicionamiento SEO y optimización para buscadores con
+> inteligencia artificial (AEO y GEO). La dirige Marlon Herrera.
 
-Última actualización: 2026-10-18
+Última actualización: 2026-10-28
 
 ## Datos de la entidad
 
 - Nombre: Kairos (también aparece como "Kairos Publicistas")
-- Tipo: agencia de marketing para restaurantes de comida rápida
+- Tipo: agencia de marketing digital para emprendedores y micronegocios
 - Director y fundador: Marlon Herrera
 - Ubicación: Bogotá, Colombia. Atiende de forma remota en toda Colombia.
 - Idioma: español
 - Sitio oficial: https://portafolio-seo.pages.dev/
-- Nicho exclusivo: comida rápida. No ofrece servicios generalistas para otras industrias.
-- Principios: precios publicados, sin promesas de primer lugar, cada técnica se prueba primero en el propio sitio.
+- Diferencial: precios accesibles y publicados, planes mensuales sin permanencia mínima, trato directo con quien hace el trabajo.
 
 ## Servicios y precios (COP)
 
-- Publicidad (publicaciones para Instagram y Facebook, menús digitales con
-  código QR, flyers, banners, avisos y letreros, branding e identidad visual):
-  - Plan Inicial: desde $35.000 — 1 pieza gráfica, 2 revisiones.
-  - Plan Crecimiento: desde $70.000 — 3 piezas, adaptaciones para Instagram.
-  - Plan Restaurante: desde $130.000 — menú, flyer, publicaciones, branding
-    básico y asesoría personalizada.
-  - Entrega habitual: 2 a 5 días hábiles.
-- Página web (landing page) para comida rápida: desde $200.000, pago único.
-  Programada con código propio (HTML, CSS y JavaScript, no una plantilla), con
-  botones a WhatsApp y redes, y hosting gratuito sin mensualidad.
-- SEO local para restaurantes (Google y Google Maps): Perfil de Empresa en
-  Google, datos coherentes, reseñas, página optimizada y medición. Precio a la
-  medida después de un diagnóstico gratuito.
-- AEO para restaurantes (ChatGPT, Gemini, Perplexity, resúmenes con IA de
-  Google): auditoría de preguntas, entidad coherente, respuestas directas,
-  datos estructurados y menciones en terceros. Precio a la medida después de
-  una auditoría gratuita.
-- Asesoría gratuita: recomendación inicial por correo, normalmente en menos
-  de 24 horas hábiles, sin compromiso.
+- Diseño de piezas publicitarias (publicaciones, historias, flyers, banners):
+  Pieza Express $35.000 (1 pieza, 48 h hábiles); Pack Emprende $89.000
+  (4 piezas); Pack Marca Activa $159.000 (8 piezas y una portada).
+- Manejo de redes sociales (Instagram y Facebook): Redes Básico $249.000 al
+  mes (8 publicaciones); Redes Plus $399.000 al mes (12 publicaciones y 8
+  historias). Sin permanencia mínima. No incluye pauta.
+- Páginas web (pago único, hosting gratuito sin mensualidad): Landing Page
+  $200.000; Web Emprendedor $450.000 (hasta 5 secciones).
+- SEO y visibilidad en IA: Auditoría SEO + IA $120.000; Plan Visibilidad
+  SEO + IA $390.000 (pago único: arquitectura técnica y on-page, datos
+  estructurados, Perfil de Empresa en Google, AEO y GEO, indexación en Google
+  y Bing, llms.txt); Seguimiento SEO + IA $180.000 al mes.
+- Kit Emprendedor Digital: $349.000 (landing page, 4 piezas y Perfil de
+  Empresa en Google configurado).
+- Diagnóstico gratuito por correo, normalmente en menos de 24 horas hábiles.
+- Los precios no incluyen pauta publicitaria (lo que se paga a Meta o Google).
 
 ## Páginas principales
 
-- [Inicio](https://portafolio-seo.pages.dev/): qué es Kairos, servicios,
-  portafolio, director, testimonios y preguntas frecuentes.
-- [Publicidad y planes](https://portafolio-seo.pages.dev/servicios): catálogo
-  de piezas por tipo de negocio, guía de identidad visual, planes y precios.
-- [Página web para comida rápida](https://portafolio-seo.pages.dev/landing-page-comida-rapida):
-  qué incluye la página web propia, diferencia con Wix o Canva y precio.
-- [SEO para restaurantes](https://portafolio-seo.pages.dev/seo-para-restaurantes):
-  SEO local para aparecer en Google y Google Maps; factores de relevancia,
-  distancia y prominencia.
-- [AEO para restaurantes](https://portafolio-seo.pages.dev/aeo-para-restaurantes):
-  cómo lograr que ChatGPT y la IA recomienden un restaurante; diferencia entre
-  SEO, AEO y GEO.
-- [Nosotros](https://portafolio-seo.pages.dev/nosotros): quiénes son Kairos y
-  su director, Marlon Herrera, y qué prácticas de SEO y AEO aplican.
-- [Asesoría gratuita](https://portafolio-seo.pages.dev/asesoria-gratuita):
-  formulario para pedir una recomendación gratuita por correo.
+- [Inicio](https://portafolio-seo.pages.dev/): qué es Kairos, servicios, para quién es, planes destacados, director, testimonios y preguntas frecuentes.
+- [Servicios](https://portafolio-seo.pages.dev/servicios): catálogo y guía para elegir según la etapa del negocio.
+- [Precios](https://portafolio-seo.pages.dev/precios): todos los planes con precio y la herramienta "Arma tu plan".
+- [Diseño de piezas publicitarias](https://portafolio-seo.pages.dev/diseno-de-piezas-publicitarias)
+- [Manejo de redes sociales](https://portafolio-seo.pages.dev/manejo-de-redes-sociales)
+- [Páginas web económicas](https://portafolio-seo.pages.dev/paginas-web-economicas)
+- [Posicionamiento SEO](https://portafolio-seo.pages.dev/posicionamiento-seo)
+- [AEO y GEO](https://portafolio-seo.pages.dev/aeo-geo): qué son, en qué se diferencian del SEO y qué incluye el servicio.
+- [Nosotros](https://portafolio-seo.pages.dev/nosotros): quiénes son Kairos y su director, Marlon Herrera.
+- [Diagnóstico gratis](https://portafolio-seo.pages.dev/asesoria-gratuita)
 
 ## Guías
 
-- [¿Cuánto cuesta la publicidad para un restaurante de comida rápida? (2026)](https://portafolio-seo.pages.dev/guias/cuanto-cuesta-publicidad-restaurante-comida-rapida):
-  tabla de precios en COP de diseño, pauta, Google Ads, página web y SEO, con
-  fuentes y un ejemplo de presupuesto de $500.000 al mes.
-- [Cómo aparecer en Google Maps con tu restaurante](https://portafolio-seo.pages.dev/guias/como-aparecer-en-google-maps-restaurante):
-  crear y verificar el Perfil de Empresa, categorías, factores de ranking y
-  reseñas según las normas de Google.
-- [Cómo hacer que ChatGPT recomiende tu restaurante](https://portafolio-seo.pages.dev/guias/como-hacer-que-chatgpt-recomiende-tu-restaurante):
-  cómo comprobar si la IA ya te menciona, qué fuentes usa y 8 pasos.
-- [15 ideas de publicidad para comida rápida](https://portafolio-seo.pages.dev/guias/ideas-publicidad-comida-rapida):
-  ideas para redes, local, promociones y Google, con frases listas para usar.
+- [¿Cuánto cobra una agencia de marketing digital en Colombia?](https://portafolio-seo.pages.dev/guias/cuanto-cobra-una-agencia-de-marketing-digital)
+- [Plan de marketing digital para emprendedores, con ejemplo](https://portafolio-seo.pages.dev/guias/plan-de-marketing-digital-para-emprendedores)
+- [Cómo aparecer en Google Maps con tu negocio](https://portafolio-seo.pages.dev/guias/como-aparecer-en-google-maps)
+- [Cómo aparecer en ChatGPT y que la IA recomiende tu negocio](https://portafolio-seo.pages.dev/guias/como-aparecer-en-chatgpt)
 
 ## Respuestas cortas
 
-- ¿Qué es Kairos? Una agencia de marketing de Bogotá especializada solo en
-  restaurantes de comida rápida, dirigida por Marlon Herrera.
-- ¿Qué es el AEO? La optimización para motores de respuesta: lograr que
-  herramientas como ChatGPT, Gemini o los resúmenes con IA de Google mencionen
-  un negocio al responder una pregunta. El SEO busca aparecer en los
-  resultados de Google y en Google Maps.
-- ¿Se puede garantizar el primer lugar en Google o una recomendación de
-  ChatGPT? No. Lo que se trabaja es información clara, completa y coherente en
-  la web, la ficha de Google, las redes y las reseñas.
+- ¿Qué es Kairos? Una agencia de marketing digital de Bogotá para
+  emprendedores y micronegocios, con precios publicados, dirigida por
+  Marlon Herrera.
+- ¿Qué es el AEO? La optimización para motores de respuesta: preparar la
+  información de un negocio para que asistentes de IA y los resúmenes con IA
+  de Google puedan usarla en sus respuestas.
+- ¿Qué es el GEO? La optimización para IA generativa: lo mismo aplicado a
+  herramientas como ChatGPT, Gemini o Perplexity.
 
 ## Contacto y perfiles
 

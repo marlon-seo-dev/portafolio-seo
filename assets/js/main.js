@@ -1,9 +1,10 @@
 /* =====================================================================
-   MARLON HERRERA — JS COMPARTIDO
+   KAIROS — JS COMPARTIDO
    Mejora progresiva: todo el contenido funciona sin JavaScript. Aquí solo
-   viven las interacciones que lo necesitan: menú móvil, calculadora de
-   plan, asesor de estrategias, formulario de asesoría, medición de clics
-   a WhatsApp y la carga diferida de HubSpot.
+   viven las interacciones: menú móvil, sombra de cabecera, aparición al
+   hacer scroll, palabra rotativa, contadores, pestañas de precios,
+   "Arma tu plan", formulario de asesoría, medición de clics a WhatsApp y
+   la carga diferida de HubSpot. Sin librerías externas.
    ===================================================================== */
 
 var WHATSAPP = 'https://wa.me/573213457681';
@@ -50,119 +51,133 @@ function escaparHTML(texto) {
   });
 })();
 
-/* ============================= HERRAMIENTA EN 2 PASOS (base común) =============================
-   Usada por la calculadora de plan (inicio) y el asesor de estrategias
-   (servicios). Cada opción es un <button> con aria-pressed; al responder
-   el paso 1 se revela el paso 2 y, con ambos, se pinta el resultado. */
-function herramientaDosPasos(opciones) {
-  var paso1 = document.querySelector(opciones.paso1);
-  var paso2 = document.querySelector(opciones.paso2);
-  var resultado = document.getElementById(opciones.resultado);
-  if (!paso1 || !paso2 || !resultado) return;
+var SIN_MOVIMIENTO = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var respuestas = { uno: null, dos: null };
-
-  function enlazar(paso, clave, atributo, alResponder) {
-    paso.querySelectorAll('button[' + atributo + ']').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        paso.querySelectorAll('button[' + atributo + ']').forEach(function (b) {
-          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
-        });
-        respuestas[clave] = btn.getAttribute(atributo);
-        if (alResponder) alResponder();
-        if (respuestas.uno && respuestas.dos) resultado.innerHTML = opciones.pintar(respuestas.uno, respuestas.dos);
-      });
-    });
-  }
-
-  enlazar(paso1, 'uno', opciones.atributo1, function () { paso2.hidden = false; });
-  enlazar(paso2, 'dos', opciones.atributo2);
-}
-
-/* ============================= CALCULADORA DE PLAN (solo inicio) ============================= */
+/* ============================= CABECERA CON SOMBRA AL HACER SCROLL ============================= */
 (function () {
-  var detallesPlan = {
-    'Inicial': 'Desde $35.000 COP. 1 pieza gráfica, 2 revisiones y entrega estándar. Ideal para una publicación o promoción puntual.',
-    'Crecimiento': 'Desde $70.000 COP. 3 piezas gráficas, adaptaciones para Instagram y correcciones incluidas. Ideal para mantener tus redes activas todo el mes.',
-    'Restaurante': 'Desde $130.000 COP. Menú, flyer, publicaciones, branding básico y asesoría personalizada. Una estrategia visual completa para tu negocio.'
-  };
+  var cabecera = document.querySelector('.cabecera');
+  if (!cabecera) return;
+  var actualizar = function () { cabecera.classList.toggle('desplazada', window.scrollY > 8); };
+  window.addEventListener('scroll', actualizar, { passive: true });
+  actualizar();
+})();
 
-  herramientaDosPasos({
-    paso1: '.calculadora-paso[data-paso="1"]',
-    paso2: '.calculadora-paso[data-paso="2"]',
-    resultado: 'calculadora-resultado',
-    atributo1: 'data-negocio',
-    atributo2: 'data-plan',
-    pintar: function (negocio, plan) {
-      var mensaje = 'Hola Kairos, tengo un(a) ' + negocio +
-        ' y según la calculadora de tu sitio me recomendó el Plan ' + plan + '. Quiero cotizar.';
-      return '<div><p>Para tu <strong>' + escaparHTML(negocio) + '</strong>, el <strong>Plan ' + escaparHTML(plan) +
-        '</strong> es tu mejor opción. ' + detallesPlan[plan] +
-        ' <a href="/servicios#planes">Ver detalle de los planes</a>.</p>' +
-        '<a href="' + WHATSAPP + '?text=' + encodeURIComponent(mensaje) +
-        '" target="_blank" rel="noopener" class="btn btn--primario">Cotizar Plan ' + escaparHTML(plan) + ' por WhatsApp</a></div>';
-    }
+/* ============================= APARICIÓN AL HACER SCROLL =============================
+   Los elementos .revelar entran suavemente al verse. Sin IntersectionObserver
+   (o con movimiento reducido) se muestran de inmediato. */
+(function () {
+  var elementos = document.querySelectorAll('.revelar');
+  if (!elementos.length) return;
+  if (SIN_MOVIMIENTO || !('IntersectionObserver' in window)) {
+    elementos.forEach(function (e) { e.classList.add('visible'); });
+    return;
+  }
+  var observador = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (entrada) {
+      if (entrada.isIntersecting) { entrada.target.classList.add('visible'); observador.unobserve(entrada.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  elementos.forEach(function (e) { observador.observe(e); });
+})();
+
+/* ============================= PALABRA ROTATIVA (hero) ============================= */
+(function () {
+  document.querySelectorAll('.rotador').forEach(function (rotador) {
+    var palabras = rotador.querySelectorAll('span');
+    if (!palabras.length) return;
+    var i = 0;
+    palabras[0].classList.add('activa');
+    if (SIN_MOVIMIENTO || palabras.length < 2) return;
+    setInterval(function () {
+      palabras[i].classList.remove('activa');
+      i = (i + 1) % palabras.length;
+      palabras[i].classList.add('activa');
+    }, 2400);
   });
 })();
 
-/* ============================= ASESOR DE ESTRATEGIAS (solo servicios) =============================
-   Lógica local e instantánea: combina consejos según tipo de negocio y
-   objetivo. Sin llamadas a APIs externas. */
+/* ============================= CONTADORES =============================
+   <span data-contar="35000" data-prefijo="$">$35.000</span>: el texto final
+   ya está en el HTML (lo ven Google y quien no tiene JS); aquí solo se anima. */
 (function () {
-  var consejosTipo = {
-    'Hamburguesería': [
-      'Destaca los combos (hamburguesa + papas + bebida) como pieza central: es lo que más convierte en comida rápida.',
-      'Las fotos de cortes jugosos y queso derretido en primer plano suelen generar más clics que fotos generales del local.'
-    ],
-    'Perros calientes o salchipapas': [
-      'Prioriza publicidad directa: precio, tamaño de la porción y combos deben verse claros en cada pieza.',
-      'Las promociones por horarios (tarde-noche) suelen rendir mejor que la publicidad genérica en este tipo de negocio.'
-    ],
-    'Pollo asado o broaster': [
-      'Muestra el tamaño de las porciones y el número de personas que alcanza cada combo familiar: es el argumento de venta más fuerte.',
-      'Los domingos y días de pago suelen ser el mejor momento para programar promociones de este tipo de negocio.'
-    ],
-    'Pizza al paso': [
-      'Destaca la velocidad de entrega y el precio por porción o combo: son los dos factores que más pesan en la decisión.',
-      'Las piezas con ingredientes visibles (queso derretido, pepperoni) generan más antojo que las fotos del local.'
-    ]
+  var cifras = document.querySelectorAll('[data-contar]');
+  if (!cifras.length || SIN_MOVIMIENTO || !('IntersectionObserver' in window)) return;
+  var formato = new Intl.NumberFormat('es-CO');
+  var animar = function (el) {
+    var meta = +el.getAttribute('data-contar'), prefijo = el.getAttribute('data-prefijo') || '', sufijo = el.getAttribute('data-sufijo') || '';
+    var inicio = null, duracion = 1100;
+    var paso = function (t) {
+      if (!inicio) inicio = t;
+      var avance = Math.min(1, (t - inicio) / duracion), suave = 1 - Math.pow(1 - avance, 3);
+      el.textContent = prefijo + formato.format(Math.round(meta * suave)) + sufijo;
+      if (avance < 1) requestAnimationFrame(paso);
+    };
+    requestAnimationFrame(paso);
   };
+  var obs = new IntersectionObserver(function (entradas) {
+    entradas.forEach(function (e) { if (e.isIntersecting) { animar(e.target); obs.unobserve(e.target); } });
+  }, { threshold: 0.6 });
+  cifras.forEach(function (c) { obs.observe(c); });
+})();
 
-  var consejosObjetivo = {
-    'Conseguir más seguidores': [
-      'Publica con una frecuencia constante (mínimo 3 veces por semana) y mantén siempre el mismo estilo visual.',
-      'Los videos cortos mostrando el proceso o el ambiente suelen generar más alcance que solo fotos de platos.'
-    ],
-    'Vender más en el punto de venta': [
-      'Un menú digital claro y bien jerarquizado ayuda a que el cliente decida más rápido y gaste un poco más.',
-      'Los combos y recomendaciones destacadas en el menú aumentan el valor promedio de cada pedido.'
-    ],
-    'Fidelizar clientes actuales': [
-      'Las publicaciones "detrás de cámaras" generan cercanía y hacen que el cliente vuelva.',
-      'Un programa simple de puntos o descuentos recurrentes, bien comunicado, ayuda mucho a la fidelización.'
-    ],
-    'Lanzar una promoción o apertura': [
-      'Anuncia la promoción con al menos una semana de anticipación en redes y con un flyer físico si tienes local.',
-      'Una cuenta regresiva en redes sociales genera expectativa antes del lanzamiento.'
-    ]
+/* ============================= PESTAÑAS DE PRECIOS =============================
+   Sin JS se ven todos los planes uno debajo del otro. Con JS, pestañas
+   accesibles (role="tab", flechas del teclado). Un #ancla abre su pestaña. */
+(function () {
+  var lista = document.querySelector('.pestanas[role="tablist"]');
+  if (!lista) return;
+  var pestanas = Array.prototype.slice.call(lista.querySelectorAll('[role="tab"]'));
+  var activar = function (pestana, enfocar) {
+    pestanas.forEach(function (p) {
+      var activa = p === pestana;
+      p.setAttribute('aria-selected', activa ? 'true' : 'false');
+      p.tabIndex = activa ? 0 : -1;
+      document.getElementById(p.getAttribute('aria-controls')).hidden = !activa;
+    });
+    if (enfocar) pestana.focus();
   };
-
-  herramientaDosPasos({
-    paso1: '.asesor-paso[data-paso="1"]',
-    paso2: '.asesor-paso[data-paso="2"]',
-    resultado: 'asesor-resultado',
-    atributo1: 'data-tipo',
-    atributo2: 'data-objetivo',
-    pintar: function (tipo, objetivo) {
-      var tips = consejosTipo[tipo].concat(consejosObjetivo[objetivo]);
-      var mensaje = 'Hola Kairos, tengo un(a) ' + tipo + ' y mi objetivo principal es ' +
-        objetivo.toLowerCase() + '. Usé el asesor de tu sitio y quiero cotizar una estrategia.';
-      return '<div><h3>Tu diagnóstico: ' + escaparHTML(tipo) + ' + ' + escaparHTML(objetivo) + '</h3>' +
-        '<ul>' + tips.map(function (t) { return '<li>' + escaparHTML(t) + '</li>'; }).join('') + '</ul>' +
-        '<a href="' + WHATSAPP + '?text=' + encodeURIComponent(mensaje) +
-        '" target="_blank" rel="noopener" class="btn btn--primario">Cotizar esta estrategia por WhatsApp</a></div>';
-    }
+  pestanas.forEach(function (p, i) {
+    p.addEventListener('click', function () { activar(p); });
+    p.addEventListener('keydown', function (e) {
+      var j = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+      if (j === null) return;
+      e.preventDefault();
+      activar(pestanas[(j + pestanas.length) % pestanas.length], true);
+    });
   });
+  var desdeAncla = pestanas.filter(function (p) { return '#' + p.getAttribute('aria-controls') === window.location.hash; })[0];
+  activar(desdeAncla || pestanas[0]);
+})();
+
+/* ============================= ARMA TU PLAN =============================
+   Suma lo que el visitante marca y arma el mensaje de WhatsApp. */
+(function () {
+  var armador = document.getElementById('armador');
+  if (!armador) return;
+  var casillas = armador.querySelectorAll('input[type="checkbox"]');
+  var cifra = document.getElementById('armador-total');
+  var detalle = document.getElementById('armador-detalle');
+  var boton = document.getElementById('armador-whatsapp');
+  var formato = new Intl.NumberFormat('es-CO');
+  var actualizar = function () {
+    var unico = 0, mensual = 0, elegidos = [];
+    casillas.forEach(function (c) {
+      if (!c.checked) return;
+      var precio = +c.getAttribute('data-precio');
+      if (c.getAttribute('data-periodo') === 'mes') mensual += precio; else unico += precio;
+      elegidos.push(c.getAttribute('data-nombre'));
+    });
+    cifra.textContent = '$' + formato.format(unico + mensual);
+    detalle.textContent = elegidos.length
+      ? (unico ? '$' + formato.format(unico) + ' pago único' : '') + (unico && mensual ? ' + ' : '') + (mensual ? '$' + formato.format(mensual) + ' al mes' : '')
+      : 'Marca los servicios que te interesan.';
+    var mensaje = elegidos.length
+      ? 'Hola Kairos, armé mi plan en su sitio: ' + elegidos.join(', ') + '. Total aproximado: $' + formato.format(unico + mensual) + '. Quiero empezar.'
+      : 'Hola Kairos, quiero armar un plan de marketing para mi negocio.';
+    boton.href = WHATSAPP + '?text=' + encodeURIComponent(mensaje);
+  };
+  casillas.forEach(function (c) { c.addEventListener('change', actualizar); });
+  actualizar();
 })();
 
 /* ============================= FORMULARIO DE ASESORÍA GRATUITA (solo asesoria-gratuita) =============================
@@ -192,7 +207,7 @@ function herramientaDosPasos(opciones) {
   }
 
   function enviarPorCorreoRespaldo(datos) {
-    var asunto = 'Solicitud de asesoría publicitaria gratuita - ' + datos.negocio;
+    var asunto = 'Solicitud de diagnóstico gratuito - ' + datos.negocio;
     var cuerpo =
       'Nombre: ' + datos.nombre + '\n' +
       'Negocio: ' + datos.negocio + '\n' +
@@ -206,7 +221,7 @@ function herramientaDosPasos(opciones) {
 
     mostrarMensaje(
       'No pudimos enviar el formulario automáticamente, así que abrimos tu aplicación de correo con el ' +
-      'mensaje ya redactado para ' + CORREO_DESTINO + '. Solo debes confirmar el envío, o escríbeme por WhatsApp.',
+      'mensaje ya redactado para ' + CORREO_DESTINO + '. Solo debes confirmar el envío, o escríbenos por WhatsApp.',
       true
     );
   }
@@ -259,7 +274,7 @@ function herramientaDosPasos(opciones) {
           window.dataLayer.push({ event: 'formulario_asesoria_enviado', pagina: window.location.pathname });
           mostrarMensaje(
             '¡Listo! Tu solicitud fue enviada correctamente. Te llegará una confirmación a tu correo y ' +
-            'te responderé en menos de 24 horas hábiles.',
+            'te responderemos en menos de 24 horas hábiles.',
             false
           );
         } else {
