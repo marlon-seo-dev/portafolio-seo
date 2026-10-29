@@ -179,9 +179,11 @@ export const ofertasLd = (cat) => PLANES[cat].planes.map((p) => ({
 }));
 
 // ============================= MARCAS QUE CONFÍAN EN KAIROS =============================
-// Barra de logos en movimiento continuo, hecha solo con CSS. Cada logo va en
+// Barra de logos en movimiento continuo. El HTML lleva cada logo UNA sola vez, con su
+// texto alternativo; assets/js/main.js crea las copias del bucle y activa el movimiento
+// (sin JS, o con "reducir movimiento", se ve una fila fija centrada). Cada logo va en
 // assets/images/marcas/: WebP con fondo transparente y 200 px de ancho (unas 3 veces el
-// tamaño visible, para pantallas de alta densidad); ancho y alto = tamaño real del archivo.
+// tamaño visible); ancho y alto = tamaño real del archivo.
 // Si cambias un logo, usa un nombre de archivo nuevo: las imágenes se guardan 30 días en caché.
 export const MARCAS = [
   { nombre: 'London Urus', archivo: 'london-urus-200.webp', ancho: 200, alto: 200 },
@@ -197,12 +199,7 @@ export const nombresMarcas = () => {
 
 export function seccionMarcas() {
   if (!MARCAS.length) return '';
-  const logo = (m, oculto) => `<li${oculto ? ' aria-hidden="true"' : ''}><img src="/assets/images/marcas/${m.archivo}" width="${m.ancho}" height="${m.alto}" loading="lazy" decoding="async" alt="${oculto ? '' : `Logo de ${m.nombre}`}"></li>`;
-  // La serie se repite hasta sumar al menos 12 logos (así llena pantallas anchas) y se
-  // duplica completa y oculta: la animación avanza el 50 % del ancho, justo una serie,
-  // y el bucle no tiene saltos. La velocidad no cambia aunque haya más marcas.
-  const veces = Math.ceil(12 / MARCAS.length);
-  const serie = (oculta) => Array.from({ length: veces }, (_, i) => MARCAS.map((m) => logo(m, oculta || i > 0)).join('')).join('');
+  const logos = MARCAS.map((m) => `<li><img src="/assets/images/marcas/${m.archivo}" width="${m.ancho}" height="${m.alto}" loading="lazy" decoding="async" alt="Logo de ${m.nombre}"></li>`).join('');
   return `
   <!-- ============================= MARCAS QUE CONFÍAN EN KAIROS ============================= -->
   <section class="marcas" id="marcas" aria-labelledby="titulo-marcas">
@@ -210,7 +207,7 @@ export function seccionMarcas() {
       <p class="etiqueta">Confían en nosotros</p>
       <h2 class="marcas__titulo" id="titulo-marcas">Marcas que <em>confían en Kairos</em></h2>
       <div class="marcas__ventana">
-        <ul class="marcas__pista" style="--duracion:${MARCAS.length * veces * 3.5}s">${serie(false)}${serie(true)}</ul>
+        <ul class="marcas__pista">${logos}</ul>
       </div>
     </div>
   </section>`;

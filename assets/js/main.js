@@ -2,7 +2,7 @@
    KAIROS — JS COMPARTIDO
    Mejora progresiva: todo el contenido funciona sin JavaScript. Aquí solo
    viven las interacciones: menú móvil, sombra de cabecera, aparición al
-   hacer scroll, palabra rotativa, contadores, pestañas de precios,
+   hacer scroll, palabra rotativa, contadores, barra de marcas, pestañas de precios,
    "Arma tu plan", formulario de asesoría, medición de clics a WhatsApp y
    la carga diferida de HubSpot. Sin librerías externas.
    ===================================================================== */
@@ -118,6 +118,31 @@ var SIN_MOVIMIENTO = window.matchMedia && window.matchMedia('(prefers-reduced-mo
     entradas.forEach(function (e) { if (e.isIntersecting) { animar(e.target); obs.unobserve(e.target); } });
   }, { threshold: 0.6 });
   cifras.forEach(function (c) { obs.observe(c); });
+})();
+
+/* ============================= BARRA DE MARCAS =============================
+   El HTML trae cada logo una sola vez, con su texto alternativo. Aquí se copia
+   la serie hasta sumar al menos 12 logos por mitad y se duplica: la animación
+   avanza el 50 % del ancho, justo una serie, así el bucle no tiene saltos. Las
+   copias conservan el texto alternativo y van con aria-hidden para que los
+   lectores de pantalla no lean cada marca varias veces. */
+(function () {
+  if (SIN_MOVIMIENTO) return;
+  document.querySelectorAll('.marcas__ventana').forEach(function (ventana) {
+    var pista = ventana.querySelector('.marcas__pista');
+    var serie = pista ? Array.prototype.slice.call(pista.children) : [];
+    if (!serie.length) return;
+    var veces = Math.ceil(12 / serie.length);
+    for (var i = 1; i < veces * 2; i++) {
+      serie.forEach(function (li) {
+        var copia = li.cloneNode(true);
+        copia.setAttribute('aria-hidden', 'true');
+        pista.appendChild(copia);
+      });
+    }
+    pista.style.setProperty('--duracion', (serie.length * veces * 3.5) + 's');
+    ventana.classList.add('en-movimiento');
+  });
 })();
 
 /* ============================= PESTAÑAS DE PRECIOS =============================
