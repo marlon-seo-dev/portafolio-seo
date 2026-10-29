@@ -4,7 +4,7 @@
 // fotos responsivas y plantillas de guías. Lo usa scripts/sitio/generar.mjs.
 // =====================================================================
 export const B = 'https://portafolio-seo.pages.dev';
-export const HOY = '2026-10-28';
+export const HOY = '2026-10-29';
 export const WA = 'https://wa.me/573213457681';
 export const wa = (texto) => `${WA}?text=${encodeURIComponent(texto)}`;
 export const pesos = (n) => '$' + new Intl.NumberFormat('es-CO').format(n);
@@ -178,24 +178,44 @@ export const ofertasLd = (cat) => PLANES[cat].planes.map((p) => ({
   seller: { '@id': ID.org },
 }));
 
-// ============================= MARCAS CON LAS QUE HEMOS TRABAJADO =============================
-// Para mostrar el carrusel en el inicio, agrega cada logo aquí y su archivo en assets/images/marcas/.
-// Formato: { nombre: 'Nombre de la marca', archivo: 'nombre-marca.webp', ancho: 300, alto: 120 }
-// (ancho y alto = tamaño real del archivo). Mientras la lista esté vacía, el carrusel no aparece.
-export const MARCAS = [];
+// ============================= MARCAS QUE CONFÍAN EN KAIROS =============================
+// Cada logo va en assets/images/marcas/: WebP con fondo transparente y 360 px de ancho
+// (3 veces el tamaño visible, para pantallas de alta densidad). ancho y alto = tamaño real
+// del archivo. Con 8 marcas o más, la cuadrícula pasa a ser un carrusel automático.
+export const MARCAS = [
+  { nombre: 'London Urus', archivo: 'london-urus.webp', ancho: 360, alto: 360 },
+  { nombre: 'Arepa Mía', archivo: 'arepa-mia.webp', ancho: 360, alto: 352 },
+  { nombre: 'For Life', archivo: 'for-life.webp', ancho: 360, alto: 379 },
+  { nombre: 'Club Taller Homeschool', archivo: 'club-taller-homeschool.webp', ancho: 360, alto: 349 },
+];
 
-export function carruselMarcas() {
+export const nombresMarcas = () => {
+  const n = MARCAS.map((m) => m.nombre);
+  return n.length > 1 ? `${n.slice(0, -1).join(', ')} y ${n[n.length - 1]}` : n[0] || '';
+};
+
+export function seccionMarcas() {
   if (!MARCAS.length) return '';
-  const logo = (m, oculto) => `<li${oculto ? ' aria-hidden="true"' : ''}><img src="/assets/images/marcas/${m.archivo}" width="${m.ancho}" height="${m.alto}" loading="lazy" decoding="async" alt="${oculto ? '' : m.nombre}"></li>`;
-  // Serie base (se repite si hay pocos logos, para llenar la pantalla) y una copia exacta oculta:
-  // la animación avanza el 50 % del ancho, justo una serie, así el bucle no tiene saltos.
-  const veces = Math.max(1, Math.ceil(6 / MARCAS.length));
-  const serie = (todaOculta) => Array.from({ length: veces }, (_, i) => MARCAS.map((m) => logo(m, todaOculta || i > 0)).join('')).join('');
+  const img = (m, oculto) => `<img src="/assets/images/marcas/${m.archivo}" width="${m.ancho}" height="${m.alto}" loading="lazy" decoding="async" alt="${oculto ? '' : `Logo de ${m.nombre}`}">`;
+  // Carrusel: la serie y una copia exacta oculta; la animación avanza el 50 % del ancho,
+  // justo una serie, así el bucle no tiene saltos.
+  const serie = (oculta) => MARCAS.map((m) => `<li${oculta ? ' aria-hidden="true"' : ''}>${img(m, oculta)}</li>`).join('');
+  const logos = MARCAS.length >= 8
+    ? `<div class="marcas__ventana"><ul class="marcas__pista">${serie(false)}${serie(true)}</ul></div>`
+    : `<ul class="marcas__grilla revelar">
+        ${MARCAS.map((m) => `<li class="marcas__logo">${img(m)}</li>`).join('\n        ')}
+      </ul>`;
   return `
-  <section class="marcas" aria-labelledby="titulo-marcas">
-    <div class="contenedor"><h2 class="marcas__titulo" id="titulo-marcas">Marcas con las que hemos trabajado</h2></div>
-    <div class="marcas__ventana">
-      <ul class="marcas__pista">${serie(false)}${serie(true)}</ul>
+  <!-- ============================= MARCAS QUE CONFÍAN EN KAIROS ============================= -->
+  <section class="seccion seccion--compacta marcas" id="marcas" aria-labelledby="titulo-marcas">
+    <div class="contenedor">
+      <div class="marcas__cabecera revelar">
+        <p class="etiqueta">Confían en nosotros</p>
+        <h2 class="titulo-l" id="titulo-marcas">Marcas de emprendedores que <em>trabajan con Kairos</em></h2>
+        <p>${nombresMarcas()} son algunos de los emprendimientos que ya confían su diseño y su marketing digital a Kairos.</p>
+      </div>
+      ${logos}
+      <p class="marcas__cta">¿Quieres que tu marca sea la siguiente? <a class="enlace-flecha" href="/precios">Mira los planes y precios</a></p>
     </div>
   </section>`;
 }

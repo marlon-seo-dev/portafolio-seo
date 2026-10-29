@@ -1113,15 +1113,23 @@ html:not(.js) .armador{ display:none; }
 /* Tarjetas blancas dentro de secciones oscuras: el texto no hereda el blanco. */
 .tarjeta-servicio{ color:var(--tinta); }
 
-/* ---------- Carrusel de marcas con las que hemos trabajado ---------- */
-.marcas{ padding-block:clamp(40px, 6vw, 64px); border-block:1px solid var(--linea); background:var(--papel); }
-.marcas__titulo{ text-align:center; font-size:.8125rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--tinta-2); margin-bottom:28px; }
+/* ---------- Marcas que confían en Kairos ---------- */
+.marcas{ background:var(--papel-2); border-top:1px solid var(--linea); }
+.marcas__cabecera{ max-width:720px; margin:0 auto clamp(32px, 5vw, 48px); text-align:center; }
+.marcas__cabecera .etiqueta{ justify-content:center; }
+.marcas__cabecera p:last-child{ margin-top:18px; color:var(--tinta-2); font-size:1.0625rem; }
+.marcas__grilla{ list-style:none; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:clamp(12px, 2vw, 20px); }
+@media (min-width:900px){ .marcas__grilla{ grid-template-columns:repeat(4, minmax(0,1fr)); } }
+.marcas__logo{ display:flex; align-items:center; justify-content:center; height:clamp(168px, 18vw, 232px); padding:clamp(16px, 2.2vw, 30px); background:var(--papel); border:1px solid var(--linea); border-radius:var(--radio-lg); transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+.marcas__logo img{ display:block; width:auto; height:100%; max-width:100%; object-fit:contain; }
+.marcas__logo:hover{ transform:translateY(-4px); border-color:transparent; box-shadow:0 22px 44px -26px rgba(4,18,56,.38); }
+.marcas__cta{ margin-top:clamp(24px, 4vw, 36px); text-align:center; color:var(--tinta-2); }
+/* Con 8 marcas o más: carrusel automático */
 .marcas__ventana{ overflow:hidden; -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
 .marcas__pista{ display:flex; align-items:center; gap:clamp(40px, 6vw, 72px); width:max-content; list-style:none; padding-inline:clamp(20px, 3vw, 36px); }
-.marcas__pista img{ display:block; height:clamp(36px, 4vw, 52px); width:auto; max-width:180px; object-fit:contain; filter:grayscale(1); opacity:.65; transition:filter .3s ease, opacity .3s ease; }
-.marcas__pista li:hover img{ filter:none; opacity:1; }
+.marcas__pista img{ display:block; height:clamp(64px, 7vw, 96px); width:auto; max-width:200px; object-fit:contain; }
 @media (prefers-reduced-motion:no-preference){
-  .marcas__pista{ animation:desplazar 32s linear infinite; }
+  .marcas__pista{ animation:desplazar 40s linear infinite; }
   .marcas:hover .marcas__pista{ animation-play-state:paused; }
 }
 @media (prefers-reduced-motion:reduce){

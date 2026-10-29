@@ -1,4 +1,4 @@
-import { B, HOY, ID, WA, entidad, migas, migasHtml, faqLd, faqHtml, OG_MARCA, ctaFinal, wa } from '../comun.mjs';
+import { B, HOY, ID, WA, entidad, migas, migasHtml, faqLd, faqHtml, OG_MARCA, ctaFinal, wa, seccionMarcas, nombresMarcas } from '../comun.mjs';
 
 const RUTA = '/nosotros';
 const TITULO = 'Sobre Kairos: Agencia de Marketing Digital en Bogotá';
@@ -76,6 +76,8 @@ export const cuerpo = `${migasHtml([['Inicio', '/'], ['Nosotros', RUTA]])}
     </div>
   </section>
 
+${seccionMarcas()}
+
   <section class="seccion" id="director" aria-labelledby="titulo-director">
     <div class="contenedor">
       <div class="encabezado-seccion revelar">
@@ -125,6 +127,7 @@ export const cuerpo = `${migasHtml([['Inicio', '/'], ['Nosotros', RUTA]])}
             <tr><th scope="row">Nombre</th><td>Kairos (Kairos Publicistas)</td></tr>
             <tr><th scope="row">Qué hace</th><td>Agencia de marketing digital para emprendedores y micronegocios</td></tr>
             <tr><th scope="row">Director</th><td>Marlon Herrera</td></tr>
+            <tr><th scope="row">Algunos clientes</th><td>${nombresMarcas()}</td></tr>
             <tr><th scope="row">Ubicación</th><td>Bogotá, Colombia · atención remota en todo el país</td></tr>
             <tr><th scope="row">WhatsApp</th><td><a href="${WA}" target="_blank" rel="noopener">+57 321 345 7681</a></td></tr>
             <tr><th scope="row">Correo</th><td><a href="mailto:marlonsherrera7002@gmail.com">marlonsherrera7002@gmail.com</a></td></tr>

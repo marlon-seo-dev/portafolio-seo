@@ -1,4 +1,4 @@
-import { B, HOY, ID, entidad, faqLd, faqHtml, wa, foto, precargaFoto, PLANES, planHtml, pesos, desde, ofertasLd, OG_MARCA, ctaFinal, carruselMarcas } from '../comun.mjs';
+import { B, HOY, ID, entidad, faqLd, faqHtml, wa, foto, precargaFoto, PLANES, planHtml, pesos, desde, ofertasLd, OG_MARCA, ctaFinal, seccionMarcas } from '../comun.mjs';
 
 const RUTA = '/';
 const TITULO = 'Agencia de Marketing Digital Económica en Bogotá | Kairos';
@@ -148,7 +148,7 @@ export const cuerpo = `
       </ul>
     </div>
   </section>
-${carruselMarcas()}
+${seccionMarcas()}
   <!-- ============================= SERVICIOS ============================= -->
   <section class="seccion seccion--alterna" id="servicios" aria-labelledby="titulo-servicios">
     <div class="contenedor">
