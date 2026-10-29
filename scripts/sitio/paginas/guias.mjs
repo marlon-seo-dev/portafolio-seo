@@ -9,6 +9,8 @@ export const GUIAS = [
   ['/guias/plan-de-marketing-digital-para-emprendedores', 'estrategia-marketing-reunion', 'Plan paso a paso', 'Plan de marketing digital para emprendedores, con ejemplo', 'Los 7 pasos, un ejemplo real y un calendario de 90 días para tu negocio.'],
   ['/guias/como-aparecer-en-google-maps', 'google-maps-negocio-celular', 'Google Maps', 'Cómo aparecer en Google Maps con tu negocio, paso a paso', 'Crear y verificar tu ficha, elegir la categoría, subir en el mapa y conseguir reseñas.'],
   ['/guias/como-aparecer-en-chatgpt', 'inteligencia-artificial-marketing', 'ChatGPT e IA', 'Cómo aparecer en ChatGPT y que la IA recomiende tu negocio', 'Cómo comprobar si la IA ya te menciona, de dónde saca sus respuestas y 8 pasos.'],
+  ['/guias/cuanto-cobra-un-community-manager-en-colombia', 'creacion-de-contenido-redes', 'Precios 2026', '¿Cuánto cobra un community manager en Colombia?', 'Salario en nómina, tarifas por paquete y qué opción le conviene a un emprendimiento.'],
+  ['/guias/cuanto-cuesta-una-pagina-web-en-colombia', 'diseno-pagina-web-emprendedor', 'Precios 2026', '¿Cuánto cuesta una página web en Colombia?', 'Precios de landing page y web corporativa, costos anuales y cómo ahorrar sin perder calidad.'],
 ];
 
 export const meta = {

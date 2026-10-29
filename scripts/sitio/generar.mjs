@@ -29,6 +29,8 @@ const PAGINAS = [
   ['guia-plan', 'guias/plan-de-marketing-digital-para-emprendedores.html', true, ['fotos/estrategia-marketing-reunion-1200.webp']],
   ['guia-maps', 'guias/como-aparecer-en-google-maps.html', true, ['fotos/google-maps-negocio-celular-1200.webp']],
   ['guia-chatgpt', 'guias/como-aparecer-en-chatgpt.html', true, ['fotos/inteligencia-artificial-marketing-1200.webp']],
+  ['guia-community', 'guias/cuanto-cobra-un-community-manager-en-colombia.html', true, ['fotos/creacion-de-contenido-redes-1200.webp']],
+  ['guia-pagina-web', 'guias/cuanto-cuesta-una-pagina-web-en-colombia.html', true, ['fotos/diseno-pagina-web-emprendedor-1200.webp']],
   ['error404', '404.html', false, []],
 ];
 

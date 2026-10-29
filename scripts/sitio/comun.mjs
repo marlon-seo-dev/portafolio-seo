@@ -270,6 +270,7 @@ export function pie(activa = '') {
           ${enlace('/guias/plan-de-marketing-digital-para-emprendedores', 'Plan de marketing para emprendedores')}
           ${enlace('/guias/como-aparecer-en-google-maps', 'Aparecer en Google Maps')}
           ${enlace('/guias/como-aparecer-en-chatgpt', 'Aparecer en ChatGPT')}
+          ${enlace('/guias/cuanto-cuesta-una-pagina-web-en-colombia', 'Cuánto cuesta una página web')}
           ${enlace('/nosotros', 'Sobre Kairos')}
         </ul>
       </nav>
@@ -358,6 +359,33 @@ ${jsonld}
 </head>`;
 }
 
+// Tablas legibles en celular: cada celda recibe la etiqueta de su columna
+// (data-etiqueta) para mostrar las filas como tarjetas apiladas, y roles ARIA
+// para que los lectores de pantalla no pierdan la estructura al cambiar el display.
+// La columna cuyo encabezado menciona a Kairos se resalta.
+function tablasApiladas(html) {
+  const texto = (s) => s.replace(/<sup>[\s\S]*?<\/sup>/g, '').replace(/<[^>]+>/g, '').trim();
+  return html.replace(/<table class="tabla">([\s\S]*?)<\/table>/g, (_, interior) => {
+    const cabeza = interior.match(/<thead>([\s\S]*?)<\/thead>/);
+    const columnas = cabeza ? [...cabeza[1].matchAll(/<th[^>]*>([\s\S]*?)<\/th>/g)].map((c) => texto(c[1])) : [];
+    const cuerpo = interior
+      .replace(/<(thead|tbody)>/g, '<$1 role="rowgroup">')
+      .replace(/<tr>/g, '<tr role="row">')
+      .replace(/<th scope="col">/g, '<th scope="col" role="columnheader">')
+      .replace(/<tbody role="rowgroup">([\s\S]*?)<\/tbody>/, (__, filas) => `<tbody role="rowgroup">${filas.replace(/<tr role="row">([\s\S]*?)<\/tr>/g, (___, celdas) => {
+        let i = -1;
+        return `<tr role="row">${celdas.replace(/<(th|td)(\s[^>]*)?>/g, (etiqueta, tipo, attrs = '') => {
+          i += 1;
+          if (tipo === 'th') return `<th${attrs} role="rowheader">`;
+          const col = columnas[i] || '';
+          const extra = (col ? ` data-etiqueta="${col}"` : '') + (/Kairos/.test(col) ? ' class="tabla__kairos"' : '');
+          return `<td${attrs}${extra} role="cell">`;
+        })}</tr>`;
+      })}</tbody>`);
+    return `<table class="tabla" role="table">${cuerpo}</table>`;
+  });
+}
+
 export function pagina(m, cuerpo) {
   return `<!DOCTYPE html>
 <html lang="es-CO">
@@ -373,7 +401,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 ${cabecera(m.ruta, m.textoWa)}
 
 <main id="contenido" tabindex="-1">
-${cuerpo}
+${tablasApiladas(cuerpo)}
 </main>
 
 ${pie(m.ruta)}

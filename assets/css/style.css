@@ -1128,3 +1128,44 @@ html:not(.js) .armador{ display:none; }
   .marcas__pista{ width:auto; flex-wrap:wrap; justify-content:center; }
   .marcas__pista li[aria-hidden="true"]{ display:none; }
 }
+
+/* ---------- Cifras en 3 columnas ---------- */
+@media (min-width:900px){ .cifras--3{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+
+/* ---------- Ecosistema: del descubrimiento a la venta ---------- */
+.ecosistema{ list-style:none; display:grid; gap:0; grid-template-columns:minmax(0,1fr); counter-reset:eco; }
+.ecosistema__paso{ position:relative; display:grid; grid-template-columns:56px minmax(0,1fr); column-gap:16px; padding-bottom:28px; }
+.ecosistema__paso::after{ content:""; position:absolute; left:27px; top:60px; bottom:6px; width:2px; background:linear-gradient(var(--oscuro-acento), rgba(255,138,107,.15)); }
+.ecosistema__paso:last-child::after{ display:none; }
+.ecosistema__icono{ grid-row:span 2; width:56px; height:56px; display:grid; place-items:center; border-radius:50%; background:rgba(255,255,255,.06); border:1.5px solid var(--oscuro-acento); color:var(--oscuro-acento); }
+.ecosistema__icono svg{ width:26px; height:26px; }
+.ecosistema__paso h3{ font-size:1.125rem; font-weight:700; align-self:end; }
+.ecosistema__paso p{ color:var(--oscuro-suave); font-size:.9375rem; margin-top:4px; }
+.ecosistema__paso:last-child .ecosistema__icono{ background:var(--whatsapp); border-color:var(--whatsapp); color:#fff; }
+@media (min-width:1024px){
+  .ecosistema{ grid-template-columns:repeat(5,minmax(0,1fr)); gap:20px; }
+  .ecosistema__paso{ grid-template-columns:minmax(0,1fr); text-align:center; justify-items:center; padding-bottom:0; }
+  .ecosistema__icono{ grid-row:auto; margin-bottom:16px; }
+  .ecosistema__paso h3{ align-self:auto; }
+  .ecosistema__paso::after{ left:calc(50% + 40px); right:calc(-50% + 40px); top:27px; bottom:auto; width:auto; height:2px; background:linear-gradient(90deg, var(--oscuro-acento), rgba(255,138,107,.2)); }
+}
+@media (prefers-reduced-motion:no-preference){
+  .ecosistema__icono{ transition:transform .3s ease, background-color .3s ease; }
+  .ecosistema__paso:hover .ecosistema__icono{ transform:translateY(-4px) scale(1.05); background:rgba(255,138,107,.15); }
+}
+.tarjeta-servicio p strong{ color:var(--tinta); }
+
+/* Tablas en celular: cada fila se muestra como tarjeta con la etiqueta de su columna */
+.tabla td.tabla__kairos{ color:var(--tinta); font-weight:600; }
+@media (max-width:639px){
+  .tabla-envoltura{ overflow:visible; }
+  .tabla{ min-width:0; }
+  .tabla thead{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+  .tabla,.tabla tbody,.tabla tr,.tabla th,.tabla td{ display:block; width:100%; }
+  .tabla tbody tr{ padding:8px 0 12px; border-bottom:1px solid var(--linea); }
+  .tabla tbody tr:last-child{ border-bottom:0; }
+  .tabla th,.tabla td{ border-bottom:0; padding:4px 16px; }
+  .tabla tbody th[scope="row"]{ padding-top:8px; font-size:1rem; }
+  .tabla td[data-etiqueta]::before{ content:attr(data-etiqueta); display:block; margin-bottom:2px; font-size:.75rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--tinta-2); }
+  .tabla td.tabla__kairos{ margin-top:4px; padding-top:8px; padding-bottom:8px; background:var(--papel-2); border-left:3px solid var(--acento); }
+}

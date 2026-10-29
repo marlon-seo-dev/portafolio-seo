@@ -386,15 +386,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h2 id="tabla">Tabla de precios de marketing digital en Colombia (2026)</h2>
           <p>Referencias públicas del mercado y nuestros propios precios publicados. Las fuentes están debajo de la tabla.</p>
           <div class="tabla-envoltura">
-            <table class="tabla">
+            <table class="tabla" role="table">
               <caption>Cuánto cuesta cada servicio de marketing digital</caption>
-              <thead><tr><th scope="col">Servicio</th><th scope="col">Referencia del mercado</th><th scope="col">En Kairos</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">Plan mensual de marketing digital con agencia</th><td>Desde $800.000 al mes <sup>1</sup></td><td>Por servicio, desde $249.000 al mes (redes)</td></tr>
-                <tr><th scope="row">Posicionamiento SEO</th><td>Desde $700.000 al mes <sup>2</sup></td><td>Auditoría $120.000 · Plan Visibilidad $390.000 (pago único)</td></tr>
-                <tr><th scope="row">Diseño de piezas publicitarias</th><td>Varía según diseñador y cantidad</td><td>Desde $35.000 por pieza</td></tr>
-                <tr><th scope="row">Página web</th><td>Varía según alcance y plataforma</td><td>Desde $200.000, pago único</td></tr>
-                <tr><th scope="row">Pauta en Google Ads (búsqueda)</th><td>Clic promedio de $500 a $2.000; mínimo sugerido para comercio local $600.000 al mes <sup>3</sup></td><td>No incluida: se le paga directo a Google</td></tr>
+              <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader">Servicio</th><th scope="col" role="columnheader">Referencia del mercado</th><th scope="col" role="columnheader">En Kairos</th></tr></thead>
+              <tbody role="rowgroup">
+                <tr role="row"><th scope="row" role="rowheader">Plan mensual de marketing digital con agencia</th><td data-etiqueta="Referencia del mercado" role="cell">Desde $800.000 al mes <sup>1</sup></td><td data-etiqueta="En Kairos" class="tabla__kairos" role="cell">Por servicio, desde $249.000 al mes (redes)</td></tr>
+                <tr role="row"><th scope="row" role="rowheader">Posicionamiento SEO</th><td data-etiqueta="Referencia del mercado" role="cell">Desde $700.000 al mes <sup>2</sup></td><td data-etiqueta="En Kairos" class="tabla__kairos" role="cell">Auditoría $120.000 · Plan Visibilidad $390.000 (pago único)</td></tr>
+                <tr role="row"><th scope="row" role="rowheader">Diseño de piezas publicitarias</th><td data-etiqueta="Referencia del mercado" role="cell">Varía según diseñador y cantidad</td><td data-etiqueta="En Kairos" class="tabla__kairos" role="cell">Desde $35.000 por pieza</td></tr>
+                <tr role="row"><th scope="row" role="rowheader">Página web</th><td data-etiqueta="Referencia del mercado" role="cell">Varía según alcance y plataforma</td><td data-etiqueta="En Kairos" class="tabla__kairos" role="cell">Desde $200.000, pago único</td></tr>
+                <tr role="row"><th scope="row" role="rowheader">Pauta en Google Ads (búsqueda)</th><td data-etiqueta="Referencia del mercado" role="cell">Clic promedio de $500 a $2.000; mínimo sugerido para comercio local $600.000 al mes <sup>3</sup></td><td data-etiqueta="En Kairos" class="tabla__kairos" role="cell">No incluida: se le paga directo a Google</td></tr>
               </tbody>
             </table>
           </div>
@@ -411,13 +411,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <h2 id="cuanto-invertir">¿Cuánto debería invertir un emprendedor? Ejemplo con $400.000 al mes</h2>
           <p>No existe un número mágico, pero sí un orden lógico: primero lo que es tuyo para siempre (tu página y tu ficha de Google), después el contenido constante y, por último, la pauta para llegar a más gente.</p>
           <div class="tabla-envoltura">
-            <table class="tabla">
-              <thead><tr><th scope="col"></th><th scope="col">Mes 1</th><th scope="col">Mes 2 en adelante</th></tr></thead>
-              <tbody>
-                <tr><th scope="row">Página web (Landing Page)</th><td>$200.000 (pago único)</td><td>$0</td></tr>
-                <tr><th scope="row">Piezas para redes (Pack Emprende)</th><td>$89.000</td><td>$89.000</td></tr>
-                <tr><th scope="row">Pauta en redes</th><td>$111.000</td><td>$311.000</td></tr>
-                <tr><th scope="row">Total</th><td>$400.000</td><td>$400.000</td></tr>
+            <table class="tabla" role="table">
+              <thead role="rowgroup"><tr role="row"><th scope="col" role="columnheader"></th><th scope="col" role="columnheader">Mes 1</th><th scope="col" role="columnheader">Mes 2 en adelante</th></tr></thead>
+              <tbody role="rowgroup">
+                <tr role="row"><th scope="row" role="rowheader">Página web (Landing Page)</th><td data-etiqueta="Mes 1" role="cell">$200.000 (pago único)</td><td data-etiqueta="Mes 2 en adelante" role="cell">$0</td></tr>
+                <tr role="row"><th scope="row" role="rowheader">Piezas para redes (Pack Emprende)</th><td data-etiqueta="Mes 1" role="cell">$89.000</td><td data-etiqueta="Mes 2 en adelante" role="cell">$89.000</td></tr>
+                <tr role="row"><th scope="row" role="rowheader">Pauta en redes</th><td data-etiqueta="Mes 1" role="cell">$111.000</td><td data-etiqueta="Mes 2 en adelante" role="cell">$311.000</td></tr>
+                <tr role="row"><th scope="row" role="rowheader">Total</th><td data-etiqueta="Mes 1" role="cell">$400.000</td><td data-etiqueta="Mes 2 en adelante" role="cell">$400.000</td></tr>
               </tbody>
             </table>
           </div>
@@ -505,6 +505,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li><a href="/guias/plan-de-marketing-digital-para-emprendedores">Plan de marketing para emprendedores</a></li>
           <li><a href="/guias/como-aparecer-en-google-maps">Aparecer en Google Maps</a></li>
           <li><a href="/guias/como-aparecer-en-chatgpt">Aparecer en ChatGPT</a></li>
+          <li><a href="/guias/cuanto-cuesta-una-pagina-web-en-colombia">Cuánto cuesta una página web</a></li>
           <li><a href="/nosotros">Sobre Kairos</a></li>
         </ul>
       </nav>

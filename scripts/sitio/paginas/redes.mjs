@@ -42,7 +42,7 @@ export const { meta, cuerpo } = paginaServicio({
   ],
   faqTitulo: 'Preguntas frecuentes sobre manejo de redes sociales',
   faq: [
-    ['¿Cuánto cuesta el manejo de redes sociales en Colombia?', `Depende de la cantidad de contenido. En Kairos el plan Redes Básico cuesta ${pesos(P[0].precio)} al mes (8 publicaciones) y el plan Redes Plus ${pesos(P[1].precio)} al mes (12 publicaciones y 8 historias). Más detalle en la <a href="/guias/cuanto-cobra-una-agencia-de-marketing-digital">guía de precios de marketing digital</a>.`],
+    ['¿Cuánto cuesta el manejo de redes sociales en Colombia?', `Depende de la cantidad de contenido. En Kairos el plan Redes Básico cuesta ${pesos(P[0].precio)} al mes (8 publicaciones) y el plan Redes Plus ${pesos(P[1].precio)} al mes (12 publicaciones y 8 historias). Lo comparamos con el costo de un empleado en la guía <a href="/guias/cuanto-cobra-un-community-manager-en-colombia">cuánto cobra un community manager en Colombia</a>.`],
     ['¿Responden los mensajes y comentarios de mis clientes?', 'La atención de mensajes no está incluida: la haces tú, que conoces tu negocio y tus precios del día. Si necesitas apoyo con eso, lo cotizamos aparte.'],
     ['¿El plan incluye pauta o anuncios pagados?', 'No. La pauta es el dinero que se le paga a Meta para mostrar tus publicaciones a más gente, y la decides tú. Sí te recomendamos qué publicaciones pautar y con qué presupuesto empezar.'],
     ['¿En qué redes sociales trabajan?', 'Instagram y Facebook. Si tu negocio necesita TikTok u otra red, escríbenos y lo revisamos.'],

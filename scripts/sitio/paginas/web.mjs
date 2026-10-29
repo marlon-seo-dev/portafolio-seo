@@ -68,7 +68,7 @@ export const { meta, cuerpo } = paginaServicio({
   ],
   faqTitulo: 'Preguntas frecuentes sobre páginas web económicas',
   faq: [
-    ['¿Cuánto cuesta una página web en Colombia?', `Varía mucho según quién la haga y qué incluya. En Kairos una landing page cuesta ${pesos(P[0].precio)} y una web de hasta 5 secciones ${pesos(P[1].precio)}, con pago único y hosting gratuito.`],
+    ['¿Cuánto cuesta una página web en Colombia?', `Varía mucho según quién la haga y qué incluya. En Kairos una landing page cuesta ${pesos(P[0].precio)} y una web de hasta 5 secciones ${pesos(P[1].precio)}, con pago único y hosting gratuito. Comparamos los precios del mercado en la guía <a href="/guias/cuanto-cuesta-una-pagina-web-en-colombia">cuánto cuesta una página web en Colombia</a>.`],
     ['¿Tengo que pagar mensualidad?', 'No. Publicamos tu página en un hosting gratuito de alto rendimiento, así que no pagas mensualidad por tenerla en línea.'],
     ['¿El dominio está incluido?', 'Tu página puede funcionar desde el primer día con una dirección gratuita. Si quieres un dominio propio (por ejemplo tunegocio.com), se compra aparte al proveedor de dominios y se renueva cada año; te ayudamos a comprarlo y conectarlo.'],
     ['¿Cuánto se demora?', 'Una landing page suele estar lista en 5 a 7 días hábiles desde que recibimos tu información. Una web de varias secciones toma un poco más; te damos la fecha exacta antes de empezar.'],

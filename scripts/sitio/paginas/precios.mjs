@@ -73,10 +73,33 @@ export const cuerpo = `${migasHtml([['Inicio', '/'], ['Precios', RUTA]])}
     </div>
   </section>
 
-  <section class="seccion" id="armador-seccion" aria-labelledby="titulo-armador">
+  <section class="seccion" id="comparacion" aria-labelledby="titulo-comparacion">
     <div class="contenedor">
       <div class="encabezado-seccion revelar">
-        <p class="etiqueta"><span class="etiqueta__num">02</span> Herramienta</p>
+        <p class="etiqueta"><span class="etiqueta__num">02</span> Kairos vs. el mercado</p>
+        <h2 class="titulo-l" id="titulo-comparacion">¿Cuánto cuesta en otras agencias y cuánto en Kairos?</h2>
+        <p class="entradilla">Precios publicados por otras empresas del sector en Colombia frente a los nuestros. Los alcances no son idénticos: compara siempre por lo que recibes.</p>
+      </div>
+      <div class="tabla-envoltura revelar">
+        <table class="tabla">
+          <thead><tr><th scope="col">Servicio</th><th scope="col">Referencia del mercado</th><th scope="col">En Kairos</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Plan mensual de marketing digital</th><td>Plan básico de $953.000 a $1.270.000 al mes <sup>1</sup>; plan integral de $3.500.000 <sup>2</sup></td><td>Redes Básico: ${pesos(PLANES.redes.planes[0].precio)} al mes</td></tr>
+            <tr><th scope="row">Community manager en nómina</th><td>Salario promedio de $3.640.000 al mes, más prestaciones <sup>3</sup></td><td>Redes Plus: ${pesos(PLANES.redes.planes[1].precio)} al mes</td></tr>
+            <tr><th scope="row">Landing page</th><td>De $1.500.000 a $3.500.000 <sup>4</sup></td><td>${pesos(PLANES.web.planes[0].precio)}, pago único</td></tr>
+            <tr><th scope="row">Web de varias páginas</th><td>De $4.000.000 a $9.000.000 (5 a 10 páginas) <sup>4</sup></td><td>${pesos(PLANES.web.planes[1].precio)} (hasta 5 secciones)</td></tr>
+            <tr><th scope="row">SEO con agencia</th><td>Planes desde $700.000 al mes <sup>5</sup></td><td>Plan Visibilidad: ${pesos(PLANES.seo.planes[1].precio)}, pago único</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="fuente mt-s">Fuentes, consultadas en octubre de 2026: <sup>1</sup> <a href="https://findme.digital/planes-precios-marketing-digital/" target="_blank" rel="noopener">FindMe Digital</a>, plan básico mensual. <sup>2</sup> <a href="https://www.laboratorioweb.com.co/agencia-de-marketing-digital-precios/" target="_blank" rel="noopener">Laboratorio Web</a>, plan integral. <sup>3</sup> <a href="https://www.magneto365.com/co/preguntas-frecuentes/community-manager/cual-es-salario-de-un-community-manager-en-colombia" target="_blank" rel="noopener">Magneto</a>, salario promedio de un community manager en Colombia. <sup>4</sup> <a href="https://cangrejodigital.com/diseno-web/cuanto-cuesta-pagina-web-colombia/" target="_blank" rel="noopener">Cangrejo Digital</a>, rangos de referencia del mercado. <sup>5</sup> Plan de SEO publicado por una agencia de Bogotá.</p>
+    </div>
+  </section>
+
+  <section class="seccion seccion--alterna" id="armador-seccion" aria-labelledby="titulo-armador">
+    <div class="contenedor">
+      <div class="encabezado-seccion revelar">
+        <p class="etiqueta"><span class="etiqueta__num">03</span> Herramienta</p>
         <h2 class="titulo-l" id="titulo-armador">Arma tu plan y mira el total al instante</h2>
         <p class="entradilla">Marca lo que necesitas. Al final envías tu selección por WhatsApp y te confirmamos precio y fecha de entrega.</p>
       </div>
@@ -94,11 +117,11 @@ export const cuerpo = `${migasHtml([['Inicio', '/'], ['Precios', RUTA]])}
     </div>
   </section>
 
-  <section class="seccion seccion--alterna" id="por-que-economicos" aria-labelledby="titulo-por-que">
+  <section class="seccion" id="por-que-economicos" aria-labelledby="titulo-por-que">
     <div class="contenedor bloque-imagen">
       <figure class="bloque-imagen__foto revelar">${foto('emprendedora-negocio-local', 'Emprendedora en su negocio local')}</figure>
       <div class="bloque-imagen__texto revelar" data-retraso="1">
-        <p class="etiqueta"><span class="etiqueta__num">03</span> Nuestro modelo</p>
+        <p class="etiqueta"><span class="etiqueta__num">04</span> Nuestro modelo</p>
         <h2 class="titulo-l" id="titulo-por-que">¿Por qué podemos cobrar menos?</h2>
         <p>No es magia ni trabajo a medias. Es un modelo pensado para emprendedores:</p>
         <ul class="lista-check">
@@ -114,7 +137,7 @@ export const cuerpo = `${migasHtml([['Inicio', '/'], ['Precios', RUTA]])}
   <section class="seccion seccion--borde" id="preguntas" aria-labelledby="titulo-preguntas">
     <div class="contenedor dos-columnas dos-columnas--fija">
       <div>
-        <p class="etiqueta"><span class="etiqueta__num">04</span> Preguntas frecuentes</p>
+        <p class="etiqueta"><span class="etiqueta__num">05</span> Preguntas frecuentes</p>
         <h2 class="titulo-l" id="titulo-preguntas">Sobre precios y pagos</h2>
         <div class="enlaces-seccion enlaces-seccion--columna">
           <a class="enlace-flecha" href="/guias/cuanto-cobra-una-agencia-de-marketing-digital">Guía: cuánto cobra una agencia en Colombia</a>
