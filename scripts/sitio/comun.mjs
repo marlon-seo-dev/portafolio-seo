@@ -179,14 +179,15 @@ export const ofertasLd = (cat) => PLANES[cat].planes.map((p) => ({
 }));
 
 // ============================= MARCAS QUE CONFÍAN EN KAIROS =============================
-// Cada logo va en assets/images/marcas/: WebP con fondo transparente y 360 px de ancho
-// (3 veces el tamaño visible, para pantallas de alta densidad). ancho y alto = tamaño real
-// del archivo. Con 8 marcas o más, la cuadrícula pasa a ser un carrusel automático.
+// Barra de logos en movimiento continuo, hecha solo con CSS. Cada logo va en
+// assets/images/marcas/: WebP con fondo transparente y 200 px de ancho (unas 3 veces el
+// tamaño visible, para pantallas de alta densidad); ancho y alto = tamaño real del archivo.
+// Si cambias un logo, usa un nombre de archivo nuevo: las imágenes se guardan 30 días en caché.
 export const MARCAS = [
-  { nombre: 'London Urus', archivo: 'london-urus.webp', ancho: 360, alto: 360 },
-  { nombre: 'Arepa Mía', archivo: 'arepa-mia.webp', ancho: 360, alto: 352 },
-  { nombre: 'For Life', archivo: 'for-life.webp', ancho: 360, alto: 379 },
-  { nombre: 'Club Taller Homeschool', archivo: 'club-taller-homeschool.webp', ancho: 360, alto: 349 },
+  { nombre: 'London Urus', archivo: 'london-urus-200.webp', ancho: 200, alto: 200 },
+  { nombre: 'Arepa Mía', archivo: 'arepa-mia-200.webp', ancho: 200, alto: 196 },
+  { nombre: 'For Life', archivo: 'for-life-200.webp', ancho: 200, alto: 210 },
+  { nombre: 'Club Taller Homeschool', archivo: 'club-taller-homeschool-200.webp', ancho: 200, alto: 194 },
 ];
 
 export const nombresMarcas = () => {
@@ -196,26 +197,21 @@ export const nombresMarcas = () => {
 
 export function seccionMarcas() {
   if (!MARCAS.length) return '';
-  const img = (m, oculto) => `<img src="/assets/images/marcas/${m.archivo}" width="${m.ancho}" height="${m.alto}" loading="lazy" decoding="async" alt="${oculto ? '' : `Logo de ${m.nombre}`}">`;
-  // Carrusel: la serie y una copia exacta oculta; la animación avanza el 50 % del ancho,
-  // justo una serie, así el bucle no tiene saltos.
-  const serie = (oculta) => MARCAS.map((m) => `<li${oculta ? ' aria-hidden="true"' : ''}>${img(m, oculta)}</li>`).join('');
-  const logos = MARCAS.length >= 8
-    ? `<div class="marcas__ventana"><ul class="marcas__pista">${serie(false)}${serie(true)}</ul></div>`
-    : `<ul class="marcas__grilla revelar">
-        ${MARCAS.map((m) => `<li class="marcas__logo">${img(m)}</li>`).join('\n        ')}
-      </ul>`;
+  const logo = (m, oculto) => `<li${oculto ? ' aria-hidden="true"' : ''}><img src="/assets/images/marcas/${m.archivo}" width="${m.ancho}" height="${m.alto}" loading="lazy" decoding="async" alt="${oculto ? '' : `Logo de ${m.nombre}`}"></li>`;
+  // La serie se repite hasta sumar al menos 12 logos (así llena pantallas anchas) y se
+  // duplica completa y oculta: la animación avanza el 50 % del ancho, justo una serie,
+  // y el bucle no tiene saltos. La velocidad no cambia aunque haya más marcas.
+  const veces = Math.ceil(12 / MARCAS.length);
+  const serie = (oculta) => Array.from({ length: veces }, (_, i) => MARCAS.map((m) => logo(m, oculta || i > 0)).join('')).join('');
   return `
   <!-- ============================= MARCAS QUE CONFÍAN EN KAIROS ============================= -->
-  <section class="seccion seccion--compacta marcas" id="marcas" aria-labelledby="titulo-marcas">
+  <section class="marcas" id="marcas" aria-labelledby="titulo-marcas">
     <div class="contenedor">
-      <div class="marcas__cabecera revelar">
-        <p class="etiqueta">Confían en nosotros</p>
-        <h2 class="titulo-l" id="titulo-marcas">Marcas de emprendedores que <em>trabajan con Kairos</em></h2>
-        <p>${nombresMarcas()} son algunos de los emprendimientos que ya confían su diseño y su marketing digital a Kairos.</p>
+      <p class="etiqueta">Confían en nosotros</p>
+      <h2 class="marcas__titulo" id="titulo-marcas">Marcas que <em>confían en Kairos</em></h2>
+      <div class="marcas__ventana">
+        <ul class="marcas__pista" style="--duracion:${MARCAS.length * veces * 3.5}s">${serie(false)}${serie(true)}</ul>
       </div>
-      ${logos}
-      <p class="marcas__cta">¿Quieres que tu marca sea la siguiente? <a class="enlace-flecha" href="/precios">Mira los planes y precios</a></p>
     </div>
   </section>`;
 }

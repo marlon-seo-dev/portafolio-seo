@@ -1113,27 +1113,25 @@ html:not(.js) .armador{ display:none; }
 /* Tarjetas blancas dentro de secciones oscuras: el texto no hereda el blanco. */
 .tarjeta-servicio{ color:var(--tinta); }
 
-/* ---------- Marcas que confían en Kairos ---------- */
-.marcas{ background:var(--papel-2); border-top:1px solid var(--linea); }
-.marcas__cabecera{ max-width:720px; margin:0 auto clamp(32px, 5vw, 48px); text-align:center; }
-.marcas__cabecera .etiqueta{ justify-content:center; }
-.marcas__cabecera p:last-child{ margin-top:18px; color:var(--tinta-2); font-size:1.0625rem; }
-.marcas__grilla{ list-style:none; display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:clamp(12px, 2vw, 20px); }
-@media (min-width:900px){ .marcas__grilla{ grid-template-columns:repeat(4, minmax(0,1fr)); } }
-.marcas__logo{ display:flex; align-items:center; justify-content:center; height:clamp(168px, 18vw, 232px); padding:clamp(16px, 2.2vw, 30px); background:var(--papel); border:1px solid var(--linea); border-radius:var(--radio-lg); transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
-.marcas__logo img{ display:block; width:auto; height:100%; max-width:100%; object-fit:contain; }
-.marcas__logo:hover{ transform:translateY(-4px); border-color:transparent; box-shadow:0 22px 44px -26px rgba(4,18,56,.38); }
-.marcas__cta{ margin-top:clamp(24px, 4vw, 36px); text-align:center; color:var(--tinta-2); }
-/* Con 8 marcas o más: carrusel automático */
-.marcas__ventana{ overflow:hidden; -webkit-mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.marcas__pista{ display:flex; align-items:center; gap:clamp(40px, 6vw, 72px); width:max-content; list-style:none; padding-inline:clamp(20px, 3vw, 36px); }
-.marcas__pista img{ display:block; height:clamp(64px, 7vw, 96px); width:auto; max-width:200px; object-fit:contain; }
+/* ---------- Marcas que confían en Kairos: barra en movimiento ---------- */
+.marcas{ padding-block:clamp(48px, 7vw, 80px); border-block:1px solid var(--linea); background:var(--papel); }
+.marcas .etiqueta{ justify-content:center; margin-bottom:12px; }
+.marcas .etiqueta::after{ content:""; width:28px; height:1px; background:currentColor; flex:none; }
+.marcas__titulo{ text-align:center; font-size:clamp(1.375rem, 2.4vw, 1.875rem); font-weight:650; line-height:1.2; letter-spacing:-.01em; margin-bottom:clamp(28px, 4vw, 44px); }
+.marcas__titulo em{ font-family:var(--serif); font-style:italic; font-weight:400; color:var(--acento); }
+.marcas__ventana{ overflow:hidden; -webkit-mask-image:linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image:linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.marcas__pista{ display:flex; align-items:center; width:max-content; list-style:none; padding-block:6px; }
+/* Separación con padding (no con gap) para que el 50 % del ancho sea exactamente una serie. */
+.marcas__pista li{ flex:none; padding-inline:clamp(22px, 3.4vw, 44px); }
+.marcas__pista img{ display:block; height:clamp(56px, 5.6vw, 76px); width:auto; transition:transform .3s ease; }
+.marcas__pista li:hover img{ transform:scale(1.08); }
 @media (prefers-reduced-motion:no-preference){
-  .marcas__pista{ animation:desplazar 40s linear infinite; }
-  .marcas:hover .marcas__pista{ animation-play-state:paused; }
+  .marcas__pista{ animation:desplazar var(--duracion, 42s) linear infinite; }
+  .marcas__ventana:hover .marcas__pista{ animation-play-state:paused; }
 }
 @media (prefers-reduced-motion:reduce){
-  .marcas__pista{ width:auto; flex-wrap:wrap; justify-content:center; }
+  .marcas__ventana{ -webkit-mask-image:none; mask-image:none; }
+  .marcas__pista{ width:auto; flex-wrap:wrap; justify-content:center; row-gap:24px; }
   .marcas__pista li[aria-hidden="true"]{ display:none; }
 }
 

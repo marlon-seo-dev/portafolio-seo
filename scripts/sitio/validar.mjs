@@ -45,7 +45,9 @@ for (const f of archivos) {
   }
   for (const m of s.matchAll(/(?:src|srcset|imagesrcset)="([^"]+)"/g)) for (const p of m[1].split(',')) { const u = p.trim().split(/\s+/)[0]; if (u.startsWith('/assets/') && !existe(u)) out.push('img falta ' + u); }
   const imgs = [...s.matchAll(/<img [^>]*>/g)].map((x) => x[0]);
-  const sinAlt = imgs.filter((i) => !/alt="[^"]+"/.test(i)).length, sinDim = imgs.filter((i) => !/width=/.test(i) || !/height=/.test(i)).length;
+  // Las copias ocultas del carrusel de marcas (<li aria-hidden="true">) llevan alt vacío a propósito.
+  const ocultas = (s.match(/<li aria-hidden="true"><img [^>]*alt=""/g) || []).length;
+  const sinAlt = imgs.filter((i) => !/alt="[^"]+"/.test(i)).length - ocultas, sinDim = imgs.filter((i) => !/width=/.test(i) || !/height=/.test(i)).length;
   if (sinAlt) out.push('img sin alt ' + sinAlt);
   if (sinDim) out.push('img sin width/height ' + sinDim);
   console.log(`${f.padEnd(58)} título:${[...t].length} desc:${[...d].length} imgs:${imgs.length}${out.length ? '  ⚠ ' + out.join(' | ') : '  ✓'}`);
