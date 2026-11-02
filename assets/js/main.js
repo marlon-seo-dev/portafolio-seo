@@ -154,7 +154,7 @@ var SIN_MOVIMIENTO = window.matchMedia && window.matchMedia('(prefers-reduced-mo
   var visor = document.createElement('dialog');
   visor.className = 'visor';
   visor.setAttribute('aria-labelledby', 'visor-titulo');
-  visor.innerHTML = '<figure><img alt=""><figcaption><span id="visor-titulo"></span>' +
+  visor.innerHTML = '<figure><img alt="Certificado ampliado"><figcaption><span id="visor-titulo"></span>' +
     '<button type="button" class="visor__cerrar" aria-label="Cerrar">&times;</button></figcaption></figure>';
   document.body.appendChild(visor);
   var imagen = visor.querySelector('img');
