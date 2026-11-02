@@ -2,7 +2,7 @@
    KAIROS — JS COMPARTIDO
    Mejora progresiva: todo el contenido funciona sin JavaScript. Aquí solo
    viven las interacciones: menú móvil, sombra de cabecera, aparición al
-   hacer scroll, palabra rotativa, contadores, barra de marcas, pestañas de precios,
+   hacer scroll, palabra rotativa, contadores, barra de marcas, visor de certificados, pestañas de precios,
    "Arma tu plan", formulario de asesoría, medición de clics a WhatsApp y
    la carga diferida de HubSpot. Sin librerías externas.
    ===================================================================== */
@@ -143,6 +143,38 @@ var SIN_MOVIMIENTO = window.matchMedia && window.matchMedia('(prefers-reduced-mo
     pista.style.setProperty('--duracion', (serie.length * veces * 3.5) + 's');
     ventana.classList.add('en-movimiento');
   });
+})();
+
+/* ============================= VISOR DE CERTIFICADOS =============================
+   Los enlaces con data-visor abren la imagen del certificado en un <dialog>, sin salir
+   de la página. Sin JS (o sin soporte de <dialog>), el enlace abre la imagen directamente. */
+(function () {
+  var enlaces = document.querySelectorAll('[data-visor]');
+  if (!enlaces.length || typeof HTMLDialogElement !== 'function') return;
+  var visor = document.createElement('dialog');
+  visor.className = 'visor';
+  visor.setAttribute('aria-labelledby', 'visor-titulo');
+  visor.innerHTML = '<figure><img alt=""><figcaption><span id="visor-titulo"></span>' +
+    '<button type="button" class="visor__cerrar" aria-label="Cerrar">&times;</button></figcaption></figure>';
+  document.body.appendChild(visor);
+  var imagen = visor.querySelector('img');
+  var titulo = visor.querySelector('#visor-titulo');
+  enlaces.forEach(function (enlace) {
+    enlace.addEventListener('click', function (evento) {
+      evento.preventDefault();
+      var miniatura = enlace.closest('.credencial') && enlace.closest('.credencial').querySelector('img');
+      imagen.width = enlace.getAttribute('data-ancho');
+      imagen.height = enlace.getAttribute('data-alto');
+      imagen.alt = miniatura ? miniatura.alt : '';
+      imagen.src = enlace.href;
+      titulo.textContent = enlace.getAttribute('data-titulo') || '';
+      visor.showModal();
+    });
+  });
+  visor.querySelector('.visor__cerrar').addEventListener('click', function () { visor.close(); });
+  // Clic fuera de la imagen (en el fondo oscuro) también cierra.
+  visor.addEventListener('click', function (evento) { if (evento.target === visor) visor.close(); });
+  visor.addEventListener('close', function () { imagen.removeAttribute('src'); });
 })();
 
 /* ============================= PESTAÑAS DE PRECIOS =============================

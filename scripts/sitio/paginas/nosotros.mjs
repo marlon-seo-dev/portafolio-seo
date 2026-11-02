@@ -1,4 +1,6 @@
-import { B, HOY, ID, WA, entidad, migas, migasHtml, faqLd, faqHtml, OG_MARCA, ctaFinal, wa, seccionMarcas, nombresMarcas } from '../comun.mjs';
+import { B, HOY, ID, WA, entidad, migas, migasHtml, faqLd, faqHtml, OG_MARCA, ctaFinal, wa, seccionMarcas, nombresMarcas, seccionCredenciales, credencialesTexto } from '../comun.mjs';
+
+const CRED = credencialesTexto();
 
 const RUTA = '/nosotros';
 const TITULO = 'Sobre Kairos: Agencia de Marketing Digital en Bogotá';
@@ -10,7 +12,8 @@ const FAQ = [
   ['¿Qué significa Kairos?', 'En griego, kairós significa "el momento oportuno". Para un negocio, ese momento es el instante en que el cliente decide a quién comprarle: cuando ve una publicación, cuando busca en Google o cuando le pregunta a la IA. Kairos existe para que tu negocio esté ahí en ese momento.'],
   ['¿Kairos es una agencia o un freelance?', 'Kairos es una agencia en crecimiento con un equipo pequeño. Ese tamaño es justamente lo que nos permite ofrecer precios accesibles y trato directo, sin intermediarios.'],
   ['¿Dónde está ubicada Kairos?', 'En Bogotá, Colombia. Atendemos emprendedores de Bogotá y de cualquier ciudad del país de forma remota, por WhatsApp, correo y videollamada.'],
-  ['¿Qué experiencia tiene Kairos en SEO y AEO?', 'Su director ha ejecutado SEO on-page, SEO técnico y AEO en proyectos reales, empezando por este sitio: datos estructurados de Schema.org, sitemap, URLs canónicas, optimización de imágenes y velocidad, indexación con Google Search Console, Bing Webmaster Tools e IndexNow, preguntas frecuentes marcadas y un archivo llms.txt para herramientas de IA.'],
+  ['¿Qué certificaciones tiene el director de Kairos?', `Marlon Herrera está certificado ${CRED.certificaciones}, y tiene formación ${CRED.cursos}. En esta página están las imágenes de cada certificado, con su fecha, su vigencia y cómo verificarlo.`],
+  ['¿Qué experiencia tiene Kairos en SEO y AEO?','Su director ha ejecutado SEO on-page, SEO técnico y AEO en proyectos reales, empezando por este sitio: datos estructurados de Schema.org, sitemap, URLs canónicas, optimización de imágenes y velocidad, indexación con Google Search Console, Bing Webmaster Tools e IndexNow, preguntas frecuentes marcadas y un archivo llms.txt para herramientas de IA.'],
 ];
 
 export const meta = {
@@ -83,7 +86,7 @@ ${seccionMarcas()}
       <div class="encabezado-seccion revelar">
         <p class="etiqueta"><span class="etiqueta__num">03</span> Director</p>
         <h2 class="titulo-l" id="titulo-director">Marlon Herrera, <em>director de Kairos</em></h2>
-        <p class="entradilla">Diseñador publicitario y estratega de marketing digital. Dirige Kairos y ejecuta personalmente su trabajo técnico, aplicando cada técnica primero en sus propios proyectos.</p>
+        <p class="entradilla">Diseñador publicitario y estratega de marketing digital, certificado ${CRED.certificaciones}. Dirige Kairos y ejecuta personalmente su trabajo técnico, aplicando cada técnica primero en sus propios proyectos.</p>
       </div>
       <div class="rejilla rejilla--2">
         <article class="tarjeta revelar"><span class="tarjeta__num" aria-hidden="true">SEO</span><h3 class="titulo-m">SEO on-page</h3><p>Títulos y descripciones por intención de búsqueda, un solo H1 por página, enlazado interno entre servicios y guías, y URLs limpias.</p></article>
@@ -93,16 +96,18 @@ ${seccionMarcas()}
       </div>
       <p class="nota-precios mt-l">Todo lo anterior está aplicado en el sitio que estás leyendo y se puede verificar en su código.</p>
       <div class="enlaces-seccion">
+        <a class="enlace-flecha" href="#certificaciones">Ver sus certificaciones</a>
         <a class="enlace-flecha" href="https://www.fiverr.com/s/m580G09" target="_blank" rel="noopener">Perfil de Marlon Herrera en Fiverr</a>
         <a class="enlace-flecha" href="https://www.instagram.com/kairos_publicistas" target="_blank" rel="noopener">Trabajos de Kairos en Instagram</a>
       </div>
     </div>
   </section>
+${seccionCredenciales('04')}
 
   <section class="seccion seccion--oscura" id="principios" aria-labelledby="titulo-principios">
     <div class="contenedor">
       <div class="encabezado-seccion revelar">
-        <p class="etiqueta"><span class="etiqueta__num">04</span> Cómo pensamos</p>
+        <p class="etiqueta"><span class="etiqueta__num">05</span> Cómo pensamos</p>
         <h2 class="titulo-l" id="titulo-principios">Cuatro principios que no negociamos</h2>
       </div>
       <div class="rejilla rejilla--4">
@@ -117,7 +122,7 @@ ${seccionMarcas()}
   <section class="seccion" id="datos" aria-labelledby="titulo-datos">
     <div class="contenedor dos-columnas">
       <div>
-        <p class="etiqueta"><span class="etiqueta__num">05</span> Datos de contacto</p>
+        <p class="etiqueta"><span class="etiqueta__num">06</span> Datos de contacto</p>
         <h2 class="titulo-l" id="titulo-datos">Kairos, ficha rápida</h2>
         <p class="entradilla mt-s">Los mismos datos que encontrarás en todos nuestros canales.</p>
       </div>
@@ -127,6 +132,7 @@ ${seccionMarcas()}
             <tr><th scope="row">Nombre</th><td>Kairos (Kairos Publicistas)</td></tr>
             <tr><th scope="row">Qué hace</th><td>Agencia de marketing digital para emprendedores y micronegocios</td></tr>
             <tr><th scope="row">Director</th><td>Marlon Herrera</td></tr>
+            <tr><th scope="row">Certificaciones</th><td>${CRED.lista} · <a href="#certificaciones">ver certificados</a></td></tr>
             <tr><th scope="row">Algunos clientes</th><td>${nombresMarcas()}</td></tr>
             <tr><th scope="row">Ubicación</th><td>Bogotá, Colombia · atención remota en todo el país</td></tr>
             <tr><th scope="row">WhatsApp</th><td><a href="${WA}" target="_blank" rel="noopener">+57 321 345 7681</a></td></tr>
@@ -142,7 +148,7 @@ ${seccionMarcas()}
   <section class="seccion seccion--borde" id="preguntas" aria-labelledby="titulo-preguntas">
     <div class="contenedor dos-columnas dos-columnas--fija">
       <div>
-        <p class="etiqueta"><span class="etiqueta__num">06</span> Preguntas frecuentes</p>
+        <p class="etiqueta"><span class="etiqueta__num">07</span> Preguntas frecuentes</p>
         <h2 class="titulo-l" id="titulo-preguntas">Sobre Kairos</h2>
       </div>
       <div class="faq">

@@ -1,4 +1,4 @@
-import { B, HOY, ID, entidad, faqLd, faqHtml, wa, foto, precargaFoto, PLANES, planHtml, pesos, desde, ofertasLd, OG_MARCA, ctaFinal, seccionMarcas } from '../comun.mjs';
+import { B, HOY, ID, entidad, faqLd, faqHtml, wa, foto, precargaFoto, PLANES, planHtml, pesos, desde, ofertasLd, OG_MARCA, ctaFinal, seccionMarcas, franjaCredenciales } from '../comun.mjs';
 
 const RUTA = '/';
 const TITULO = 'Agencia de Marketing Digital Económica en Bogotá | Kairos';
@@ -329,6 +329,8 @@ ${seccionMarcas()}
           <li>AEO y GEO: respuestas directas, preguntas frecuentes y entidad de marca coherente</li>
           <li>Indexación en Google Search Console y en Bing con IndexNow</li>
         </ul>
+        <p class="credenciales-titulo">Formación certificada</p>
+        ${franjaCredenciales()}
         <div class="botones"><a href="/nosotros" class="btn btn--contorno">Conocer a Kairos</a></div>
       </div>
     </div>

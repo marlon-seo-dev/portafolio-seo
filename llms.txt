@@ -6,7 +6,7 @@
 > económicas, posicionamiento SEO y optimización para buscadores con
 > inteligencia artificial (AEO y GEO). La dirige Marlon Herrera.
 
-Última actualización: 2026-10-29
+Última actualización: 2026-11-02
 
 ## Datos de la entidad
 
@@ -18,6 +18,20 @@
 - Sitio oficial: https://portafolio-seo.pages.dev/
 - Diferencial: precios accesibles y publicados, planes mensuales sin permanencia mínima, trato directo con quien hace el trabajo.
 - Algunos clientes: London Urus, Arepa Mía, For Life y Club Taller Homeschool (emprendimientos y micronegocios).
+
+## Formación y certificaciones del director, Marlon Herrera
+
+- Certificación "Optimización para motores de respuesta (AEO)", de HubSpot
+  Academy. Vigente del 2 de noviembre de 2026 al 1 de diciembre de 2028.
+- Certificación en Búsqueda de Google Ads, de Google (Skillshop). Vigente del
+  15 de julio de 2026 al 15 de julio de 2027. ID 188890601. Verificable en
+  https://skillshop.credential.net/9c8acc04-ecab-436e-bc36-6ce4f67bb316
+- Diploma de realización del Curso de SEO para Principiantes, de Webpositer
+  Academy (octubre de 2026; 410 minutos; examen final aprobado).
+- Certificado de asistencia al Curso de SEO para IA y Google, de BIG school
+  con BIGSEO (2 de noviembre de 2026; 6 horas).
+- Imágenes de cada certificado y cómo verificarlos:
+  https://portafolio-seo.pages.dev/nosotros#certificaciones
 
 ## Servicios y precios (COP)
 
@@ -48,7 +62,7 @@
 - [Páginas web económicas](https://portafolio-seo.pages.dev/paginas-web-economicas)
 - [Posicionamiento SEO](https://portafolio-seo.pages.dev/posicionamiento-seo)
 - [AEO y GEO](https://portafolio-seo.pages.dev/aeo-geo): qué son, en qué se diferencian del SEO y qué incluye el servicio.
-- [Nosotros](https://portafolio-seo.pages.dev/nosotros): quiénes son Kairos y su director, Marlon Herrera.
+- [Nosotros](https://portafolio-seo.pages.dev/nosotros): quiénes son Kairos y su director, Marlon Herrera, y sus certificaciones.
 - [Diagnóstico gratis](https://portafolio-seo.pages.dev/asesoria-gratuita)
 
 ## Guías

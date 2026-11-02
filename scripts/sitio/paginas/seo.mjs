@@ -1,5 +1,5 @@
 import { paginaServicio } from '../plantilla-servicio.mjs';
-import { pesos, desde, PLANES } from '../comun.mjs';
+import { pesos, desde, PLANES, bandaCredenciales } from '../comun.mjs';
 
 const P = PLANES.seo.planes;
 
@@ -58,7 +58,11 @@ export const { meta, cuerpo } = paginaServicio({
   ],
   planesTitulo: 'Precios de posicionamiento SEO + IA',
   planesTexto: 'Empieza con la auditoría o ve directo al Plan Visibilidad. El seguimiento mensual es opcional.',
-  extra,
+  extra: extra + bandaCredenciales({
+    titulo: 'Tu SEO lo hace alguien <em>formado en SEO</em>',
+    texto: 'Marlon Herrera, director de Kairos, se formó en SEO con Webpositer Academy y BIG school, tiene certificaciones de HubSpot Academy y de Google, y aplica cada técnica primero en este sitio.',
+    orden: ['seo-webpositer', 'seo-ia-big-school', 'aeo-hubspot', 'google-ads-busqueda'],
+  }),
   pasos: [
     ['Auditoría', 'Revisamos tu sitio, tu ficha de Google y cómo apareces hoy.'],
     ['Plan priorizado', 'Te mostramos qué corregir primero y por qué.'],

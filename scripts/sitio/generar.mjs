@@ -22,7 +22,7 @@ const PAGINAS = [
   ['seo', 'posicionamiento-seo.html', true, ['fotos/auditoria-seo-laptop-1200.webp', 'fotos/analitica-seo-posicionamiento-1200.webp']],
   ['aeo', 'aeo-geo.html', true, ['fotos/aeo-geo-chat-inteligencia-artificial-1200.webp', 'fotos/inteligencia-artificial-marketing-1200.webp']],
   ['precios', 'precios.html', true, ['fotos/precios-marketing-digital-presupuesto-1200.webp']],
-  ['nosotros', 'nosotros.html', true, ['marlon-herrera-crecimiento-digital-1600.webp']],
+  ['nosotros', 'nosotros.html', true, ['marlon-herrera-crecimiento-digital-1600.webp', 'certificaciones/certificacion-aeo-hubspot-academy-1140.webp', 'certificaciones/certificacion-google-ads-busqueda-marlon-herrera-1280.webp', 'certificaciones/diploma-seo-webpositer-academy-marlon-herrera-1280.webp', 'certificaciones/certificado-seo-ia-big-school-marlon-herrera-1280.webp']],
   ['asesoria', 'asesoria-gratuita.html', true, ['fotos/emprendedor-celular-ventas-1200.webp']],
   ['guias', 'guias/index.html', true, []],
   ['guia-precios', 'guias/cuanto-cobra-una-agencia-de-marketing-digital.html', true, ['fotos/precios-marketing-digital-presupuesto-1200.webp']],

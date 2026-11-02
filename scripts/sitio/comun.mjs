@@ -4,7 +4,7 @@
 // fotos responsivas y plantillas de guías. Lo usa scripts/sitio/generar.mjs.
 // =====================================================================
 export const B = 'https://portafolio-seo.pages.dev';
-export const HOY = '2026-10-29';
+export const HOY = '2026-11-02';
 export const WA = 'https://wa.me/573213457681';
 export const wa = (texto) => `${WA}?text=${encodeURIComponent(texto)}`;
 export const pesos = (n) => '$' + new Intl.NumberFormat('es-CO').format(n);
@@ -53,7 +53,8 @@ export function entidad() {
       address: DIRECCION,
       knowsLanguage: 'es',
       worksFor: { '@id': ID.org },
-      knowsAbout: ['SEO on-page', 'SEO técnico', 'SEO local', 'AEO', 'GEO', 'Datos estructurados Schema.org', 'Diseño publicitario', 'Páginas web con HTML, CSS y JavaScript'],
+      knowsAbout: ['SEO on-page', 'SEO técnico', 'SEO local', 'AEO', 'GEO', 'Datos estructurados Schema.org', 'Google Ads (campañas de búsqueda)', 'Diseño publicitario', 'Páginas web con HTML, CSS y JavaScript'],
+      hasCredential: credencialesLd(),
       sameAs: ['https://www.fiverr.com/s/m580G09'],
     },
     {
@@ -192,10 +193,9 @@ export const MARCAS = [
   { nombre: 'Club Taller Homeschool', archivo: 'club-taller-homeschool-200.webp', ancho: 200, alto: 194 },
 ];
 
-export const nombresMarcas = () => {
-  const n = MARCAS.map((m) => m.nombre);
-  return n.length > 1 ? `${n.slice(0, -1).join(', ')} y ${n[n.length - 1]}` : n[0] || '';
-};
+// "a, b y c"
+const unir = (n) => (n.length > 1 ? `${n.slice(0, -1).join(', ')} y ${n[n.length - 1]}` : n[0] || '');
+export const nombresMarcas = () => unir(MARCAS.map((m) => m.nombre));
 
 export function seccionMarcas() {
   if (!MARCAS.length) return '';
@@ -212,6 +212,167 @@ export function seccionMarcas() {
     </div>
   </section>`;
 }
+
+// ============================= FORMACIÓN Y CERTIFICACIONES =============================
+// Credenciales de Marlon Herrera. Fuente única para la sección de Nosotros, las franjas del
+// inicio y de las páginas de SEO y AEO, la caja de autor de las guías, la ficha rápida, una
+// pregunta frecuente y el JSON-LD (Person.hasCredential). Imágenes en assets/images/certificaciones/:
+//   imagen: [nombre, ancho, alto] → <nombre>-640.webp (tarjeta) y <nombre>-<ancho>.webp (visor)
+//   marca:  [archivo, ancho, alto] → insignia o logo del emisor, 112 px de alto y fondo transparente
+// Publica solo imágenes, nunca el PDF original, y usa un nombre nuevo si cambias una imagen.
+// "tipo" es lo que dice el documento; "vence" saca la credencial de las franjas cuando expira.
+export const CREDENCIALES = [
+  {
+    id: 'aeo-hubspot', tema: 'AEO', corto: 'AEO',
+    nombre: 'Optimización para motores de respuesta (AEO)',
+    tipo: 'Certificación',
+    emisor: 'HubSpot Academy', emisorUrl: 'https://academy.hubspot.com/',
+    fecha: '2026-11-02', vence: '2028-12-01',
+    codigo: '2fbbcc79706e4e7b8afdd2c9edf17489',
+    resumen: 'Estrategias para que una marca gane visibilidad en las búsquedas con IA y para que los motores de respuesta descubran, entiendan y citen su contenido.',
+    imagen: ['certificacion-aeo-hubspot-academy', 1140, 880],
+    marca: ['insignia-aeo-hubspot-academy.webp', 112, 112],
+  },
+  {
+    id: 'google-ads-busqueda', tema: 'Google Ads', corto: 'Google Ads · Búsqueda',
+    nombre: 'Certificación en Búsqueda de Google Ads',
+    tipo: 'Certificación',
+    emisor: 'Google', emisorDetalle: 'Google Skillshop', emisorUrl: 'https://skillshop.withgoogle.com/',
+    fecha: '2026-07-15', vence: '2027-07-15',
+    codigo: '188890601',
+    verificar: 'https://skillshop.credential.net/9c8acc04-ecab-436e-bc36-6ce4f67bb316',
+    resumen: 'Examen oficial de Google sobre cómo crear y optimizar campañas de búsqueda, con pujas automáticas (Smart Bidding) y audiencias.',
+    imagen: ['certificacion-google-ads-busqueda-marlon-herrera', 1280, 975],
+    marca: ['insignia-google-ads-busqueda.webp', 112, 112],
+  },
+  {
+    id: 'seo-webpositer', tema: 'SEO', corto: 'SEO',
+    nombre: 'Curso de SEO para Principiantes',
+    tipo: 'Diploma de realización',
+    emisor: 'Webpositer Academy', emisorUrl: 'https://www.webpositeracademy.com/',
+    fecha: '2026-10', minutos: 410,
+    resumen: 'Curso dirigido por Luis M. Villanueva, con examen final de autoevaluación aprobado.',
+    imagen: ['diploma-seo-webpositer-academy-marlon-herrera', 1280, 905],
+    marca: ['logo-webpositer-academy.webp', 188, 112],
+  },
+  {
+    id: 'seo-ia-big-school', tema: 'SEO para IA', corto: 'SEO para IA y Google',
+    nombre: 'Curso de SEO para IA y Google',
+    tipo: 'Certificado de asistencia',
+    emisor: 'BIG school', emisorUrl: 'https://thebigschool.com/',
+    fecha: '2026-11-02', minutos: 360,
+    resumen: 'Jornadas con BIGSEO sobre cómo generar tráfico cualificado, negocio y visibilidad en Google y en las búsquedas con IA.',
+    imagen: ['certificado-seo-ia-big-school-marlon-herrera', 1280, 989],
+    marca: ['logo-big-school.webp', 291, 112],
+  },
+];
+
+const RUTA_CERT = '/assets/images/certificaciones/';
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const fechaCred = (iso) => { const [a, m, d] = iso.split('-').map(Number); return d ? `${d} de ${MESES[m - 1]} de ${a}` : `${MESES[m - 1]} de ${a}`; };
+const duracion = (min) => (min % 60 ? `${Math.floor(min / 60)} h ${min % 60} min` : `${min / 60} horas`);
+const vigente = (c) => !c.vence || c.vence >= HOY;
+const emisorDe = (c) => c.emisorDetalle || c.emisor;
+const imagenGrande = (c) => `${RUTA_CERT}${c.imagen[0]}-${c.imagen[1]}.webp`;
+const altCert = (c) => `${c.nombre.startsWith(c.tipo) ? c.nombre : `${c.tipo} «${c.nombre}»`} de Marlon Herrera, ${c.tipo === 'Certificación' ? 'emitida' : 'emitido'} por ${emisorDe(c)}`;
+
+// Frases para la caja de autor y las preguntas frecuentes.
+export function credencialesTexto() {
+  const v = CREDENCIALES.filter(vigente);
+  return {
+    certificaciones: unir(v.filter((c) => c.tipo === 'Certificación').map((c) => `en ${c.tema} por ${c.emisor}`)),
+    cursos: unir(v.filter((c) => c.tipo !== 'Certificación').map((c) => `en ${c.tema} con ${c.emisor}`)),
+    lista: unir(v.map((c) => `${c.corto} (${c.emisor})`)),
+  };
+}
+
+export const credencialesLd = () => CREDENCIALES.map((c) => ({
+  '@type': 'EducationalOccupationalCredential',
+  '@id': `${B}/nosotros#credencial-${c.id}`,
+  name: c.nombre,
+  description: c.resumen,
+  credentialCategory: c.tipo,
+  recognizedBy: { '@type': 'Organization', name: emisorDe(c), url: c.emisorUrl },
+  dateCreated: c.fecha,
+  ...(c.vence && { expires: c.vence }),
+  ...(c.minutos && { timeRequired: `PT${c.minutos}M` }),
+  ...(c.codigo && { identifier: c.codigo }),
+  url: c.verificar || `${B}/nosotros#certificaciones`,
+  image: `${B}${imagenGrande(c)}`,
+}));
+
+// Tarjetas con la imagen del certificado (Nosotros). El enlace abre la imagen grande;
+// con JS, main.js la muestra en un visor (<dialog>) sin salir de la página.
+export function seccionCredenciales(numero) {
+  const tarjeta = (c, i) => {
+    const visor = `href="${imagenGrande(c)}" data-visor data-ancho="${c.imagen[1]}" data-alto="${c.imagen[2]}" data-titulo="${c.nombre} · ${emisorDe(c)}"`;
+    const dato = (dt, dd) => `<div><dt>${dt}</dt><dd>${dd}</dd></div>`;
+    return `
+        <li class="credencial revelar" data-retraso="${i}">
+          <a class="credencial__imagen" ${visor} tabindex="-1" aria-hidden="true">
+            <img src="${RUTA_CERT}${c.imagen[0]}-640.webp" srcset="${RUTA_CERT}${c.imagen[0]}-640.webp 640w, ${imagenGrande(c)} ${c.imagen[1]}w" sizes="(min-width: 1100px) 270px, (min-width: 640px) calc(50vw - 44px), calc(100vw - 32px)" width="${c.imagen[1]}" height="${c.imagen[2]}" loading="lazy" decoding="async" alt="${altCert(c)}">
+            <span class="credencial__lupa">Ampliar</span>
+          </a>
+          <div class="credencial__cuerpo">
+            <p class="credencial__emisor">${emisorDe(c)}${c.verificar ? '<span class="credencial__sello">Verificable</span>' : ''}</p>
+            <h3 class="credencial__titulo">${c.nombre}</h3>
+            <p class="credencial__resumen">${c.resumen}</p>
+            <dl class="credencial__datos">
+              ${dato('Tipo', c.tipo)}
+              ${dato('Fecha', `<time datetime="${c.fecha}">${fechaCred(c.fecha)}</time>`)}
+              ${c.vence ? dato(vigente(c) ? 'Vigente hasta' : 'Venció el', `<time datetime="${c.vence}">${fechaCred(c.vence)}</time>`) : ''}
+              ${c.minutos ? dato('Duración', duracion(c.minutos)) : ''}
+              ${c.codigo ? dato(c.verificar ? 'ID' : 'Código', `<span class="credencial__codigo">${c.codigo}</span>`) : ''}
+            </dl>
+            <p class="credencial__acciones">
+              ${c.verificar ? `<a class="enlace-flecha" href="${c.verificar}" target="_blank" rel="noopener">Verificar en ${emisorDe(c)}</a>` : ''}
+              <a class="credencial__ver" ${visor}>Ver certificado</a>
+            </p>
+          </div>
+        </li>`;
+  };
+  return `
+  <!-- ============================= FORMACIÓN Y CERTIFICACIONES ============================= -->
+  <section class="seccion seccion--alterna" id="certificaciones" aria-labelledby="titulo-certificaciones">
+    <div class="contenedor">
+      <div class="encabezado-seccion encabezado-seccion--fila revelar">
+        <div>
+          <p class="etiqueta"><span class="etiqueta__num">${numero}</span> Formación</p>
+          <h2 class="titulo-l" id="titulo-certificaciones">Certificaciones y cursos <em>del director</em></h2>
+        </div>
+        <p class="entradilla">Marlon Herrera se forma con ${unir([...new Set(CREDENCIALES.map((c) => c.emisor))])}, y aplica lo que aprende primero en este sitio. Cada credencial dice quién la emite, cuándo y cómo comprobarla.</p>
+      </div>
+      <ul class="credenciales">${CREDENCIALES.map(tarjeta).join('')}
+      </ul>
+      <p class="nota-precios">Las certificaciones de Google y de HubSpot vencen y se renuevan con un nuevo examen; por eso mostramos su vigencia.</p>
+    </div>
+  </section>`;
+}
+
+// Franja compacta con la insignia o el logo de cada emisor (solo credenciales vigentes).
+export function franjaCredenciales(orden) {
+  const lista = (orden ? orden.map((id) => CREDENCIALES.find((c) => c.id === id)) : CREDENCIALES).filter((c) => c && vigente(c));
+  const item = (c) => `<li><span class="credenciales-franja__marca"><img src="${RUTA_CERT}${c.marca[0]}" width="${c.marca[1]}" height="${c.marca[2]}" loading="lazy" decoding="async" alt="${c.marca[0].startsWith('logo-') ? `Logo de ${c.emisor}` : `Insignia de ${c.nombre}`}"></span><span class="credenciales-franja__texto"><strong>${c.corto}</strong>${c.tipo.split(' ')[0]} · ${c.emisor}</span></li>`;
+  return `<div class="credenciales-franja">
+          <ul class="credenciales-franja__lista">${lista.map(item).join('')}</ul>
+          <a class="enlace-flecha" href="/nosotros#certificaciones">Ver los certificados y cómo verificarlos</a>
+        </div>`;
+}
+
+// Bloque "Quién lo hace" para las páginas de servicio.
+export const bandaCredenciales = ({ titulo, texto, orden }) => `
+  <section class="seccion seccion--compacta seccion--borde" id="formacion" aria-labelledby="titulo-formacion">
+    <div class="contenedor dos-columnas">
+      <div class="revelar">
+        <p class="etiqueta">Quién lo hace</p>
+        <h2 class="titulo-l" id="titulo-formacion">${titulo}</h2>
+        <p class="entradilla mt-s">${texto}</p>
+      </div>
+      <div class="revelar" data-retraso="1">
+        ${franjaCredenciales(orden)}
+      </div>
+    </div>
+  </section>`;
 
 // ============================= NAVEGACIÓN, CABECERA Y PIE =============================
 const NAV = [
@@ -448,7 +609,11 @@ export const cajaAutor = `<aside class="autor" aria-label="Sobre el autor">
             <p class="autor__nombre">Marlon Herrera</p>
             <p class="autor__rol">Director de Kairos · Marketing digital, SEO y AEO</p>
             <p>Diseña publicidad, programa páginas web y ejecuta SEO on-page, SEO técnico y AEO para emprendedores y micronegocios. Lo que explica en estas guías lo aplica primero en el sitio de Kairos.</p>
-            <a class="enlace-flecha" href="/nosotros">Conoce a Kairos y a su director</a>
+            <p class="autor__credenciales">Certificado ${credencialesTexto().certificaciones}. Formación ${credencialesTexto().cursos}.</p>
+            <div class="enlaces-seccion">
+              <a class="enlace-flecha" href="/nosotros#certificaciones">Ver sus certificaciones</a>
+              <a class="enlace-flecha" href="/nosotros">Conoce a Kairos y a su director</a>
+            </div>
           </div>
         </aside>`;
 

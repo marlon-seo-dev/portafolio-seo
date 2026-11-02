@@ -1,5 +1,5 @@
 import { paginaServicio } from '../plantilla-servicio.mjs';
-import { pesos, PLANES } from '../comun.mjs';
+import { pesos, PLANES, bandaCredenciales } from '../comun.mjs';
 
 const P = PLANES.seo.planes;
 
@@ -57,7 +57,11 @@ export const { meta, cuerpo } = paginaServicio({
   ],
   planesTitulo: 'Planes de AEO y GEO (incluidos en SEO + IA)',
   planesTexto: 'La auditoría muestra qué responde hoy la IA; el Plan Visibilidad implementa todo lo necesario.',
-  extra,
+  extra: extra + bandaCredenciales({
+    titulo: 'AEO hecho por alguien <em>certificado en AEO</em>',
+    texto: 'Marlon Herrera, director de Kairos, tiene la certificación de HubSpot Academy en optimización para motores de respuesta y se formó en SEO para IA y Google con BIG school.',
+    orden: ['aeo-hubspot', 'seo-ia-big-school', 'seo-webpositer', 'google-ads-busqueda'],
+  }),
   pasosTitulo: 'Cómo preparamos tu negocio para la IA',
   pasos: [
     ['Auditoría de preguntas', 'Preguntamos a la IA lo que preguntaría tu cliente y anotamos qué fuentes usa.'],
