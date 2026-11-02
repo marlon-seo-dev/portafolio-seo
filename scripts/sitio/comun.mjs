@@ -219,7 +219,8 @@ export function seccionMarcas() {
 // pregunta frecuente y el JSON-LD (Person.hasCredential). Imágenes en assets/images/certificaciones/:
 //   imagen: [nombre, ancho, alto] → <nombre>-640.webp (tarjeta) y <nombre>-<ancho>.webp (visor)
 //   marca:  [archivo, ancho, alto] → insignia o logo del emisor, 112 px de alto y fondo transparente
-// Publica solo imágenes, nunca el PDF original, y usa un nombre nuevo si cambias una imagen.
+// Publica solo imágenes, nunca el PDF original: con las firmas de terceros y los datos personales
+// (apellidos, documento, correo) difuminados y la marca de agua del sitio. Nombre nuevo si cambias una imagen.
 // "tipo" es lo que dice el documento; "vence" saca la credencial de las franjas cuando expira.
 export const CREDENCIALES = [
   {
@@ -230,7 +231,7 @@ export const CREDENCIALES = [
     fecha: '2026-11-02', vence: '2028-12-01',
     codigo: '2fbbcc79706e4e7b8afdd2c9edf17489',
     resumen: 'Estrategias para que una marca gane visibilidad en las búsquedas con IA y para que los motores de respuesta descubran, entiendan y citen su contenido.',
-    imagen: ['certificacion-aeo-hubspot-academy', 1140, 880],
+    imagen: ['certificacion-aeo-hubspot-academy-v2', 1140, 880],
     marca: ['insignia-aeo-hubspot-academy.webp', 112, 112],
   },
   {
@@ -242,7 +243,7 @@ export const CREDENCIALES = [
     codigo: '188890601',
     verificar: 'https://skillshop.credential.net/9c8acc04-ecab-436e-bc36-6ce4f67bb316',
     resumen: 'Examen oficial de Google sobre cómo crear y optimizar campañas de búsqueda, con pujas automáticas (Smart Bidding) y audiencias.',
-    imagen: ['certificacion-google-ads-busqueda-marlon-herrera', 1280, 975],
+    imagen: ['certificacion-google-ads-busqueda-marlon-herrera-v2', 1280, 975],
     marca: ['insignia-google-ads-busqueda.webp', 112, 112],
   },
   {
@@ -252,7 +253,7 @@ export const CREDENCIALES = [
     emisor: 'Webpositer Academy', emisorUrl: 'https://www.webpositeracademy.com/',
     fecha: '2026-10', minutos: 410,
     resumen: 'Curso dirigido por Luis M. Villanueva, con examen final de autoevaluación aprobado.',
-    imagen: ['diploma-seo-webpositer-academy-marlon-herrera', 1280, 905],
+    imagen: ['diploma-seo-webpositer-academy-marlon-herrera-v2', 1280, 905],
     marca: ['logo-webpositer-academy.webp', 188, 112],
   },
   {
@@ -262,7 +263,7 @@ export const CREDENCIALES = [
     emisor: 'BIG school', emisorUrl: 'https://thebigschool.com/',
     fecha: '2026-11-02', minutos: 360,
     resumen: 'Jornadas con BIGSEO sobre cómo generar tráfico cualificado, negocio y visibilidad en Google y en las búsquedas con IA.',
-    imagen: ['certificado-seo-ia-big-school-marlon-herrera', 1280, 989],
+    imagen: ['certificado-seo-ia-big-school-marlon-herrera-v2', 1280, 989],
     marca: ['logo-big-school.webp', 291, 112],
   },
 ];
@@ -344,7 +345,7 @@ export function seccionCredenciales(numero) {
       </div>
       <ul class="credenciales">${CREDENCIALES.map(tarjeta).join('')}
       </ul>
-      <p class="nota-precios">Las certificaciones de Google y de HubSpot vencen y se renuevan con un nuevo examen; por eso mostramos su vigencia.</p>
+      <p class="nota-precios">Por seguridad, las firmas y algunos datos personales aparecen difuminados. Las certificaciones de Google y de HubSpot vencen y se renuevan con un nuevo examen; por eso mostramos su vigencia.</p>
     </div>
   </section>`;
 }

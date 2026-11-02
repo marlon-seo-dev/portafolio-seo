@@ -93,7 +93,7 @@ El logo sale en el inicio, en Nosotros y en la ficha "Algunos clientes".
 
 Los certificados salen en Nosotros (`#certificaciones`), en la franja del inicio y de las páginas de SEO y AEO, en la caja de autor de las guías y en los datos para Google (`hasCredential`). Todo sale de `CREDENCIALES`.
 
-1. Convierte el PDF en imagen. **Publica solo la imagen, nunca el PDF**, y revisa que no muestre datos privados: cédula, correo o teléfono.
+1. Convierte el PDF en imagen. **Publica solo la imagen, nunca el PDF.** Antes de publicarla, difumina las firmas (son de otras personas y se pueden copiar para falsificar documentos) y cualquier dato privado: apellidos que no uses en el sitio, cédula, correo o teléfono. Agrega la marca de agua "Kairos · portafolio-seo.pages.dev", para que nadie reutilice el certificado como propio.
 2. Guarda en `assets/images/certificaciones/` dos WebP del certificado, `<nombre>-640.webp` y `<nombre>-1280.webp`, más la insignia o el logo del emisor (112 px de alto, fondo transparente). Pon el emisor y "marlon-herrera" en el nombre del archivo.
 3. Agrega la credencial a `CREDENCIALES` con los datos tal como dicen en el documento: nombre, tipo (Certificación, Diploma de realización, Certificado de asistencia…), emisor, fechas, código y enlace de verificación si lo tiene.
 4. Agrégala también en "Formación y certificaciones" de `llms.txt`. Después: generar, validar y push.

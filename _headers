@@ -15,6 +15,9 @@
 # algunos visitantes verán la versión anterior hasta que expire; mejor usar un nombre nuevo.
 /assets/images/*
   Cache-Control: public, max-age=2592000
+# Certificados: otros sitios no pueden incrustarlos (evita que los muestren como propios).
+/assets/images/certificaciones/*
+  Cross-Origin-Resource-Policy: same-site
 /assets/video/*
   Cache-Control: public, max-age=2592000
 

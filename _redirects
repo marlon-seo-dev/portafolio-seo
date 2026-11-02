@@ -19,3 +19,14 @@
 # Imágenes retiradas el 29-10-2026 que se usaron hasta el 28-10 (vista previa en redes y sitemap).
 /assets/images/og-posicionamiento-digital.jpg                      /assets/images/kairos-og.jpg                                   301
 /assets/images/marlon-herrera-posicionamiento-digital-1687.webp    /assets/images/marlon-herrera-posicionamiento-digital-1200.webp  301
+
+# Certificados publicados el 02-11-2026 sin proteger: redirigen a la versión con firmas y
+# apellidos difuminados y marca de agua.
+/assets/images/certificaciones/certificacion-aeo-hubspot-academy-640.webp                    /assets/images/certificaciones/certificacion-aeo-hubspot-academy-v2-640.webp                    301
+/assets/images/certificaciones/certificacion-aeo-hubspot-academy-1140.webp                   /assets/images/certificaciones/certificacion-aeo-hubspot-academy-v2-1140.webp                   301
+/assets/images/certificaciones/certificacion-google-ads-busqueda-marlon-herrera-640.webp     /assets/images/certificaciones/certificacion-google-ads-busqueda-marlon-herrera-v2-640.webp     301
+/assets/images/certificaciones/certificacion-google-ads-busqueda-marlon-herrera-1280.webp    /assets/images/certificaciones/certificacion-google-ads-busqueda-marlon-herrera-v2-1280.webp    301
+/assets/images/certificaciones/diploma-seo-webpositer-academy-marlon-herrera-640.webp        /assets/images/certificaciones/diploma-seo-webpositer-academy-marlon-herrera-v2-640.webp        301
+/assets/images/certificaciones/diploma-seo-webpositer-academy-marlon-herrera-1280.webp       /assets/images/certificaciones/diploma-seo-webpositer-academy-marlon-herrera-v2-1280.webp       301
+/assets/images/certificaciones/certificado-seo-ia-big-school-marlon-herrera-640.webp         /assets/images/certificaciones/certificado-seo-ia-big-school-marlon-herrera-v2-640.webp         301
+/assets/images/certificaciones/certificado-seo-ia-big-school-marlon-herrera-1280.webp        /assets/images/certificaciones/certificado-seo-ia-big-school-marlon-herrera-v2-1280.webp        301
